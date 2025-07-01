@@ -1,6 +1,6 @@
 import { Job } from "../models/job.model.js";
 
-// Admin can post a new job
+// Admin can post a new job carefully
 export const postJob = async (req, res) => {
   try {
     const {
