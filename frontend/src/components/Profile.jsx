@@ -19,7 +19,7 @@ const Profile = () => {
     <div className="min-h-screen bg-gradient-to-tr from-gray-950 via-gray-900 to-gray-950 text-white animate-bgFade">
       <Navbar />
 
-      {/* ProfileCard */}
+      {/* ProfileCardddddddd */}
       <div className="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-3xl shadow-lg mt-8 p-8 sm:p-12 transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
         <div className="flex flex-col sm:flex-row justify-between sm:items-start">
           {/* Avatar + Name */}
