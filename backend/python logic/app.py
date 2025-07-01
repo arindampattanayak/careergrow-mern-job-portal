@@ -1,10 +1,17 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import fitz  # PyMuPDF
-import spacy
-import pymongo
-import traceback
-from bson import ObjectId
+
+import fitz  # PyMuPDF for PDF processing
+import spacy  # NLP library
+
+from pymongo import MongoClient  # MongoDB client
+from bson import ObjectId  # For working with MongoDB document IDs
+
+from dotenv import load_dotenv  # For loading environment variables
+import os  # To access environment variables
+
+import traceback  # For detailed error reporting
+
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
@@ -12,9 +19,10 @@ CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 print("📦 Loading spaCy model...")
 nlp = spacy.load("en_core_web_sm")
 print("✅ spaCy model loaded.")
-
+mongo_uri = os.getenv("MONGO_URI")
 print("🔌 Connecting to MongoDB...")
-client = pymongo.MongoClient("mongodb+srv://arindampattanayak2004:2tkBnNhd618vMYqf@cluster0.hrish6x.mongodb.net/")
+# Connect to MongoDB
+client = MongoClient(mongo_uri)
 db = client["test"]
 jobs_collection = db["jobs"]
 print("✅ Connected to MongoDB.")
