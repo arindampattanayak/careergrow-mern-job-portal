@@ -24,7 +24,7 @@ const Companies = () => {
       <Navbar />
 
       <div className="max-w-6xl mx-auto py-14 px-4 md:px-6">
-        {/* Header Row */}
+        {/* Header Roww */}
         <div
           className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 
                      opacity-0 scale-95 animate-fadeInScale transition-all duration-500"
