@@ -57,7 +57,7 @@ const Login = () => {
         >
           <h2 className="text-3xl font-bold text-center text-white mb-6">Login</h2>
 
-          {/* Email */}
+          {/* Emailllll */}
           <div className="mb-4">
             <Label htmlFor="email" className="text-gray-300 font-medium">
               Email
