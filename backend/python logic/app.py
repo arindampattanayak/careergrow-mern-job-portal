@@ -10,7 +10,7 @@ from bson import ObjectId  # For working with MongoDB document IDs
 from dotenv import load_dotenv  # For loading environment variables
 import os  # To access environment variables
 
-import traceback  # For detailed error reporting this can be used
+import traceback  # For detailed error reporting this can be used separately
 
 
 app = Flask(__name__)
