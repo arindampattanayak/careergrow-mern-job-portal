@@ -63,12 +63,12 @@ const PostJob = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#f5f8fb] via-[#e7edf4] to-[#d7dee8] text-gray-900">
       <Navbar />
-      <div className="flex justify-center w-full px-4 py-12">
+      <div className="flex justify-center w-full px-6 py-12">
         <form
           onSubmit={submitHandler}
-          className="max-w-4xl w-full bg-gray-900 border border-gray-700 rounded-lg p-10 grid grid-cols-1 sm:grid-cols-2 gap-6 shadow-md"
+          className="max-w-4xl w-full bg-white rounded-xl p-12 shadow-lg border border-gray-300 grid grid-cols-1 sm:grid-cols-2 gap-8"
         >
           {[
             { label: 'Job Title', name: 'title', placeholder: 'e.g., Frontend Developer' },
@@ -81,7 +81,7 @@ const PostJob = () => {
             { label: 'No. of Positions', name: 'position', type: 'number', min: 1 },
           ].map(({ label, name, ...rest }) => (
             <div key={name}>
-              <Label htmlFor={name} className="font-semibold text-white mb-1 block">
+              <Label htmlFor={name} className="font-semibold text-gray-800 mb-1 block">
                 {label}
               </Label>
               <Input
@@ -92,7 +92,7 @@ const PostJob = () => {
                 value={input[name]}
                 onChange={changeEventHandler}
                 placeholder={rest.placeholder}
-                className="mt-1 bg-gray-800 border border-gray-600 placeholder-gray-400 text-white focus:ring-2 focus:ring-blue-500"
+                className="mt-1 bg-gray-100 border border-gray-300 placeholder-gray-400 text-gray-900 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
                 disabled={loading}
                 required
               />
@@ -101,19 +101,19 @@ const PostJob = () => {
 
           {/* Company select */}
           <div className="sm:col-span-2">
-            <Label className="font-semibold mb-2 block text-white">Select Company</Label>
+            <Label className="font-semibold mb-2 block text-gray-800">Select Company</Label>
             {companies.length > 0 ? (
               <Select onValueChange={selectChangeHandler} disabled={loading} defaultValue="">
-                <SelectTrigger className="w-full max-w-md bg-gray-800 border border-gray-600 text-white">
+                <SelectTrigger className="w-full max-w-md bg-gray-100 border border-gray-300 text-gray-900 rounded-md focus:ring-2 focus:ring-indigo-500">
                   <SelectValue placeholder="Select a Company" />
                 </SelectTrigger>
-                <SelectContent className="bg-gray-900 text-white border border-gray-600">
+                <SelectContent className="bg-white text-gray-900 border border-gray-300 rounded-md shadow-lg">
                   <SelectGroup>
                     {companies.map((company) => (
                       <SelectItem
                         key={company._id}
                         value={company.name.toLowerCase()}
-                        className="capitalize"
+                        className="capitalize hover:bg-indigo-50"
                       >
                         {company.name}
                       </SelectItem>
@@ -122,7 +122,7 @@ const PostJob = () => {
                 </SelectContent>
               </Select>
             ) : (
-              <p className="text-sm text-red-500 mt-2 font-medium">
+              <p className="text-sm text-red-600 mt-2 font-medium">
                 * Please register a company first before posting jobs.
               </p>
             )}
@@ -132,7 +132,7 @@ const PostJob = () => {
           <div className="sm:col-span-2 mt-6">
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md transition-colors"
               disabled={loading || companies.length === 0}
             >
               {loading ? (

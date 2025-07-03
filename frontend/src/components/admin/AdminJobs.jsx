@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import AdminJobsTable from './AdminJobsTable';
 import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs';
 import { setSearchJobByText } from '@/redux/jobSlice';
-
 import Footer from '../shared/Footer';
 
 const AdminJobs = () => {
@@ -21,46 +20,48 @@ const AdminJobs = () => {
   }, [input, dispatch]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white animate-fadeIn">
+    <div className="min-h-screen bg-gradient-to-br from-[#eef4ff] via-[#f7faff] to-[#e5edfb] text-gray-900 animate-fadeIn">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto my-10 px-4">
-        {/* Search & New Job Button */}
-        <div
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8
-                     opacity-0 scale-95 animate-fadeInScale transition-all duration-500 ease-out"
-        >
+      <div className="max-w-6xl mx-auto my-14 px-6">
+        {/* Header Row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5 mb-10 animate-fadeInScale">
           <Input
-            className="w-full sm:w-72 bg-gray-800 border border-gray-600 text-white placeholder-gray-400
-                       focus:ring-2 focus:ring-blue-500 focus:outline-none focus:shadow-lg transition"
-            placeholder="Filter by name, role"
+            className="w-full sm:w-80 bg-white border border-gray-300 text-gray-900 placeholder-gray-500
+                       focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded-md shadow-md transition"
+            placeholder="🔍 Filter by job title, role..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
           <Button
             onClick={() => navigate('/admin/jobs/create')}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md 
-                       transform hover:scale-105 hover:shadow-lg transition duration-300"
+            className="bg-gradient-to-r from-indigo-500 to-blue-600 hover:brightness-110 text-white px-6 py-2 rounded-md font-medium shadow-md hover:scale-105 transition-all duration-300"
           >
-            + New Job
+            ➕ New Job
           </Button>
         </div>
 
-        {/* Section Title */}
-        <h2 className="text-xl font-semibold text-purple-300 mb-4">A list of your recently posted jobs</h2>
+        {/* Title */}
+        <h2 className="text-xl font-semibold text-indigo-700 mb-6 border-b border-indigo-300 pb-1">
+          Recently Posted Jobs
+        </h2>
 
-        {/* Jobs Table */}
-        <AdminJobsTable />
+        {/* Table */}
+        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-5 hover:shadow-xl transition-all duration-300">
+          <AdminJobsTable />
+        </div>
       </div>
+
+      <Footer />
 
       {/* Animations */}
       <style>{`
         @keyframes fadeIn {
-          0% { opacity: 0; transform: translateY(10px); }
+          0% { opacity: 0; transform: translateY(12px); }
           100% { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.6s ease-in-out;
+          animation: fadeIn 0.6s ease-out forwards;
         }
 
         @keyframes fadeInScale {
@@ -68,11 +69,9 @@ const AdminJobs = () => {
           100% { opacity: 1; transform: scale(1); }
         }
         .animate-fadeInScale {
-          animation: fadeInScale 0.4s ease-out forwards;
+          animation: fadeInScale 0.5s ease-out forwards;
         }
       `}</style>
-
-      <Footer />
     </div>
   );
 };

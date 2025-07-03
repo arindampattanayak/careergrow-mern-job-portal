@@ -11,12 +11,15 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setSearchedQuery } from '@/redux/jobSlice';
 
-const category = [
+const categories = [
   "Frontend Developer",
   "Backend Developer",
-  "Data Science",
-  "Graphic Designer",
-  "FullStack Developer"
+  "Data Scientist",
+  "UI/UX Designer",
+  "Full Stack Developer",
+  "DevOps Engineer",
+  "Mobile App Developer",
+  "Product Manager"
 ];
 
 const CategoryCarousel = () => {
@@ -29,37 +32,42 @@ const CategoryCarousel = () => {
   };
 
   return (
-    <section className="py-12 bg-gradient-to-br from-gray-900 to-gray-800 text-white animate-fadeInSlow">
+    <section className="py-16 bg-gradient-to-r from-[#edf3ff] via-[#f7faff] to-[#e3ebff] text-[#1e293b] animate-fadeInSlow border-y border-[#dce3f1]">
+      {/* Heading */}
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-extrabold text-purple-300 drop-shadow-sm tracking-tight">
-          🔍 Popular Categories
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1e293b] tracking-tight">
+          🔍 Explore Popular Categories
         </h2>
-        <p className="text-gray-400 mt-2 text-sm sm:text-base">
-          Tap a category to explore jobs you'll love
+        <p className="text-[#475569] mt-2 text-base sm:text-lg">
+          Click a category to explore jobs that fit your passion
         </p>
       </div>
 
-      <Carousel className="w-full max-w-5xl mx-auto px-4 sm:px-6">
-        <CarouselContent className="flex gap-4">
-          {category.map((cat, index) => (
+      {/* Carousel */}
+      <Carousel className="w-full max-w-6xl mx-auto px-4 sm:px-6">
+        <CarouselContent className="flex gap-5">
+          {categories.map((cat, index) => (
             <CarouselItem
               key={index}
-              className="basis-[80%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 flex justify-center"
+              className="basis-[75%] sm:basis-1/2 md:basis-1/3 lg:basis-1/4 flex justify-center"
             >
               <Button
                 onClick={() => searchJobHandler(cat)}
-                variant="ghost"
-                className="rounded-full text-sm sm:text-base font-semibold px-6 py-3 bg-gray-800 hover:bg-purple-600 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 border border-gray-700 hover:border-purple-500"
+                variant="outline"
+                className="w-full text-[#1e293b] font-medium px-5 py-3 rounded-xl bg-white border border-[#cfd8e3] hover:bg-[#6366f1] hover:text-white hover:border-[#6366f1] transition-all duration-300 shadow-sm hover:shadow-xl"
               >
                 {cat}
               </Button>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="left-0 text-purple-300 hover:text-white transition" />
-        <CarouselNext className="right-0 text-purple-300 hover:text-white transition" />
+
+        {/* Navigation Arrows */}
+        <CarouselPrevious className="left-0 text-[#6366f1] hover:text-[#4338ca] transition" />
+        <CarouselNext className="right-0 text-[#6366f1] hover:text-[#4338ca] transition" />
       </Carousel>
 
+      {/* Animation */}
       <style>{`
         @keyframes fadeInSlow {
           0% {
@@ -72,7 +80,7 @@ const CategoryCarousel = () => {
           }
         }
         .animate-fadeInSlow {
-          animation: fadeInSlow 1.2s ease-in-out;
+          animation: fadeInSlow 1s ease-out;
         }
       `}</style>
     </section>

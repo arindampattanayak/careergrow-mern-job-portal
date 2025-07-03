@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -28,21 +27,17 @@ const CompaniesTable = () => {
   }, [companies, searchCompanyByText]);
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-700 bg-gray-900 shadow-lg animate-fadeIn">
+    <div className="overflow-x-auto rounded-2xl border border-[#dbe2ee] bg-gradient-to-br from-[#f8fbff] via-[#eef3fa] to-[#f5f9ff] shadow-md animate-fadeIn">
       <Table className="min-w-full">
-        {/* <TableCaption className="text-gray-400 text-sm italic pt-4">
-          A list of your registered companies.
-        </TableCaption> */}
-
-        <TableHeader className="bg-gray-800 border-b border-gray-700">
+        <TableHeader className="bg-gradient-to-r from-indigo-100 to-white border-b border-gray-300">
           <TableRow>
-            <TableHead className="text-white">Logo</TableHead>
-            <TableHead className="text-white">Name</TableHead>
-            <TableHead className="text-white">Description</TableHead>
-            <TableHead className="text-white">Website</TableHead>
-            <TableHead className="text-white">Location</TableHead>
-            <TableHead className="text-white">Date</TableHead>
-            <TableHead className="text-white text-right">Actions</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Logo</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Name</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Description</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Website</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Location</TableHead>
+            <TableHead className="text-indigo-800 font-semibold">Date</TableHead>
+            <TableHead className="text-indigo-800 font-semibold text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -50,16 +45,16 @@ const CompaniesTable = () => {
           {filteredCompanies.map(company => (
             <TableRow
               key={company._id}
-              className="hover:bg-gray-800 transition-all duration-300"
+              className="hover:bg-[#e8f0fe] transition-all duration-200"
             >
               <TableCell>
-                <Avatar>
+                <Avatar className="bg-white border border-gray-200 shadow-sm">
                   <AvatarImage src={company.logo} alt={company.name} />
                 </Avatar>
               </TableCell>
 
-              <TableCell className="text-white font-semibold">{company.name}</TableCell>
-              <TableCell className="text-gray-300">{company.description || '—'}</TableCell>
+              <TableCell className="text-gray-900 font-medium">{company.name}</TableCell>
+              <TableCell className="text-gray-600 text-sm">{company.description || '—'}</TableCell>
 
               <TableCell>
                 {company.website ? (
@@ -67,7 +62,7 @@ const CompaniesTable = () => {
                     href={company.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 underline hover:text-blue-300"
+                    className="text-indigo-600 hover:underline"
                     onClick={e => e.stopPropagation()}
                   >
                     Visit
@@ -77,8 +72,8 @@ const CompaniesTable = () => {
                 )}
               </TableCell>
 
-              <TableCell className="text-gray-300">{company.location || '—'}</TableCell>
-              <TableCell className="text-gray-400">
+              <TableCell className="text-gray-700 text-sm">{company.location || '—'}</TableCell>
+              <TableCell className="text-gray-500 text-sm">
                 {new Date(company.createdAt).toLocaleDateString()}
               </TableCell>
 
@@ -87,14 +82,14 @@ const CompaniesTable = () => {
                   <PopoverTrigger asChild>
                     <button
                       onClick={e => e.stopPropagation()}
-                      className="p-2 rounded-full hover:bg-gray-700 transition"
+                      className="p-2 rounded-full hover:bg-indigo-100 transition"
                     >
-                      <MoreHorizontal size={20} className="text-white" />
+                      <MoreHorizontal size={20} className="text-indigo-700" />
                     </button>
                   </PopoverTrigger>
 
                   <PopoverContent
-                    className="w-48 p-2 space-y-2 bg-gray-800 border border-gray-600 rounded-lg shadow-xl"
+                    className="w-48 p-2 space-y-2 bg-white border border-gray-200 rounded-xl shadow-xl"
                     align="end"
                     onOpenAutoFocus={e => e.preventDefault()}
                   >
@@ -103,7 +98,7 @@ const CompaniesTable = () => {
                         e.stopPropagation();
                         navigate(`/admin/companies/${company._id}`);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-blue-400 hover:bg-gray-700 cursor-pointer"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-indigo-600 hover:bg-indigo-50 cursor-pointer"
                     >
                       <Edit2 size={16} />
                       Edit Company
@@ -114,7 +109,7 @@ const CompaniesTable = () => {
                         e.stopPropagation();
                         navigate(`/admin/companies/${company._id}/jobs`);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-green-400 hover:bg-gray-700 cursor-pointer"
+                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-green-600 hover:bg-green-50 cursor-pointer"
                     >
                       <Briefcase size={16} />
                       View Jobs

@@ -21,10 +21,10 @@ const MatchedJobs = () => {
   if (!recommendedJobs.length) return null;
 
   return (
-    <div className="mt-10 text-white animate-fadeIn">
-      <h3 className="text-2xl font-bold text-blue-400 mb-4">Matching Jobs</h3>
+    <div className="mt-12 px-4 sm:px-6 lg:px-8 animate-fadeIn">
+      <h3 className="text-2xl font-bold text-indigo-700 mb-6">🎯 Matching Jobs For You</h3>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {recommendedJobs.map((job, index) => {
           const jobSkills = job.requirements || [];
           const score = calculateMatchScore(jobSkills);
@@ -33,37 +33,41 @@ const MatchedJobs = () => {
           return (
             <div
               key={index}
-              className="bg-gradient-to-br from-gray-800 via-gray-900 to-gray-950 border border-gray-700 rounded-lg p-5 shadow-lg hover:shadow-xl transition duration-300"
+              className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6"
             >
+              {/* Job Card */}
               <Job job={job} />
 
-              <div className="mt-4 text-sm">
-                <div className="mb-3">
-                  <p className="text-gray-400 font-medium">Match Score</p>
-                  <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+              {/* Match Insights */}
+              <div className="mt-6 text-sm text-gray-700">
+                {/* Match Score */}
+                <div className="mb-4">
+                  <p className="font-medium text-gray-600 mb-1">Match Score</p>
+                  <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-blue-500 transition-all"
+                      className="h-full bg-indigo-500 transition-all"
                       style={{ width: `${score * 100}%` }}
                     ></div>
                   </div>
-                  <p className="text-xs text-blue-300 mt-1">{(score * 100).toFixed(2)}% match</p>
+                  <p className="text-xs text-indigo-600 mt-1">{(score * 100).toFixed(1)}% match</p>
                 </div>
 
+                {/* Skill Gap */}
                 <div>
-                  <p className="text-gray-400 font-medium mb-1">Skill Gap</p>
+                  <p className="font-medium text-gray-600 mb-2">Skill Gap</p>
                   {skillGap.length > 0 ? (
                     <ul className="flex flex-wrap gap-2">
                       {skillGap.map((skill, i) => (
                         <li
                           key={i}
-                          className="px-3 py-1 bg-gray-700 text-red-300 rounded-full text-xs"
+                          className="px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs border border-red-200"
                         >
                           {skill}
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-sm text-green-400">No skill gaps 🎯</p>
+                    <p className="text-sm text-green-600">✅ No skill gaps – You're ready to apply!</p>
                   )}
                 </div>
               </div>

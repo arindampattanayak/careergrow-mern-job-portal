@@ -16,15 +16,15 @@ const Profile = () => {
   const { user } = useSelector((store) => store.auth);
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-gray-950 via-gray-900 to-gray-950 text-white animate-bgFade">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 to-blue-100 text-gray-800">
       <Navbar />
 
-      {/* ProfileCardddddddd */}
-      <div className="max-w-4xl mx-auto bg-gray-900 border border-gray-800 rounded-3xl shadow-lg mt-8 p-8 sm:p-12 transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-2xl">
+      {/* Profile Card */}
+      <div className="max-w-4xl mx-auto mt-10 bg-white border border-gray-200 rounded-3xl shadow-lg p-8 sm:p-12 transition-transform duration-300 hover:shadow-xl">
         <div className="flex flex-col sm:flex-row justify-between sm:items-start">
-          {/* Avatar + Name */}
+          {/* Avatar & Name */}
           <div className="flex items-center gap-6 mb-8 sm:mb-0">
-            <Avatar className="h-28 w-28 border-4 border-purple-500 shadow-xl transition-shadow duration-500 hover:shadow-purple-500/50">
+            <Avatar className="h-28 w-28 border-4 border-indigo-300 shadow-md">
               <AvatarImage
                 src={
                   user?.profile?.profilePhoto ||
@@ -35,8 +35,8 @@ const Profile = () => {
               />
             </Avatar>
             <div>
-              <h1 className="text-3xl font-extrabold text-white drop-shadow-sm">{user?.fullname}</h1>
-              <p className="mt-1 text-gray-400 italic">{user?.profile?.bio || 'No bio available'}</p>
+              <h1 className="text-3xl font-bold text-gray-800">{user?.fullname}</h1>
+              <p className="mt-1 text-gray-500 italic">{user?.profile?.bio || 'No bio available'}</p>
             </div>
           </div>
 
@@ -44,7 +44,7 @@ const Profile = () => {
           <Button
             onClick={() => setOpen(true)}
             variant="outline"
-            className="flex items-center gap-2 self-start sm:self-end border-pink-500 text-pink-400 hover:bg-pink-500 hover:text-white transition-colors duration-300 shadow-md"
+            className="flex items-center gap-2 border-indigo-500 text-indigo-500 hover:bg-indigo-500 hover:text-white transition-colors duration-300"
           >
             <Pen size={18} />
             Edit Profile
@@ -52,20 +52,20 @@ const Profile = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="mt-8 space-y-4 text-gray-300 text-lg">
+        <div className="mt-8 space-y-4 text-gray-700 text-base">
           <div className="flex items-center gap-4">
-            <Mail className="text-purple-400" size={20} />
-            <span className="select-text break-all">{user?.email || 'Not provided'}</span>
+            <Mail className="text-indigo-500" size={20} />
+            <span>{user?.email || 'Not provided'}</span>
           </div>
           <div className="flex items-center gap-4">
-            <Contact className="text-purple-400" size={20} />
-            <span className="select-text">{user?.phoneNumber || 'Not provided'}</span>
+            <Contact className="text-indigo-500" size={20} />
+            <span>{user?.phoneNumber || 'Not provided'}</span>
           </div>
         </div>
 
         {/* Skills */}
         <div className="mt-10">
-          <h2 className="text-xl font-semibold mb-3 text-purple-200 border-b border-purple-400 pb-1 w-fit">
+          <h2 className="text-xl font-semibold mb-3 text-indigo-600 border-b border-indigo-300 pb-1 w-fit">
             Skills
           </h2>
           <div className="flex flex-wrap gap-3">
@@ -73,20 +73,20 @@ const Profile = () => {
               user.profile.skills.map((skill, idx) => (
                 <Badge
                   key={idx}
-                  className="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium drop-shadow-md cursor-default select-none hover:scale-105 transform transition-transform duration-200"
+                  className="px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-medium border border-indigo-300"
                 >
                   {skill}
                 </Badge>
               ))
             ) : (
-              <span className="text-gray-500 italic">No skills listed</span>
+              <span className="text-gray-400 italic">No skills listed</span>
             )}
           </div>
         </div>
 
         {/* Resume */}
         <div className="mt-10">
-          <Label className="text-lg font-semibold text-purple-200">Resume</Label>
+          <Label className="text-lg font-semibold text-indigo-600">Resume</Label>
           <div className="mt-2">
             {user?.profile?.resume ? (
               <div className="flex gap-4 items-center flex-wrap">
@@ -94,14 +94,14 @@ const Profile = () => {
                   href={user.profile.resume}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-purple-400 underline font-medium hover:text-purple-300 transition-colors duration-300"
+                  className="text-indigo-600 underline font-medium hover:text-indigo-500 transition-colors duration-300"
                 >
                   View Resume
                 </a>
                 <a
                   href={user.profile.resume}
                   download={user.profile.resumeOriginalName}
-                  className="text-sm bg-purple-800 text-white px-3 py-1 rounded hover:bg-purple-700 transition"
+                  className="text-sm bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-500 transition"
                 >
                   Download
                 </a>
@@ -112,39 +112,20 @@ const Profile = () => {
                 )}
               </div>
             ) : (
-              <span className="text-gray-500 italic">Not available</span>
+              <span className="text-gray-400 italic">Not available</span>
             )}
           </div>
         </div>
       </div>
 
-      {/* Applied Jobs */}
-      <div className="max-w-4xl mx-auto mt-10 bg-gray-900 rounded-3xl p-8 shadow-lg border border-gray-800 animate-fadeInUp">
-        <h1 className="text-2xl font-bold text-white mb-6">Applied Jobs</h1>
+      {/* Applied Jobs Table */}
+      <div className="max-w-4xl mx-auto mt-10 bg-white rounded-3xl p-8 shadow-md border border-gray-200">
+        <h1 className="text-2xl font-bold text-gray-800 mb-6">Applied Jobs</h1>
         <AppliedJobTable />
       </div>
 
       {/* Update Dialog */}
       <UpdateProfileDialog open={open} setOpen={setOpen} />
-
-      {/* Animations */}
-      <style>{`
-        @keyframes fadeInUp {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeInUp {
-          animation: fadeInUp 0.5s ease forwards;
-        }
-        @keyframes bgFade {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
-        .animate-bgFade {
-          background-size: 200% 200%;
-          animation: bgFade 15s linear infinite alternate;
-        }
-      `}</style>
     </div>
   );
 };

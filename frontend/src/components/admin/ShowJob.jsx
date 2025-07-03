@@ -30,51 +30,52 @@ const ShowJob = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-950 text-white">
-        <Loader2 className="animate-spin h-6 w-6 mr-2 text-blue-500" />
-        <span>Loading job...</span>
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-[#e6f0ff] to-[#f9fbff] text-indigo-700">
+        <Loader2 className="animate-spin h-6 w-6 mr-2" />
+        <span className="text-lg font-medium tracking-wide">Loading job...</span>
       </div>
     )
   }
 
   if (!job) {
     return (
-      <div className="text-center py-10 text-red-400 bg-gray-950 min-h-screen text-lg">
-        ❌ Job not found or failed to load.
+      <div className="flex justify-center items-center h-screen bg-gradient-to-br from-[#e6f0ff] to-[#f9fbff]">
+        <p className="text-red-600 text-lg font-semibold">❌ Job not found or failed to load.</p>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white px-4 py-10 animate-fadeIn">
-      <div className="max-w-4xl mx-auto bg-gray-900 border border-gray-700 rounded-xl p-8 shadow-lg">
-        <h1 className="text-3xl font-bold text-blue-400 mb-6">{job.title}</h1>
+    <div className="min-h-screen bg-gradient-to-br from-[#e6f0ff] to-[#f9fbff] px-6 py-10 animate-fadeIn">
+      <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-8">
+        <h1 className="text-3xl font-bold text-indigo-800 mb-6 tracking-tight">{job.title}</h1>
 
-        <div className="space-y-4 text-gray-300 text-sm sm:text-base">
-          <p><span className="font-semibold text-white">Company:</span> {job.company?.name}</p>
-          <p><span className="font-semibold text-white">Location:</span> {job.location}</p>
-          <p><span className="font-semibold text-white">Salary:</span> ₹{job.salary} LPA</p>
-          <p><span className="font-semibold text-white">Job Type:</span> {job.jobType}</p>
-          <p><span className="font-semibold text-white">Experience Level:</span> {job.experienceLevel} years</p>
-          <p><span className="font-semibold text-white">Open Positions:</span> {job.position}</p>
-
-          <div>
-            <p className="font-semibold text-white">Description:</p>
-            <p className="whitespace-pre-line mt-1 text-gray-400">{job.description}</p>
+        <section className="space-y-5 text-gray-700 text-base leading-relaxed">
+          <div className="flex flex-wrap gap-6 mb-6">
+            <InfoLabel label="Company" value={job.company?.name} />
+            <InfoLabel label="Location" value={job.location} />
+            <InfoLabel label="Salary" value={`₹${job.salary} LPA`} />
+            <InfoLabel label="Job Type" value={job.jobType} />
+            <InfoLabel label="Experience Level" value={`${job.experienceLevel} years`} />
+            <InfoLabel label="Open Positions" value={job.position} />
           </div>
 
           <div>
-            <p className="font-semibold text-white">Required Skills:</p>
-            <ul className="list-disc list-inside mt-1 text-gray-400">
+            <p className="text-indigo-900 font-semibold text-lg mb-1">Job Description</p>
+            <p className="whitespace-pre-line text-gray-600">{job.description}</p>
+          </div>
+
+          <div>
+            <p className="text-indigo-900 font-semibold text-lg mb-1">Required Skills</p>
+            <ul className="list-disc list-inside space-y-1 text-gray-600">
               {Array.isArray(job.requirements)
                 ? job.requirements.map((req, i) => <li key={i}>{req}</li>)
                 : <li>{job.requirements}</li>}
             </ul>
           </div>
-        </div>
+        </section>
       </div>
 
-      {/* Fade Animation */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }
@@ -87,5 +88,12 @@ const ShowJob = () => {
     </div>
   )
 }
+
+const InfoLabel = ({ label, value }) => (
+  <div className="flex flex-col min-w-[120px]">
+    <span className="text-indigo-700 font-semibold">{label}:</span>
+    <span className="text-gray-800 font-medium">{value || '—'}</span>
+  </div>
+)
 
 export default ShowJob

@@ -87,96 +87,99 @@ const ChatBox = () => {
     }
   };
 
- return (
-  <div className="w-full min-h-screen bg-gray-950 text-white transition-colors duration-300 px-4 sm:px-8 py-6">
-    {/* Header */}
-    <div className="max-w-5xl mx-auto mb-6">
-      <h2 className="text-2xl font-semibold text-blue-500">
-        Chat for:{" "}
-        <span className="text-white">
-          {jobDetails?.title || "Loading..."}
-        </span>
-      </h2>
-      {userDetails && (
-        <p className="text-sm text-gray-400 mt-1">
-          Talking to:{" "}
-          <span className="font-medium text-blue-400">
-            {userDetails.fullname}
+  return (
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#e0f7f1] via-[#e6f3ff] to-[#f3f8fa] text-slate-800 px-4 sm:px-8 py-6 animate-fadeIn">
+      {/* Header */}
+      <div className="max-w-5xl mx-auto mb-6">
+        <h2 className="text-2xl font-bold text-sky-600">
+           Chat for:{" "}
+          <span className="text-slate-800 font-semibold">
+            {jobDetails?.title || "Loading..."}
           </span>
-        </p>
-      )}
-    </div>
+        </h2>
+        {userDetails && (
+          <p className="text-sm text-slate-600 mt-1">
+            Talking to: <span className="text-emerald-600 font-medium">{userDetails.fullname}</span>
+          </p>
+        )}
+      </div>
 
-    {/* Chat Messages */}
-    <div className="max-w-5xl mx-auto h-[60vh] overflow-y-auto border border-gray-700 bg-gray-900 rounded-lg p-4 space-y-4 shadow-sm">
-      {messages.map((msg) => {
-        const isSender = msg.senderId?.toString() === senderId;
-        const bubbleColor = isSender
-          ? "bg-blue-700 text-white"
-          : "bg-gray-800 text-gray-200";
+      {/* Chat Messages */}
+      <div className="max-w-5xl mx-auto h-[60vh] overflow-y-auto border border-slate-300 bg-white rounded-xl p-4 space-y-4 shadow">
+        {messages.map((msg) => {
+          const isSender = msg.senderId?.toString() === senderId;
+          const bubbleColor = isSender
+            ? "bg-emerald-100 text-emerald-900"
+            : "bg-sky-100 text-sky-900";
 
-        return (
-          <div
-            key={msg._id}
-            className={`w-full flex ${isSender ? "justify-end" : "justify-start"} animate-fade-in`}
-          >
-            <div className={`max-w-[75%] p-3 rounded-xl ${bubbleColor} shadow`}>
-              {msg.content && <p className="whitespace-pre-wrap">{msg.content}</p>}
-              {msg.mediaUrl && (
-                <a
-                  href={`${API_URL}${msg.mediaUrl}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-sm text-blue-300 underline mt-1 block"
-                >
-                  📎 View Attachment
-                </a>
-              )}
-              <p className="text-xs text-right mt-2 text-gray-400">
-                {new Date(msg.createdAt).toLocaleTimeString()}
-              </p>
+          return (
+            <div
+              key={msg._id}
+              className={`w-full flex ${isSender ? "justify-end" : "justify-start"} animate-fade-in`}
+            >
+              <div className={`max-w-[75%] px-4 py-3 rounded-2xl ${bubbleColor} shadow-md`}>
+                {msg.content && <p className="whitespace-pre-wrap">{msg.content}</p>}
+                {msg.mediaUrl && (
+                  <a
+                    href={`${API_URL}${msg.mediaUrl}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block mt-2 text-sm text-blue-500 underline"
+                  >
+                    📎 View Attachment
+                  </a>
+                )}
+                <p className="text-xs text-right text-slate-500 mt-2">
+                  {new Date(msg.createdAt).toLocaleTimeString()}
+                </p>
+              </div>
             </div>
-          </div>
-        );
-      })}
-      <div ref={bottomRef}></div>
-    </div>
+          );
+        })}
+        <div ref={bottomRef}></div>
+      </div>
 
-    {/* Input Section */}
-    <div className="max-w-5xl mx-auto mt-6 flex flex-col sm:flex-row gap-3 items-center">
-      <input
-        type="text"
-        placeholder="Type your message..."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        className="flex-1 p-3 rounded-md border border-gray-700 bg-gray-800 text-white placeholder-gray-500"
-      />
-      <input
-        type="file"
-        onChange={(e) => setMedia(e.target.files[0])}
-        ref={fileInputRef}
-        className="text-sm w-full sm:w-48 bg-gray-800 text-white border border-gray-700 rounded-md file:mr-2 file:py-2 file:px-4 file:border-0 file:bg-blue-600 file:text-white hover:file:bg-blue-700"
-      />
-      <button
-        onClick={sendMessage}
-        disabled={!content && !media}
-        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition disabled:bg-gray-600"
-      >
-        Send
-      </button>
-    </div>
+      {/* Input */}
+      <div className="max-w-5xl mx-auto mt-6 flex flex-col sm:flex-row gap-4 items-center">
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          className="flex-1 p-3 rounded-md bg-white text-slate-800 border border-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+        />
 
-    {/* Animation */}
-    <style>{`
-      @keyframes fade-in {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      .animate-fade-in {
-        animation: fade-in 0.3s ease-out;
-      }
-    `}</style>
-  </div>
-);
-}
+        <input
+          type="file"
+          onChange={(e) => setMedia(e.target.files[0])}
+          ref={fileInputRef}
+          className="text-sm w-full sm:w-48 bg-white text-slate-800 border border-slate-300 rounded-md file:bg-sky-500 file:text-white file:border-0 file:px-4 file:py-2 hover:file:bg-sky-600"
+        />
+
+        <button
+          onClick={sendMessage}
+          disabled={!content && !media}
+          className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-md font-medium transition duration-200 disabled:bg-slate-400"
+        >
+          Send
+        </button>
+      </div>
+
+      {/* Animations */}
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(15px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+        .animate-fadeIn {
+          animation: fade-in 0.6s ease-in-out;
+        }
+      `}</style>
+    </div>
+  );
+};
+
 export default ChatBox;

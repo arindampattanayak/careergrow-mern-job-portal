@@ -8,6 +8,7 @@ import useGetAllCompanies from '@/hooks/useGetAllCompanies';
 import { useDispatch } from 'react-redux';
 import { setSearchCompanyByText } from '@/redux/companySlice';
 import Footer from '../shared/Footer';
+import { Plus } from 'lucide-react'; // ✅ Added icon
 
 const Companies = () => {
   useGetAllCompanies();
@@ -20,36 +21,39 @@ const Companies = () => {
   }, [input]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white animate-fadeIn">
+    <div className="min-h-screen bg-gradient-to-br from-[#f0f4ff] via-[#e7ecff] to-[#f9fafe] text-gray-800">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto py-14 px-4 md:px-6">
-        {/* Headerr Roww */}
+      <div className="max-w-6xl mx-auto py-16 px-4 md:px-6">
+        {/* Header Row */}
         <div
-          className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 
-                     opacity-0 scale-95 animate-fadeInScale transition-all duration-500"
+          className="flex flex-col md:flex-row items-center justify-between gap-5 mb-10 
+                     opacity-0 scale-95 animate-fadeInScale"
         >
           <Input
-            className="w-full md:w-72 bg-gray-800 border border-gray-600 text-white placeholder-gray-400
-                       focus:ring-2 focus:ring-blue-500 focus:outline-none rounded-md shadow-md transition"
-            placeholder="Filter by company name"
+            className="w-full md:w-72 bg-white border border-gray-300 text-gray-800 placeholder-gray-500
+                       focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded-lg shadow-md transition"
+            placeholder="🔍 Filter by company name..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
+
           <Button
             onClick={() => navigate('/admin/companies/create')}
-            className="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-md transition 
-                       text-white shadow-md hover:scale-105"
+            className="bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-2 rounded-md font-medium shadow-md hover:scale-105 transition-all flex items-center gap-2"
           >
-            + New Company
+            <Plus size={18} />
+            New Company
           </Button>
         </div>
 
         {/* Section Heading */}
-        <h2 className="text-xl font-semibold text-purple-300 mb-4">A list of your registered companies.</h2>
+        <h2 className="text-xl font-semibold text-indigo-700 mb-6 border-b border-indigo-300 pb-1">
+          Registered Companies
+        </h2>
 
         {/* Table Container */}
-        <div className="bg-gray-900 rounded-lg shadow-xl border border-gray-700 transition-transform hover:scale-[1.01]">
+        <div className="bg-white rounded-xl shadow-md border border-gray-200 p-4 hover:shadow-lg transition-all duration-300">
           <CompaniesTable />
         </div>
       </div>

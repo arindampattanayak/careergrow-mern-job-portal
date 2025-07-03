@@ -25,32 +25,35 @@ const Jobs = () => {
   }, [allJobs, searchedQuery]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#f1f5ff] via-[#f8fbff] to-[#edf3ff] text-gray-800 animate-fadeIn">
+      {/* Navbar */}
       <Navbar />
+
+      {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 py-10">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left Sidebar */}
-          <aside className="lg:w-1/4 w-full bg-gray-900 p-4 rounded-md shadow-md border border-gray-800 animate-slideInLeft">
+          {/* Sidebar Filters */}
+          <aside className="lg:w-1/4 w-full bg-white border border-blue-200 rounded-xl p-5 shadow-md animate-slideInLeft">
             <FilterCard />
           </aside>
 
           {/* Job Listings */}
           <main className="flex-1">
-            {filterJobs.length <= 0 ? (
-              <div className="text-center text-gray-400 text-xl mt-16 animate-fadeIn">
+            {filterJobs.length === 0 ? (
+              <div className="text-center text-gray-500 text-xl mt-16 animate-fadeIn">
                 🚫 No jobs found matching your criteria.
               </div>
             ) : (
               <motion.div
                 layout
-                className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
               >
                 {filterJobs.map((job) => (
                   <motion.div
                     key={job?._id}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
+                    transition={{ duration: 0.3 }}
                     exit={{ opacity: 0 }}
                   >
                     <Job job={job} />
@@ -62,7 +65,7 @@ const Jobs = () => {
         </div>
       </div>
 
-      {/* Custom Animations */}
+      {/* Animations */}
       <style jsx>{`
         @keyframes slideInLeft {
           0% {
@@ -75,21 +78,21 @@ const Jobs = () => {
           }
         }
         .animate-slideInLeft {
-          animation: slideInLeft 0.6s ease-in-out;
+          animation: slideInLeft 0.5s ease-in-out;
         }
 
         @keyframes fadeIn {
-          0% {
+          from {
             opacity: 0;
             transform: scale(0.98);
           }
-          100% {
+          to {
             opacity: 1;
             transform: scale(1);
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.5s ease-out;
+          animation: fadeIn 0.4s ease-out;
         }
       `}</style>
     </div>

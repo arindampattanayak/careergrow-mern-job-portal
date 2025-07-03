@@ -12,51 +12,57 @@ import { Badge } from './ui/badge';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const userId = localStorage.getItem("userId"); // ✅ Use userId directly
+const userId = localStorage.getItem("userId");
 
 const AppliedJobTable = () => {
   const { allAppliedJobs } = useSelector((store) => store.job);
   const navigate = useNavigate();
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-800 shadow-lg bg-gray-900 text-white">
+    <div className="overflow-x-auto rounded-2xl border border-[#dbe5f1] shadow-lg bg-gradient-to-br from-[#eef5ff] via-[#f4f9ff] to-[#e6f0fa] text-[#1e293b] p-6 animate-fadeIn">
       <Table>
-        <TableCaption className="text-gray-400 text-sm italic">
-          A list of your applied jobs
+        <TableCaption className="text-sm text-[#64748b] italic">
+          A list of your applied jobs.
         </TableCaption>
         <TableHeader>
-          <TableRow className="bg-gray-800">
-            <TableHead className="text-left text-purple-400">Date</TableHead>
-            <TableHead className="text-left text-purple-400">Job Role</TableHead>
-            <TableHead className="text-left text-purple-400">Company</TableHead>
-            <TableHead className="text-right text-purple-400">Status & Chat</TableHead>
+          <TableRow className="bg-[#ddecfb] text-[#1e3a8a]">
+            <TableHead className="font-semibold">📅 Date</TableHead>
+            <TableHead className="font-semibold">🧑‍💻 Job Role</TableHead>
+            <TableHead className="font-semibold">🏢 Company</TableHead>
+            <TableHead className="text-right font-semibold">Status & Chat</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {allAppliedJobs.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={4} className="text-center py-6 text-gray-500 italic">
+              <TableCell colSpan={4} className="text-center py-6 text-slate-400 italic">
                 You haven't applied to any job yet.
               </TableCell>
             </TableRow>
           ) : (
-            allAppliedJobs.map((appliedJob, index) => (
+            allAppliedJobs.map((appliedJob) => (
               <TableRow
                 key={appliedJob._id}
-                className="hover:bg-gray-800 transition-colors duration-200"
+                className="hover:bg-[#eaf3ff] transition duration-200"
               >
-                <TableCell className="text-gray-300">{appliedJob?.createdAt?.split('T')[0]}</TableCell>
-                <TableCell className="font-semibold text-white">{appliedJob.job?.title}</TableCell>
-                <TableCell className="text-gray-300">{appliedJob.job?.company?.name}</TableCell>
-                <TableCell className="text-right flex justify-end items-center gap-2">
+                <TableCell className="text-[#334155]">
+                  {appliedJob?.createdAt?.split('T')[0]}
+                </TableCell>
+                <TableCell className="font-semibold text-[#0f172a]">
+                  {appliedJob.job?.title}
+                </TableCell>
+                <TableCell className="text-[#334155]">
+                  {appliedJob.job?.company?.name}
+                </TableCell>
+                <TableCell className="text-right flex justify-end items-center gap-3">
                   <Badge
-                    className={`px-3 py-1 rounded-full font-semibold text-white animate-pulse
-                      ${appliedJob.status === 'rejected'
-                        ? 'bg-red-600'
+                    className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      appliedJob.status === 'rejected'
+                        ? 'bg-[#ffe2e6] text-[#b91c1c]'
                         : appliedJob.status === 'pending'
-                          ? 'bg-yellow-500 text-yellow-900'
-                          : 'bg-green-600'
-                      }`}
+                        ? 'bg-[#fff5cc] text-[#ca8a04]'
+                        : 'bg-[#d1fae5] text-[#047857]'
+                    }`}
                   >
                     {appliedJob.status.toUpperCase()}
                   </Badge>
@@ -65,12 +71,12 @@ const AppliedJobTable = () => {
                       onClick={() =>
                         navigate(`/chat/${appliedJob.job._id}/${appliedJob.job.company.userId}/${userId}`)
                       }
-                      className="text-sm text-white bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded transition duration-300"
+                      className="text-xs bg-[#3b82f6] hover:bg-[#2563eb] text-white px-3 py-1.5 rounded-md font-medium shadow-sm transition"
                     >
-                      Chat
+                       Chat
                     </button>
                   ) : (
-                    <span className="text-sm text-gray-400 italic">No recruiter</span>
+                    <span className="text-xs text-slate-400 italic">No recruiter</span>
                   )}
                 </TableCell>
               </TableRow>
@@ -78,6 +84,17 @@ const AppliedJobTable = () => {
           )}
         </TableBody>
       </Table>
+
+      {/* Optional Animation */}
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.5s ease-out;
+        }
+      `}</style>
     </div>
   );
 };

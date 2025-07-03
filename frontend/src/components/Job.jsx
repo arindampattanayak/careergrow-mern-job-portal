@@ -16,52 +16,52 @@ const Job = ({ job }) => {
   };
 
   return (
-    <div className="p-5 rounded-lg shadow-lg border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-800 text-white transition-transform transform hover:scale-[1.02] hover:shadow-xl duration-300 animate-fadeIn">
+    <div className="p-6 rounded-2xl bg-[#f7faff] border border-blue-100 text-gray-800 shadow-md hover:shadow-lg transition-transform transform hover:scale-[1.02] duration-300 animate-fadeIn">
       {/* Top Row */}
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-400">
+      <div className="flex items-center justify-between text-sm text-gray-500">
+        <p>
           {daysAgoFunction(job?.createdAt) === 0
-            ? 'Today'
+            ? 'Posted Today'
             : `${daysAgoFunction(job?.createdAt)} days ago`}
         </p>
         <Button
           variant="ghost"
-          className="rounded-full hover:text-yellow-400 text-gray-400 transition"
+          className="rounded-full hover:text-yellow-500 text-gray-400 transition"
           size="icon"
         >
-          <Bookmark />
+          <Bookmark size={18} />
         </Button>
       </div>
 
       {/* Company Info */}
-      <div className="flex items-center gap-4 mt-3 mb-4">
-        <Avatar className="bg-gray-700 p-1">
+      <div className="flex items-center gap-4 mt-4 mb-5">
+        <Avatar className="bg-gray-100 border border-gray-300">
           <AvatarImage src={job?.company?.logo} alt="logo" />
         </Avatar>
         <div>
-          <h2 className="text-lg font-semibold text-purple-300">
+          <h2 className="text-md font-semibold text-blue-700">
             {job?.company?.name}
           </h2>
-          <p className="text-sm text-gray-500">India</p>
+          <p className="text-xs text-gray-500">📍 India</p>
         </div>
       </div>
 
-      {/* Job Title and Description */}
-      <div>
-        <h1 className="text-xl font-bold text-white mb-2">{job?.title}</h1>
-        <p className="text-sm text-gray-400">{job?.description}</p>
+      {/* Job Title & Description */}
+      <div className="mb-3">
+        <h1 className="text-lg font-bold text-gray-900">{job?.title}</h1>
+        <p className="text-sm text-gray-600 mt-1 line-clamp-3">{job?.description}</p>
       </div>
 
-      {/* Badges */}
-      <div className="flex flex-wrap gap-2 mt-4">
-        <Badge className="text-blue-300 font-semibold border border-blue-500 bg-transparent" variant="ghost">
-          {job?.position} Positions
+      {/* Job Highlights */}
+      <div className="flex flex-wrap gap-2 mt-3">
+        <Badge className="text-blue-600 font-medium bg-blue-100 border border-blue-200">
+          {job?.position} {job?.position > 1 ? 'Positions' : 'Position'}
         </Badge>
-        <Badge className="text-pink-400 font-semibold border border-pink-600 bg-transparent" variant="ghost">
+        <Badge className="text-green-600 font-medium bg-green-100 border border-green-200">
           {job?.jobType}
         </Badge>
-        <Badge className="text-purple-300 font-semibold border border-purple-600 bg-transparent" variant="ghost">
-          {job?.salary} LPA
+        <Badge className="text-purple-600 font-medium bg-purple-100 border border-purple-200">
+          ₹ {job?.salary} LPA
         </Badge>
       </div>
 
@@ -71,7 +71,7 @@ const Job = ({ job }) => {
           {job.requirements.map((req, index) => (
             <Badge
               key={index}
-              className="bg-gray-700 text-gray-300 border border-gray-600 rounded-full text-xs"
+              className="bg-gray-100 text-gray-700 border border-gray-300 rounded-full text-xs"
             >
               {req.trim()}
             </Badge>
@@ -79,20 +79,23 @@ const Job = ({ job }) => {
         </div>
       )}
 
-      {/* Buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-3 mt-6">
         <Button
           onClick={() => navigate(`/description/${job?._id}`)}
-          className="border border-purple-500 text-purple-300 hover:bg-purple-800 hover:text-white transition-all transform hover:scale-[1.03]"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 rounded-full transition"
         >
-          Details
+          View Details
         </Button>
-        <Button className="bg-purple-700 hover:bg-purple-800 text-white transition-all transform hover:scale-[1.03]">
-          Save For Later
+        <Button
+          variant="outline"
+          className="border-blue-500 text-blue-600 hover:bg-blue-50 rounded-full"
+        >
+          Save for Later
         </Button>
       </div>
 
-      {/* Fade-in animation */}
+      {/* Fade-in Animation */}
       <style jsx>{`
         @keyframes fadeIn {
           from {
@@ -105,7 +108,7 @@ const Job = ({ job }) => {
           }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.6s ease-in-out;
+          animation: fadeIn 0.5s ease-in-out;
         }
       `}</style>
     </div>

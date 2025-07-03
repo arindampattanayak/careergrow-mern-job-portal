@@ -74,9 +74,11 @@ const EditJob = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white px-4 py-10 animate-fadeIn">
-      <div className="max-w-3xl mx-auto bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-700">
-        <h2 className="text-3xl font-bold mb-8 text-blue-400">Edit Job</h2>
+    <div className="min-h-screen bg-gradient-to-br from-[#f7fafc] via-[#e4e9f0] to-[#d1d9e6] text-gray-800 px-6 py-12 animate-fadeIn">
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-10 border border-gray-300">
+        <h2 className="text-3xl font-bold mb-8 text-indigo-700 border-b border-indigo-200 pb-3">
+          Edit Job
+        </h2>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
           {[
@@ -90,7 +92,7 @@ const EditJob = () => {
             { label: 'Position (No. of Openings)', name: 'position' },
           ].map(({ label, name, type = 'text' }) => (
             <div key={name}>
-              <Label className="text-sm text-gray-300">{label}</Label>
+              <Label className="text-sm text-gray-700 font-medium">{label}</Label>
               <Input
                 name={name}
                 type={type}
@@ -98,7 +100,8 @@ const EditJob = () => {
                 onChange={handleChange}
                 required
                 disabled={loading}
-                className="bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:ring-blue-500"
+                className="bg-gray-100 border border-gray-300 text-gray-800 placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                placeholder={`Enter ${label.toLowerCase()}`}
               />
             </div>
           ))}
@@ -106,7 +109,7 @@ const EditJob = () => {
           <Button
             type="submit"
             disabled={loading}
-            className="w-full mt-4 bg-blue-600 hover:bg-blue-700 transition-colors"
+            className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-md transition-colors"
           >
             {loading ? 'Updating...' : 'Update Job'}
           </Button>
@@ -119,7 +122,7 @@ const EditJob = () => {
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out;
+          animation: fadeIn 0.5s ease-out;
         }
       `}</style>
     </div>

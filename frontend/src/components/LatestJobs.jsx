@@ -7,21 +7,30 @@ const LatestJobs = () => {
   const { allJobs } = useSelector(store => store.job);
 
   return (
-    <div className="max-w-7xl mx-auto my-20 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 animate-fadeIn">
-        <span className="text-[#9D4EDD]">Latest & Top </span> Job Openings
-      </h1>
+    <section className="max-w-7xl mx-auto my-20 px-4 sm:px-6 lg:px-8">
+      {/* Heading */}
+      <div className="text-center mb-10">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 animate-fadeIn">
+          <span className="text-indigo-600">Latest</span> & Top Job Openings
+        </h1>
+        <p className="text-gray-500 mt-2 text-sm sm:text-base">
+          Explore the newest job opportunities from trusted companies.
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeInUp">
+      {/* Job Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fadeInUp">
         {allJobs.length <= 0 ? (
-          <span className="text-gray-400">🚫 No Job Available</span>
+          <div className="text-gray-500 text-center col-span-full text-lg">
+            🚫 No Job Available
+          </div>
         ) : (
           allJobs.slice(0, 6).map((job, index) => (
             <motion.div
               key={job._id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <LatestJobCards job={job} />
             </motion.div>
@@ -29,14 +38,15 @@ const LatestJobs = () => {
         )}
       </div>
 
+      {/* Animations */}
       <style>{`
         @keyframes fadeIn {
-          0% { opacity: 0; transform: translateY(-10px); }
-          100% { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes fadeInUp {
-          0% { opacity: 0; transform: translateY(10px); }
-          100% { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
           animation: fadeIn 0.6s ease-in-out;
@@ -45,7 +55,7 @@ const LatestJobs = () => {
           animation: fadeInUp 0.8s ease-in-out;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 

@@ -17,6 +17,11 @@ import axios from 'axios';
 
 const shortlistingStatus = ['Accepted', 'Rejected'];
 
+const statusColors = {
+  Accepted: 'bg-green-100 text-green-700 hover:bg-green-200',
+  Rejected: 'bg-red-100 text-red-700 hover:bg-red-200',
+};
+
 const ApplicantsTable = () => {
   const { applicants } = useSelector((store) => store.application);
 
@@ -33,18 +38,19 @@ const ApplicantsTable = () => {
   };
 
   return (
-    <div className="overflow-x-auto rounded-lg border border-gray-700 bg-gradient-to-br from-gray-900 via-gray-950 to-black shadow-lg">
+    <div className="overflow-x-auto rounded-xl border border-[#cdd7e8] bg-[#f8faff] shadow-md animate-fadeIn">
       <Table>
-        <TableCaption className="text-left text-gray-400 text-sm px-4 py-2">
-          A list of your recent applied users
+        <TableCaption className="text-left text-gray-500 text-sm px-4 py-2">
+          A list of your recent applicants.
         </TableCaption>
+
         <TableHeader>
-          <TableRow className="bg-gray-800 text-gray-100 font-semibold text-sm tracking-wide uppercase border-b border-gray-600">
+          <TableRow className="bg-[#e8efff] text-[#1e293b] font-semibold text-sm border-b border-[#cdd7e8]">
             <TableHead className="px-4 py-3">Full Name</TableHead>
             <TableHead className="px-4 py-3">Email</TableHead>
             <TableHead className="px-4 py-3">Contact</TableHead>
             <TableHead className="px-4 py-3">Resume</TableHead>
-            <TableHead className="px-4 py-3">Date</TableHead>
+            <TableHead className="px-4 py-3">Applied Date</TableHead>
             <TableHead className="px-4 py-3 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -54,19 +60,17 @@ const ApplicantsTable = () => {
             applicants.applications.map((item) => {
               const jobId = typeof item?.job === 'string' ? item.job : item?.job?._id;
               const applicantId = item?.applicant?._id;
-              const recruiterId = localStorage.getItem("userId");
+              const recruiterId = localStorage.getItem('userId');
 
               return (
-                <TableRow key={item._id} className="hover:bg-gray-800 text-gray-200 transition">
-                  <TableCell className="px-4 py-3">{item?.applicant?.fullname}</TableCell>
-                  <TableCell className="px-4 py-3 break-words max-w-xs">
-                    {item?.applicant?.email}
-                  </TableCell>
+                <TableRow key={item._id} className="hover:bg-[#eef4ff] text-[#475569] transition">
+                  <TableCell className="px-4 py-3 font-medium">{item?.applicant?.fullname}</TableCell>
+                  <TableCell className="px-4 py-3 break-words max-w-xs">{item?.applicant?.email}</TableCell>
                   <TableCell className="px-4 py-3">{item?.applicant?.phoneNumber}</TableCell>
                   <TableCell className="px-4 py-3">
                     {item.applicant?.profile?.resume ? (
                       <a
-                        className="text-blue-400 hover:underline"
+                        className="text-indigo-600 hover:underline"
                         href={item.applicant.profile.resume}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -75,7 +79,7 @@ const ApplicantsTable = () => {
                         {item.applicant.profile.resumeOriginalName}
                       </a>
                     ) : (
-                      <span className="text-gray-500">NA</span>
+                      <span className="text-gray-400">N/A</span>
                     )}
                   </TableCell>
                   <TableCell className="px-4 py-3">
@@ -85,22 +89,25 @@ const ApplicantsTable = () => {
                   </TableCell>
                   <TableCell className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {/* Popover for Accept/Reject */}
+                      {/* Status Popover */}
                       <Popover>
                         <PopoverTrigger asChild>
-                          <button className="text-gray-400 hover:text-white transition">
-                            <MoreHorizontal className="cursor-pointer" />
+                          <button
+                            className="p-1 text-gray-600 hover:text-indigo-600 transition"
+                            aria-label="More actions"
+                          >
+                            <MoreHorizontal className="w-5 h-5" />
                           </button>
                         </PopoverTrigger>
                         <PopoverContent
-                          className="w-36 bg-gray-800 text-white border border-gray-700 rounded"
+                          className="w-40 bg-white border border-gray-200 rounded-md shadow-lg p-2"
                           align="end"
                         >
-                          {shortlistingStatus.map((status, index) => (
+                          {shortlistingStatus.map((status) => (
                             <div
-                              key={index}
+                              key={status}
                               onClick={() => statusHandler(status, item._id)}
-                              className="px-3 py-2 cursor-pointer hover:bg-gray-700 rounded text-sm"
+                              className={`px-3 py-2 text-sm font-medium rounded-md cursor-pointer text-center transition ${statusColors[status]}`}
                             >
                               {status}
                             </div>
@@ -110,12 +117,12 @@ const ApplicantsTable = () => {
 
                       {/* Chat Button */}
                       <button
-                        className="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                        className="px-3 py-1.5 text-sm font-medium bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
                         onClick={() => {
                           if (jobId && recruiterId && applicantId) {
                             window.location.href = `/chat/${jobId}/${recruiterId}/${applicantId}`;
                           } else {
-                            toast.error("Missing job, recruiter, or applicant ID");
+                            toast.error('Missing job, recruiter, or applicant ID');
                           }
                         }}
                       >
@@ -135,6 +142,17 @@ const ApplicantsTable = () => {
           )}
         </TableBody>
       </Table>
+
+      {/* Animation Style */}
+      <style>{`
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(12px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.6s ease-in-out forwards;
+        }
+      `}</style>
     </div>
   );
 };

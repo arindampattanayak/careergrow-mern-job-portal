@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
-import Navbar from '../shared/Navbar'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { COMPANY_API_END_POINT } from '@/utils/constant'
-import { toast } from 'sonner'
-import { useDispatch } from 'react-redux'
-import { setSingleCompany } from '@/redux/companySlice'
+import React, { useState } from 'react';
+import Navbar from '../shared/Navbar';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { COMPANY_API_END_POINT } from '@/utils/constant';
+import { toast } from 'sonner';
+import { useDispatch } from 'react-redux';
+import { setSingleCompany } from '@/redux/companySlice';
 
 const CompanyCreate = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const [companyName, setCompanyName] = useState('')
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [companyName, setCompanyName] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const registerNewCompany = async () => {
     if (!companyName.trim()) {
-      toast.error('Please enter a company name.')
-      return
+      toast.error('Please enter a company name.');
+      return;
     }
 
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.post(
         `${COMPANY_API_END_POINT}/register`,
         { companyName: companyName.trim() },
@@ -31,43 +31,43 @@ const CompanyCreate = () => {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
-      )
+      );
       if (res?.data?.success) {
-        dispatch(setSingleCompany(res.data.company))
-        toast.success(res.data.message)
-        const companyId = res?.data?.company?._id
-        navigate(`/admin/companies/${companyId}`)
+        dispatch(setSingleCompany(res.data.company));
+        toast.success(res.data.message);
+        const companyId = res?.data?.company?._id;
+        navigate(`/admin/companies/${companyId}`);
       } else {
-        toast.error(res?.data?.message || 'Failed to create company.')
+        toast.error(res?.data?.message || 'Failed to create company.');
       }
     } catch (error) {
-      console.error(error)
-      toast.error('Something went wrong. Please try again.')
+      console.error(error);
+      toast.error('Something went wrong. Please try again.');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#f2f5ff] via-[#edf1fa] to-[#e5e9f0] text-[#2e3252]">
       <Navbar />
       <div className="max-w-3xl mx-auto px-6 py-14 animate-fadeIn">
-        <h1 className="text-3xl font-bold mb-2 tracking-tight">Your Company Name</h1>
-        <p className="text-gray-300 mb-8">
-          What would you like to give your company name? You can change this later.
+        <h1 className="text-3xl font-bold mb-2 tracking-tight text-[#1e2454]">Name Your Company</h1>
+        <p className="text-[#5a6473] mb-8">
+          What would you like to name your company? You can always change this later.
         </p>
 
         <div className="mb-6">
-          <Label htmlFor="companyName" className="block mb-2 font-medium text-gray-200">
+          <Label htmlFor="companyName" className="block mb-2 font-medium text-[#3b425c]">
             Company Name
           </Label>
           <Input
             id="companyName"
             type="text"
             value={companyName}
-            placeholder="JobHunt, Microsoft etc."
+            placeholder="JobHunt, Microsoft, etc."
             onChange={(e) => setCompanyName(e.target.value)}
-            className="bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500"
+            className="bg-white border border-[#ccd4e1] text-[#2e3252] placeholder-gray-400 focus:ring-2 focus:ring-indigo-400 rounded-md shadow-sm"
             disabled={loading}
             autoFocus
           />
@@ -79,14 +79,14 @@ const CompanyCreate = () => {
             variant="outline"
             onClick={() => navigate('/admin/companies')}
             disabled={loading}
-            className="border border-gray-600 text-red-400 hover:text-white hover:bg-red-500 transition"
+            className="border border-gray-400 text-red-500 hover:text-white hover:bg-red-500 transition rounded-md"
           >
             Cancel
           </Button>
           <Button
             onClick={registerNewCompany}
             disabled={loading}
-            className="bg-blue-600 hover:bg-blue-700"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 rounded-md"
           >
             {loading ? 'Creating...' : 'Continue'}
           </Button>
@@ -111,7 +111,7 @@ const CompanyCreate = () => {
         `}
       </style>
     </div>
-  )
-}
+  );
+};
 
-export default CompanyCreate
+export default CompanyCreate;

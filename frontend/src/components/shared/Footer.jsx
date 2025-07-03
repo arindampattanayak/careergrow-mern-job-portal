@@ -2,13 +2,17 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-purple-900 via-violet-950 to-indigo-950 text-gray-300 border-t border-violet-800 py-10 animate-fadeInUp">
+    <footer className="bg-gradient-to-r from-[#fef6ff] via-[#fdeef5] to-[#fde2f3] text-gray-700 border-t border-pink-200 py-10 animate-fadeInUp">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           {/* Left side */}
           <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold text-white tracking-wide">Career<span className="text-pink-400">Grow</span></h2>
-            <p className="text-sm mt-1 text-gray-400">© 2025 CareerGrow Inc. All rights reserved.</p>
+            <h2 className="text-2xl font-bold text-pink-600 tracking-wide">
+              Career<span className="text-indigo-500">Grow</span>
+            </h2>
+            <p className="text-sm mt-1 text-gray-600">
+              © {new Date().getFullYear()} CareerGrow Inc. All rights reserved.
+            </p>
           </div>
 
           {/* Right side - Social Icons */}
@@ -16,7 +20,7 @@ const Footer = () => {
             <a
               href="https://facebook.com"
               aria-label="Facebook"
-              className="text-gray-400 hover:text-blue-500 transition duration-300 transform hover:scale-110"
+              className="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:scale-110"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -27,7 +31,7 @@ const Footer = () => {
             <a
               href="https://twitter.com"
               aria-label="Twitter"
-              className="text-gray-400 hover:text-sky-400 transition duration-300 transform hover:scale-110"
+              className="text-gray-500 hover:text-sky-400 transition duration-300 transform hover:scale-110"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -38,7 +42,7 @@ const Footer = () => {
             <a
               href="https://linkedin.com"
               aria-label="LinkedIn"
-              className="text-gray-400 hover:text-blue-600 transition duration-300 transform hover:scale-110"
+              className="text-gray-500 hover:text-blue-700 transition duration-300 transform hover:scale-110"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -53,14 +57,8 @@ const Footer = () => {
       {/* Animation Style */}
       <style>{`
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out;

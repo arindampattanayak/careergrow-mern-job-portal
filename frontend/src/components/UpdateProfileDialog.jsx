@@ -80,15 +80,16 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-[450px] rounded-lg bg-gray-900 text-white shadow-2xl border border-gray-700 animate-fadeIn">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-semibold text-purple-300">
+      <DialogContent className="sm:max-w-[500px] bg-gradient-to-br from-indigo-100 to-blue-50 rounded-xl p-0 border-0 shadow-xl animate-fadeIn">
+        <DialogHeader className="p-6 pb-0">
+          <DialogTitle className="text-2xl font-semibold text-indigo-700">
             Update Profile
           </DialogTitle>
         </DialogHeader>
-        <form onSubmit={submitHandler} className="space-y-6 px-6 pb-6">
+        <form onSubmit={submitHandler} className="space-y-6 px-6 pb-6 pt-4">
+          {/* Name */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="fullname" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="fullname" className="text-right font-medium text-gray-700">
               Name
             </Label>
             <Input
@@ -98,13 +99,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               value={input.fullname}
               onChange={changeEventHandler}
               placeholder="Your full name"
-              className="col-span-3 bg-gray-800 text-white border border-gray-600"
+              className="col-span-3 bg-white text-gray-800 border border-gray-300 focus:ring-indigo-300 focus:border-indigo-400"
               required
             />
           </div>
 
+          {/* Email */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="email" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="email" className="text-right font-medium text-gray-700">
               Email
             </Label>
             <Input
@@ -114,13 +116,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               value={input.email}
               onChange={changeEventHandler}
               placeholder="you@example.com"
-              className="col-span-3 bg-gray-800 text-white border border-gray-600"
+              className="col-span-3 bg-white text-gray-800 border border-gray-300 focus:ring-indigo-300 focus:border-indigo-400"
               required
             />
           </div>
 
+          {/* Phone */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="phoneNumber" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="phoneNumber" className="text-right font-medium text-gray-700">
               Phone
             </Label>
             <Input
@@ -130,13 +133,14 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               value={input.phoneNumber}
               onChange={changeEventHandler}
               placeholder="+91 98765 43210"
-              className="col-span-3 bg-gray-800 text-white border border-gray-600"
+              className="col-span-3 bg-white text-gray-800 border border-gray-300 focus:ring-indigo-300 focus:border-indigo-400"
               required
             />
           </div>
 
+          {/* Bio */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="bio" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="bio" className="text-right font-medium text-gray-700">
               Bio
             </Label>
             <Input
@@ -146,12 +150,13 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               value={input.bio}
               onChange={changeEventHandler}
               placeholder="Short bio about yourself"
-              className="col-span-3 bg-gray-800 text-white border border-gray-600"
+              className="col-span-3 bg-white text-gray-800 border border-gray-300 focus:ring-indigo-300 focus:border-indigo-400"
             />
           </div>
 
+          {/* Skills */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="skills" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="skills" className="text-right font-medium text-gray-700">
               Skills
             </Label>
             <Input
@@ -161,12 +166,13 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               value={input.skills}
               onChange={changeEventHandler}
               placeholder="JavaScript, React, Node.js"
-              className="col-span-3 bg-gray-800 text-white border border-gray-600"
+              className="col-span-3 bg-white text-gray-800 border border-gray-300 focus:ring-indigo-300 focus:border-indigo-400"
             />
           </div>
 
+          {/* Resume Upload */}
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="file" className="text-right font-semibold text-gray-300">
+            <Label htmlFor="file" className="text-right font-medium text-gray-700">
               Resume
             </Label>
             <Input
@@ -176,14 +182,15 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
               aria-label="Upload Resume"
               accept="application/pdf"
               onChange={fileChangeHandler}
-              className="col-span-3 bg-gray-800 text-white border border-gray-600 file:bg-purple-600 file:text-white file:border-none file:px-4 file:py-2"
+              className="col-span-3 text-gray-800 file:bg-indigo-600 file:text-white file:border-none file:px-4 file:py-1 file:rounded-md file:cursor-pointer"
             />
           </div>
 
+          {/* Submit */}
           <DialogFooter>
             <Button
               type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400
+              className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400
                          text-white font-semibold rounded-md py-2 transition duration-150"
               disabled={loading}
             >
@@ -198,6 +205,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             </Button>
           </DialogFooter>
         </form>
+
+        {/* Animation */}
         <style jsx>{`
           @keyframes fadeIn {
             0% {

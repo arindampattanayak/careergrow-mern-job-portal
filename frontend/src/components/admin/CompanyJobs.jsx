@@ -29,44 +29,44 @@ const CompanyJobs = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white flex justify-center items-center">
+      <div className="min-h-screen bg-gradient-to-b from-[#fdfefe] via-[#f4f9fd] to-[#e8f1fa] text-gray-700 flex justify-center items-center">
         <p className="text-lg font-medium">Loading jobs...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-white px-6 py-10 animate-fadeIn">
-      <h2 className="text-4xl font-extrabold mb-8 text-white tracking-wide border-b border-gray-700 pb-2">
+    <div className="min-h-screen bg-gradient-to-br from-[#fdfefe] via-[#f2f7fb] to-[#e4ecf5] text-gray-800 px-6 py-10 animate-fadeIn">
+      <h2 className="text-4xl font-bold mb-8 text-blue-600 tracking-wide border-b border-gray-300 pb-3">
         🏢 Jobs Posted by Company
       </h2>
 
       {jobs.length === 0 ? (
-        <p className="text-gray-300 text-lg">No jobs found for this company.</p>
+        <p className="text-gray-500 text-lg">No jobs found for this company.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
           {jobs.map((job) => (
             <div
               key={job._id}
-              className="bg-gray-900 border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              <h3 className="text-2xl font-semibold text-blue-400 mb-1 tracking-wide leading-snug">
+              <h3 className="text-xl font-semibold text-blue-700 mb-1 tracking-wide">
                 {job.title}
               </h3>
-              <p className="text-sm text-gray-400 mb-4 italic">{job.company?.name || "—"}</p>
+              <p className="text-sm text-gray-500 mb-3 italic">{job.company?.name || "—"}</p>
 
-              <p className="text-gray-300 text-sm line-clamp-3 mb-3">
+              <p className="text-gray-600 text-sm line-clamp-3 mb-4">
                 {job.description}
               </p>
 
-              <ul className="text-sm text-gray-400 space-y-1">
-                <li><strong>📍 Location:</strong> {job.location}</li>
-                <li><strong>🕒 Type:</strong> {job.jobType}</li>
-                <li><strong>🎯 Experience:</strong> {job.experienceLevel} years</li>
-                <li><strong>💼 Openings:</strong> {job.position}</li>
-                <li><strong>💰 Salary:</strong> ₹{job.salary} LPA</li>
-                <li><strong>🧠 Skills:</strong> {job.requirements.join(", ")}</li>
-                <li><strong>📅 Posted:</strong> {new Date(job.createdAt).toLocaleDateString()}</li>
+              <ul className="text-sm text-gray-600 space-y-1">
+                <li><strong className="text-gray-700">📍 Location:</strong> {job.location}</li>
+                <li><strong className="text-gray-700">🕒 Type:</strong> {job.jobType}</li>
+                <li><strong className="text-gray-700">🎯 Experience:</strong> {job.experienceLevel} years</li>
+                <li><strong className="text-gray-700">💼 Openings:</strong> {job.position}</li>
+                <li><strong className="text-gray-700">💰 Salary:</strong> ₹{job.salary} LPA</li>
+                <li><strong className="text-gray-700">🧠 Skills:</strong> {job.requirements?.join(", ")}</li>
+                <li><strong className="text-gray-700">📅 Posted:</strong> {new Date(job.createdAt).toLocaleDateString()}</li>
               </ul>
             </div>
           ))}
