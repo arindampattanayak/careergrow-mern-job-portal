@@ -32,7 +32,7 @@
 
 ## 📁 Project Structure
 
-```bash
+
 careergrow-mern-job-portal/
 ├── backend/
 ├── frontend/
@@ -65,3 +65,10 @@ Follow these steps to set up the project locally:
 ```bash
 git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
 cd careergrow-mern-job-portal
+
+Step 2: Backend Setup
+bash
+cd backend
+npm install
+cp .env.example .env
+# Edit the .env file with your credentials
