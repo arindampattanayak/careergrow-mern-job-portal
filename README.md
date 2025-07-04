@@ -47,10 +47,12 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
    cd careergrow-mern-job-portal
 
 2. Install NPM packages:
-   # Backend dependencies
+# Backend dependencies
+```sh
 cd backend
 npm install
 
+```sh
 # Frontend dependencies
 cd ../frontend
 npm install
