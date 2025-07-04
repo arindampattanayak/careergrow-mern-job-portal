@@ -53,13 +53,13 @@ cd backend
 npm install
 ```
 3. Install Node Dependencies(Frontend):
-###Frontend dependencies:**
+###Frontend dependencies**
 ```sh
 cd ../frontend
 npm install
 ```
 4. Set Up Environment Variables :
-###Create a .env file inside the /backend folder and add the following:**
+###Create a .env file inside the /backend folder and add the following**
 ```sh
 MONGO_URI=your_mongodb_connection_string
 PORT=8000
