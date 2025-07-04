@@ -62,7 +62,7 @@ Follow these steps to set up the project locally:
 
 #### **Step 1: Clone the Repository**
 
-```bash
+
 git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
 cd careergrow-mern-job-portal
 
