@@ -52,8 +52,9 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 cd backend
 npm install
 
-3. Install Frontend Dependencies(Backend):
-# Frontend dependencies
+3. Install Fode Dependencies(Frontend):
+**Frontend dependencies:**
+```sh
 cd ../frontend
 npm install
 
