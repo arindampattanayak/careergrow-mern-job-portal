@@ -78,7 +78,7 @@ const Signup = () => {
               Career<span className="text-indigo-500">Grow</span>
             </Link>
             <img
-              src="/career-growth.jpg"
+              src="/career-growth.png"
               alt="CareerGrow"
               className="w-[300px] h-auto rounded-lg shadow-lg mb-6"
             />

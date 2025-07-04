@@ -71,7 +71,7 @@ const Login = () => {
 </div>
 
           <img
-            src="/career-growth.jpg"
+            src="/career-growth.png"
             alt="Career illustration"
             className="w-[450px] h-auto rounded-xl shadow-lg object-cover"
           />
