@@ -39,3 +39,29 @@ careergrow-mern-job-portal/
 ├── nlp-flask-api/        # Python-based skill extractor
 ├── .env                  # Environment variables (not pushed)
 └── README.md
+
+## ⚙️ Getting Started
+
+Follow these steps to set up the project locally:
+
+---
+
+### ✅ Prerequisites
+
+- Node.js (v18 or above recommended)
+- npm or yarn
+- MongoDB Atlas account (or local MongoDB)
+- Python 3.8+
+- Cloudinary account
+- SMTP credentials (for password reset email)
+- Postman (optional, for API testing)
+
+---
+
+### 🔧 Installation
+
+#### **Step 1: Clone the Repository**
+
+```bash
+git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
+cd careergrow-mern-job-portal
