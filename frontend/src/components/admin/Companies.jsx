@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
 import CompaniesTable from './CompaniesTable';
 import { useNavigate } from 'react-router-dom';
 import useGetAllCompanies from '@/hooks/useGetAllCompanies';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchCompanyByText } from '@/redux/companySlice';
-import Footer from '../shared/Footer';
-import { Plus } from 'lucide-react'; // ✅ Added icon
+import { Plus } from 'lucide-react';
 
 const Companies = () => {
   useGetAllCompanies();
   const [input, setInput] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { companies } = useSelector((state) => state.company);
 
   useEffect(() => {
     dispatch(setSearchCompanyByText(input));
@@ -26,10 +27,7 @@ const Companies = () => {
 
       <div className="max-w-6xl mx-auto py-16 px-4 md:px-6">
         {/* Header Row */}
-        <div
-          className="flex flex-col md:flex-row items-center justify-between gap-5 mb-10 
-                     opacity-0 scale-95 animate-fadeInScale"
-        >
+        <div className="flex flex-col md:flex-row items-center justify-between gap-5 mb-10 animate-fadeInScale">
           <Input
             className="w-full md:w-72 bg-white border border-gray-300 text-gray-800 placeholder-gray-500
                        focus:ring-2 focus:ring-indigo-400 focus:outline-none rounded-lg shadow-md transition"
@@ -46,6 +44,11 @@ const Companies = () => {
             New Company
           </Button>
         </div>
+
+        {/* Total Count */}
+        <p className="mb-4 text-sm text-gray-600">
+          Total Registered Companies: <span className="font-medium text-indigo-600">{companies.length}</span>
+        </p>
 
         {/* Section Heading */}
         <h2 className="text-xl font-semibold text-indigo-700 mb-6 border-b border-indigo-300 pb-1">

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { JOB_API_END_POINT } from "@/utils/constant";
+import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
 
 const CompanyJobs = () => {
   const { companyId } = useParams();
@@ -36,43 +38,55 @@ const CompanyJobs = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#fdfefe] via-[#f2f7fb] to-[#e4ecf5] text-gray-800 px-6 py-10 animate-fadeIn">
-      <h2 className="text-4xl font-bold mb-8 text-blue-600 tracking-wide border-b border-gray-300 pb-3">
-        🏢 Jobs Posted by Company
-      </h2>
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#fdfefe] via-[#f2f7fb] to-[#e4ecf5] text-gray-800">
+      {/* Navbar */}
+      <Navbar />
 
-      {jobs.length === 0 ? (
-        <p className="text-gray-500 text-lg">No jobs found for this company.</p>
-      ) : (
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-          {jobs.map((job) => (
-            <div
-              key={job._id}
-              className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
-            >
-              <h3 className="text-xl font-semibold text-blue-700 mb-1 tracking-wide">
-                {job.title}
-              </h3>
-              <p className="text-sm text-gray-500 mb-3 italic">{job.company?.name || "—"}</p>
+      {/* Main Content */}
+      <main className="flex-grow px-6 py-10 animate-fadeIn">
+        <h2 className="text-4xl font-bold mb-8 text-blue-600 tracking-wide border-b border-gray-300 pb-3">
+          🏢 Jobs Posted by Company
+        </h2>
 
-              <p className="text-gray-600 text-sm line-clamp-3 mb-4">
-                {job.description}
-              </p>
+        {jobs.length === 0 ? (
+          <p className="text-gray-500 text-lg">No jobs found for this company.</p>
+        ) : (
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {jobs.map((job) => (
+              <div
+                key={job._id}
+                className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <h3 className="text-xl font-semibold text-blue-700 mb-1 tracking-wide">
+                  {job.title}
+                </h3>
+                <p className="text-sm text-gray-500 mb-3 italic">
+                  {job.company?.name || "—"}
+                </p>
 
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li><strong className="text-gray-700">📍 Location:</strong> {job.location}</li>
-                <li><strong className="text-gray-700">🕒 Type:</strong> {job.jobType}</li>
-                <li><strong className="text-gray-700">🎯 Experience:</strong> {job.experienceLevel} years</li>
-                <li><strong className="text-gray-700">💼 Openings:</strong> {job.position}</li>
-                <li><strong className="text-gray-700">💰 Salary:</strong> ₹{job.salary} LPA</li>
-                <li><strong className="text-gray-700">🧠 Skills:</strong> {job.requirements?.join(", ")}</li>
-                <li><strong className="text-gray-700">📅 Posted:</strong> {new Date(job.createdAt).toLocaleDateString()}</li>
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
+                <p className="text-gray-600 text-sm line-clamp-3 mb-4">
+                  {job.description}
+                </p>
 
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li><strong className="text-gray-700">📍 Location:</strong> {job.location}</li>
+                  <li><strong className="text-gray-700">🕒 Type:</strong> {job.jobType}</li>
+                  <li><strong className="text-gray-700">🎯 Experience:</strong> {job.experienceLevel} years</li>
+                  <li><strong className="text-gray-700">💼 Openings:</strong> {job.position}</li>
+                  <li><strong className="text-gray-700">💰 Salary:</strong> ₹{job.salary} LPA</li>
+                  <li><strong className="text-gray-700">🧠 Skills:</strong> {job.requirements?.join(", ")}</li>
+                  <li><strong className="text-gray-700">📅 Posted:</strong> {new Date(job.createdAt).toLocaleDateString()}</li>
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Animations */}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }

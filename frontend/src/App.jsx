@@ -20,6 +20,8 @@ import ProtectedRoute from './components/admin/ProtectedRoute'
 import UploadResume from './components/UploadResume.jsx'
 import MatchedJobs from './components/MatchedJobs.jsx';
 import ChatBox from "./components/ChatBox.jsx";
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
 
 
 const appRouter = createBrowserRouter([
@@ -35,6 +37,14 @@ const appRouter = createBrowserRouter([
     path: '/signup',
     element: <Signup />
   },
+  {
+  path: '/forgot-password',
+  element: <ForgotPassword />
+},
+{
+  path: '/reset-password/:token',
+  element: <ResetPassword />
+},
   {
     path: "/jobs",
     element: <Jobs />

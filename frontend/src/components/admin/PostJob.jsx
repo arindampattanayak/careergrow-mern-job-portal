@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import Navbar from '../shared/Navbar'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
+import { Button } from '../ui/button';
+import { useSelector } from 'react-redux';
 import {
   Select,
   SelectContent,
@@ -11,12 +12,12 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select'
-import axios from 'axios'
-import { JOB_API_END_POINT } from '@/utils/constant'
-import { toast } from 'sonner'
-import { useNavigate } from 'react-router-dom'
-import { Loader2 } from 'lucide-react'
+} from '../ui/select';
+import axios from 'axios';
+import { JOB_API_END_POINT } from '@/utils/constant';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
+import { Loader2 } from 'lucide-react';
 
 const PostJob = () => {
   const [input, setInput] = useState({
@@ -29,43 +30,45 @@ const PostJob = () => {
     experience: '',
     position: 0,
     companyId: '',
-  })
-  const [loading, setLoading] = useState(false)
-  const navigate = useNavigate()
-  const { companies } = useSelector((store) => store.company)
+  });
+
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { companies } = useSelector((store) => store.company);
 
   const changeEventHandler = (e) => {
-    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
+    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const selectChangeHandler = (value) => {
-    const selectedCompany = companies.find((c) => c.name.toLowerCase() === value)
-    setInput((prev) => ({ ...prev, companyId: selectedCompany?._id || '' }))
-  }
+    const selectedCompany = companies.find((c) => c.name.toLowerCase() === value);
+    setInput((prev) => ({ ...prev, companyId: selectedCompany?._id || '' }));
+  };
 
   const submitHandler = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
-      })
+      });
       if (res.data.success) {
-        toast.success(res.data.message)
-        navigate('/admin/jobs')
+        toast.success(res.data.message);
+        navigate('/admin/jobs');
       }
     } catch (error) {
-      toast.error(error?.response?.data?.message || 'Failed to post job')
+      toast.error(error?.response?.data?.message || 'Failed to post job');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f5f8fb] via-[#e7edf4] to-[#d7dee8] text-gray-900">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#f5f8fb] via-[#e7edf4] to-[#d7dee8] text-gray-900">
       <Navbar />
-      <div className="flex justify-center w-full px-6 py-12">
+
+      <div className="flex-grow flex justify-center w-full px-6 py-12">
         <form
           onSubmit={submitHandler}
           className="max-w-4xl w-full bg-white rounded-xl p-12 shadow-lg border border-gray-300 grid grid-cols-1 sm:grid-cols-2 gap-8"
@@ -147,8 +150,10 @@ const PostJob = () => {
           </div>
         </form>
       </div>
-    </div>
-  )
-}
 
-export default PostJob
+      <Footer />
+    </div>
+  );
+};
+
+export default PostJob;

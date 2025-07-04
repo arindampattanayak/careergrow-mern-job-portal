@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer';
 import { Button } from '../ui/button';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Label } from '../ui/label';
@@ -14,7 +15,6 @@ import useGetCompanyById from '@/hooks/useGetCompanyById';
 const CompanySetup = () => {
   const params = useParams();
   useGetCompanyById(params.id);
-
   const { singleCompany } = useSelector((store) => store.company);
   const navigate = useNavigate();
 
@@ -91,110 +91,115 @@ const CompanySetup = () => {
   }, [singleCompany]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7faff] via-[#e9eff6] to-[#dee8f5] text-gray-800">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#f7faff] via-[#e9eff6] to-[#dee8f5] text-gray-800">
       <Navbar />
-      <div className="max-w-3xl mx-auto my-12 p-8 bg-white rounded-xl shadow-2xl border border-gray-200 animate-fadeIn">
-        <form onSubmit={submitHandler}>
-          <div className="flex items-center gap-5 mb-8">
-            <button
-              type="button"
-              onClick={() => navigate('/admin/companies')}
-              className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100 transition"
+
+      <div className="flex-grow">
+        <div className="max-w-3xl mx-auto my-12 p-8 bg-white rounded-xl shadow-2xl border border-gray-200 animate-fadeIn">
+          <form onSubmit={submitHandler}>
+            <div className="flex items-center gap-5 mb-8">
+              <button
+                type="button"
+                onClick={() => navigate('/admin/companies')}
+                className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-100 transition"
+                disabled={loading}
+              >
+                <ArrowLeft />
+                <span>Back</span>
+              </button>
+              <h1 className="font-bold text-2xl text-indigo-700">Edit Company Details</h1>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <Label htmlFor="name">Company Name</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={input.name}
+                  onChange={changeEventHandler}
+                  disabled={loading}
+                  required
+                  className="bg-white border border-gray-300 text-gray-800 focus:ring-2 focus:ring-indigo-500"
+                  placeholder="e.g. Microsoft"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="description">Description</Label>
+                <Input
+                  id="description"
+                  name="description"
+                  type="text"
+                  value={input.description}
+                  onChange={changeEventHandler}
+                  disabled={loading}
+                  className="bg-white border border-gray-300 text-gray-800"
+                  placeholder="e.g. A leading software firm"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="website">Website</Label>
+                <Input
+                  id="website"
+                  name="website"
+                  type="url"
+                  value={input.website}
+                  onChange={changeEventHandler}
+                  disabled={loading}
+                  className="bg-white border border-gray-300 text-gray-800"
+                  placeholder="https://company.com"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="location">Location</Label>
+                <Input
+                  id="location"
+                  name="location"
+                  type="text"
+                  value={input.location}
+                  onChange={changeEventHandler}
+                  disabled={loading}
+                  className="bg-white border border-gray-300 text-gray-800"
+                  placeholder="City, Country"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <Label htmlFor="logo">Upload Logo</Label>
+                <Input
+                  id="logo"
+                  type="file"
+                  accept="image/*"
+                  onChange={changeFileHandler}
+                  disabled={loading}
+                  className="bg-white border border-gray-300 text-gray-800 file:bg-indigo-600 file:text-white"
+                />
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full mt-8 bg-indigo-600 hover:bg-indigo-700 text-white"
               disabled={loading}
             >
-              <ArrowLeft />
-              <span>Back</span>
-            </button>
-            <h1 className="font-bold text-2xl text-indigo-700">Edit Company Details</h1>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <Label htmlFor="name">Company Name</Label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                value={input.name}
-                onChange={changeEventHandler}
-                disabled={loading}
-                required
-                className="bg-white border border-gray-300 text-gray-800 focus:ring-2 focus:ring-indigo-500"
-                placeholder="e.g. Microsoft"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description">Description</Label>
-              <Input
-                id="description"
-                name="description"
-                type="text"
-                value={input.description}
-                onChange={changeEventHandler}
-                disabled={loading}
-                className="bg-white border border-gray-300 text-gray-800"
-                placeholder="e.g. A leading software firm"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="website">Website</Label>
-              <Input
-                id="website"
-                name="website"
-                type="url"
-                value={input.website}
-                onChange={changeEventHandler}
-                disabled={loading}
-                className="bg-white border border-gray-300 text-gray-800"
-                placeholder="https://company.com"
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="location">Location</Label>
-              <Input
-                id="location"
-                name="location"
-                type="text"
-                value={input.location}
-                onChange={changeEventHandler}
-                disabled={loading}
-                className="bg-white border border-gray-300 text-gray-800"
-                placeholder="City, Country"
-              />
-            </div>
-
-            <div className="sm:col-span-2">
-              <Label htmlFor="logo">Upload Logo</Label>
-              <Input
-                id="logo"
-                type="file"
-                accept="image/*"
-                onChange={changeFileHandler}
-                disabled={loading}
-                className="bg-white border border-gray-300 text-gray-800 file:bg-indigo-600 file:text-white"
-              />
-            </div>
-          </div>
-
-          <Button
-            type="submit"
-            className="w-full mt-8 bg-indigo-600 hover:bg-indigo-700 text-white"
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </>
-            ) : (
-              'Update Company'
-            )}
-          </Button>
-        </form>
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                'Update Company'
+              )}
+            </Button>
+          </form>
+        </div>
       </div>
+
+      <Footer />
 
       <style>{`
         @keyframes fadeIn {

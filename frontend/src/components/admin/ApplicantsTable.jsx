@@ -22,15 +22,26 @@ const statusColors = {
   Rejected: 'bg-red-100 text-red-700 hover:bg-red-200',
 };
 
+const badgeColors = {
+  Accepted: 'bg-green-600 text-white',
+  Rejected: 'bg-red-600 text-white',
+};
+
 const ApplicantsTable = () => {
   const { applicants } = useSelector((store) => store.application);
 
-  const statusHandler = async (status, id) => {
+  const statusHandler = async (status, id, currentStatus) => {
+    if (['Accepted', 'Rejected'].includes(currentStatus)) {
+      toast.warning('Status is already finalized and cannot be changed.');
+      return;
+    }
+
     try {
       axios.defaults.withCredentials = true;
       const res = await axios.post(`${APPLICATION_API_END_POINT}/status/${id}/update`, { status });
       if (res.data.success) {
         toast.success(res.data.message);
+        // Optionally: trigger refresh or Redux update
       }
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to update status');
@@ -51,6 +62,7 @@ const ApplicantsTable = () => {
             <TableHead className="px-4 py-3">Contact</TableHead>
             <TableHead className="px-4 py-3">Resume</TableHead>
             <TableHead className="px-4 py-3">Applied Date</TableHead>
+            <TableHead className="px-4 py-3">Status</TableHead>
             <TableHead className="px-4 py-3 text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -61,6 +73,14 @@ const ApplicantsTable = () => {
               const jobId = typeof item?.job === 'string' ? item.job : item?.job?._id;
               const applicantId = item?.applicant?._id;
               const recruiterId = localStorage.getItem('userId');
+              const currentStatus = item?.status;
+
+              const displayStatus =
+                currentStatus?.toLowerCase() === 'accepted'
+                  ? 'Accepted'
+                  : currentStatus?.toLowerCase() === 'rejected'
+                  ? 'Rejected'
+                  : null;
 
               return (
                 <TableRow key={item._id} className="hover:bg-[#eef4ff] text-[#475569] transition">
@@ -87,14 +107,27 @@ const ApplicantsTable = () => {
                       ? new Date(item.applicant.createdAt).toLocaleDateString()
                       : 'N/A'}
                   </TableCell>
+
+                  <TableCell className="px-4 py-3">
+                    {displayStatus ? (
+                      <span
+                        className={`px-3 py-1 text-sm rounded-full font-semibold ${badgeColors[displayStatus]}`}
+                      >
+                        {displayStatus}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400">—</span>
+                    )}
+                  </TableCell>
+
                   <TableCell className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      {/* Status Popover */}
                       <Popover>
                         <PopoverTrigger asChild>
                           <button
-                            className="p-1 text-gray-600 hover:text-indigo-600 transition"
+                            className="p-1 text-gray-600 hover:text-indigo-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
                             aria-label="More actions"
+                            disabled={displayStatus === 'Accepted' || displayStatus === 'Rejected'}
                           >
                             <MoreHorizontal className="w-5 h-5" />
                           </button>
@@ -106,7 +139,7 @@ const ApplicantsTable = () => {
                           {shortlistingStatus.map((status) => (
                             <div
                               key={status}
-                              onClick={() => statusHandler(status, item._id)}
+                              onClick={() => statusHandler(status, item._id, displayStatus)}
                               className={`px-3 py-2 text-sm font-medium rounded-md cursor-pointer text-center transition ${statusColors[status]}`}
                             >
                               {status}
@@ -115,7 +148,6 @@ const ApplicantsTable = () => {
                         </PopoverContent>
                       </Popover>
 
-                      {/* Chat Button */}
                       <button
                         className="px-3 py-1.5 text-sm font-medium bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
                         onClick={() => {
@@ -135,7 +167,7 @@ const ApplicantsTable = () => {
             })
           ) : (
             <TableRow>
-              <TableCell colSpan={6} className="text-center py-6 text-gray-400">
+              <TableCell colSpan={7} className="text-center py-6 text-gray-400">
                 No applicants found.
               </TableCell>
             </TableRow>
@@ -143,7 +175,6 @@ const ApplicantsTable = () => {
         </TableBody>
       </Table>
 
-      {/* Animation Style */}
       <style>{`
         @keyframes fadeIn {
           0% { opacity: 0; transform: translateY(12px); }

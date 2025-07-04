@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from './ui/button';
-import { Bookmark } from 'lucide-react';
+import { Bookmark, MapPin } from 'lucide-react';
 import { Avatar, AvatarImage } from './ui/avatar';
 import { Badge } from './ui/badge';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +42,10 @@ const Job = ({ job }) => {
           <h2 className="text-md font-semibold text-blue-700">
             {job?.company?.name}
           </h2>
-          <p className="text-xs text-gray-500">📍 India</p>
+          <p className="text-xs text-gray-500 flex items-center gap-1">
+            <MapPin className="w-4 h-4 text-indigo-500" />
+            {job?.location || 'Location not specified'}
+          </p>
         </div>
       </div>
 

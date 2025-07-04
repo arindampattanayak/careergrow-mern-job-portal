@@ -1,8 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Navbar from './shared/Navbar';
+import Footer from './shared/Footer';
 
 const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const JOB_API_ENDPOINT = `${API_URL}/api/v1/job`;
+const USER_API_ENDPOINT = `${API_URL}/api/v1/user`;
+const MESSAGE_API_ENDPOINT = `${API_URL}/api/v1/messages`;
 
 const ChatBox = () => {
   const { jobId, recruiterId, applicantId } = useParams();
@@ -24,7 +29,7 @@ const ChatBox = () => {
     const fetchJobAndUser = async () => {
       try {
         if (jobId) {
-          const jobRes = await axios.get(`${API_URL}/api/v1/job/get/${jobId}`, {
+          const jobRes = await axios.get(`${JOB_API_ENDPOINT}/get/${jobId}`, {
             withCredentials: true,
           });
           setJobDetails(jobRes.data.job);
@@ -32,7 +37,7 @@ const ChatBox = () => {
 
         const userIdToFetch = isRecruiter ? applicantId : recruiterId;
         if (userIdToFetch) {
-          const userRes = await axios.get(`${API_URL}/api/v1/user/${userIdToFetch}`, {
+          const userRes = await axios.get(`${USER_API_ENDPOINT}/${userIdToFetch}`, {
             withCredentials: true,
           });
           setUserDetails(userRes.data.user);
@@ -50,7 +55,7 @@ const ChatBox = () => {
 
     const fetchMessages = async () => {
       try {
-        const res = await axios.get(`${API_URL}/api/v1/messages/getMessages`, {
+        const res = await axios.get(`${MESSAGE_API_ENDPOINT}/getMessages`, {
           params: { senderId, receiverId, jobId },
         });
         setMessages(res.data.data);
@@ -74,7 +79,7 @@ const ChatBox = () => {
     if (media) formData.append("media", media);
 
     try {
-      const res = await axios.post(`${API_URL}/api/v1/messages/sendMessage`, formData, {
+      const res = await axios.post(`${MESSAGE_API_ENDPOINT}/sendMessage`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setMessages((prev) => [...prev, res.data.data]);
@@ -88,97 +93,122 @@ const ChatBox = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#e0f7f1] via-[#e6f3ff] to-[#f3f8fa] text-slate-800 px-4 sm:px-8 py-6 animate-fadeIn">
-      {/* Header */}
-      <div className="max-w-5xl mx-auto mb-6">
-        <h2 className="text-2xl font-bold text-sky-600">
-           Chat for:{" "}
-          <span className="text-slate-800 font-semibold">
-            {jobDetails?.title || "Loading..."}
-          </span>
-        </h2>
-        {userDetails && (
-          <p className="text-sm text-slate-600 mt-1">
-            Talking to: <span className="text-emerald-600 font-medium">{userDetails.fullname}</span>
-          </p>
-        )}
-      </div>
+    <>
+      <Navbar />
 
-      {/* Chat Messages */}
-      <div className="max-w-5xl mx-auto h-[60vh] overflow-y-auto border border-slate-300 bg-white rounded-xl p-4 space-y-4 shadow">
-        {messages.map((msg) => {
-          const isSender = msg.senderId?.toString() === senderId;
-          const bubbleColor = isSender
-            ? "bg-emerald-100 text-emerald-900"
-            : "bg-sky-100 text-sky-900";
+      <div className="min-h-screen w-full bg-gradient-to-br from-[#e0f7f1] via-[#e6f3ff] to-[#f3f8fa] text-slate-800 px-4 sm:px-8 py-6 animate-fadeIn">
+        {/* Header */}
+        <div className="max-w-5xl mx-auto mb-6">
+          <h2 className="text-2xl font-bold text-sky-600">
+            Chat for:{" "}
+            <span className="text-slate-800 font-semibold">
+              {jobDetails?.title || "Loading..."}
+            </span>
+          </h2>
 
-          return (
-            <div
-              key={msg._id}
-              className={`w-full flex ${isSender ? "justify-end" : "justify-start"} animate-fade-in`}
-            >
-              <div className={`max-w-[75%] px-4 py-3 rounded-2xl ${bubbleColor} shadow-md`}>
-                {msg.content && <p className="whitespace-pre-wrap">{msg.content}</p>}
-                {msg.mediaUrl && (
-                  <a
-                    href={`${API_URL}${msg.mediaUrl}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block mt-2 text-sm text-blue-500 underline"
-                  >
-                    📎 View Attachment
-                  </a>
-                )}
-                <p className="text-xs text-right text-slate-500 mt-2">
-                  {new Date(msg.createdAt).toLocaleTimeString()}
-                </p>
+          {userDetails?.fullname ? (
+            <p className="text-base text-gray-700 mt-1">
+              <span className="font-semibold text-gray-900 text-[16px]">Chat with:</span>{" "}
+              <span className="text-gray-800 font-medium text-[16px]">
+                {isRecruiter ? "Candidate" : "Recruiter"} - {userDetails.fullname}
+              </span>
+            </p>
+          ) : (
+            <p className="text-sm text-gray-400 mt-1">Loading user info...</p>
+          )}
+        </div>
+
+        {/* Chat Messages */}
+        <div className="max-w-5xl mx-auto h-[60vh] overflow-y-auto border border-slate-300 bg-white rounded-xl p-4 space-y-4 shadow">
+          {messages.map((msg) => {
+            const isSender = msg.senderId?.toString() === senderId;
+            const bubbleColor = isSender
+              ? "bg-emerald-100 text-emerald-900"
+              : "bg-sky-100 text-sky-900";
+
+            return (
+              <div
+                key={msg._id}
+                className={`w-full flex ${isSender ? "justify-end" : "justify-start"} animate-fade-in`}
+              >
+                <div className={`max-w-[75%] px-4 py-3 rounded-2xl ${bubbleColor} shadow-md`}>
+                  {msg.content && <p className="whitespace-pre-wrap">{msg.content}</p>}
+                  {msg.mediaUrl && (
+                    <a
+                      href={`${API_URL}${msg.mediaUrl}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block mt-2 text-sm text-blue-500 underline"
+                    >
+                      📎 View Attachment
+                    </a>
+                  )}
+                  <p className="text-xs text-right text-slate-500 mt-2">
+                    {new Date(msg.createdAt).toLocaleTimeString()}
+                  </p>
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <div ref={bottomRef}></div>
+            );
+          })}
+          <div ref={bottomRef}></div>
+        </div>
+
+        {/* Input Section */}
+        <div className="max-w-5xl mx-auto mt-6 flex flex-col sm:flex-row gap-4 items-center">
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="flex-1 p-3 rounded-md bg-white text-slate-800 border border-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+          />
+
+          {/* Attach File with file name display */}
+          <div className="flex flex-col w-full sm:w-64">
+            <label className="relative cursor-pointer text-center">
+              <span className="flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-md transition">
+                 <span>Attach File</span>
+              </span>
+              <input
+                type="file"
+                onChange={(e) => setMedia(e.target.files[0])}
+                ref={fileInputRef}
+                className="absolute inset-0 opacity-0 cursor-pointer"
+              />
+            </label>
+            {media && (
+              <span className="mt-1 text-sm text-slate-700 text-center truncate max-w-full">
+                {media.name}
+              </span>
+            )}
+          </div>
+
+          <button
+            onClick={sendMessage}
+            disabled={!content && !media}
+            className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-md font-medium transition duration-200 disabled:bg-slate-400"
+          >
+            Send
+          </button>
+        </div>
+
+        {/* Animations */}
+        <style>{`
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.3s ease-out;
+          }
+          .animate-fadeIn {
+            animation: fade-in 0.6s ease-in-out;
+          }
+        `}</style>
       </div>
 
-      {/* Input */}
-      <div className="max-w-5xl mx-auto mt-6 flex flex-col sm:flex-row gap-4 items-center">
-        <input
-          type="text"
-          placeholder="Type your message..."
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="flex-1 p-3 rounded-md bg-white text-slate-800 border border-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
-        />
-
-        <input
-          type="file"
-          onChange={(e) => setMedia(e.target.files[0])}
-          ref={fileInputRef}
-          className="text-sm w-full sm:w-48 bg-white text-slate-800 border border-slate-300 rounded-md file:bg-sky-500 file:text-white file:border-0 file:px-4 file:py-2 hover:file:bg-sky-600"
-        />
-
-        <button
-          onClick={sendMessage}
-          disabled={!content && !media}
-          className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-md font-medium transition duration-200 disabled:bg-slate-400"
-        >
-          Send
-        </button>
-      </div>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(15px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out;
-        }
-        .animate-fadeIn {
-          animation: fade-in 0.6s ease-in-out;
-        }
-      `}</style>
-    </div>
+      <Footer />
+    </>
   );
 };
 

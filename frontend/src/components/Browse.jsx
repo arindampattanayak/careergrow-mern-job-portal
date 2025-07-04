@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Navbar from './shared/Navbar';
+import Footer from './shared/Footer';
 import Job from './Job';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchedQuery } from '@/redux/jobSlice';
@@ -17,26 +18,33 @@ const Browse = () => {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f1f5ff] via-[#e8f0fc] to-[#dce9fb] text-gray-800">
+    <>
+      {/* Navbar */}
       <Navbar />
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h1 className="font-bold text-3xl text-blue-800 mb-8 text-center">
-          🔍 Search Results ({allJobs.length})
-        </h1>
+      {/* Main Content */}
+      <div className="min-h-screen bg-gradient-to-br from-[#f1f5ff] via-[#e8f0fc] to-[#dce9fb] text-gray-800">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <h1 className="font-bold text-3xl text-blue-800 mb-8 text-center">
+            🔍 Search Results ({allJobs.length})
+          </h1>
 
-        {allJobs.length === 0 ? (
-          <div className="text-center text-gray-500 text-lg mt-20">
-            No jobs found. Try refining your search criteria.
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allJobs.map((job) => (
-              <Job key={job._id} job={job} />
-            ))}
-          </div>
-        )}
+          {allJobs.length === 0 ? (
+            <div className="text-center text-gray-500 text-lg mt-20">
+              No jobs found. Try refining your search criteria.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {allJobs.map((job) => (
+                <Job key={job._id} job={job} />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
 
       <style>{`
         @keyframes fadeIn {
@@ -47,7 +55,7 @@ const Browse = () => {
           animation: fadeIn 0.8s ease-in-out;
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
