@@ -51,3 +51,12 @@
 ```bash
 git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
 cd careergrow-mern-job-portal
+---
+### 
+#### **Step 2: Install Node Dependencies**
+```bash
+cd backend
+npm install
+
+cd ../frontend
+npm install
