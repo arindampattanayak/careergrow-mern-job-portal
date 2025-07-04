@@ -8,6 +8,7 @@ import AdminJobsTable from './AdminJobsTable';
 import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs';
 import { setSearchJobByText } from '@/redux/jobSlice';
 import Footer from '../shared/Footer';
+import { Plus } from 'lucide-react'; // ✅ Icon import
 
 const AdminJobs = () => {
   useGetAllAdminJobs();
@@ -33,11 +34,12 @@ const AdminJobs = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
+
           <Button
             onClick={() => navigate('/admin/jobs/create')}
-            className="bg-gradient-to-r from-indigo-500 to-blue-600 hover:brightness-110 text-white px-6 py-2 rounded-md font-medium shadow-md hover:scale-105 transition-all duration-300"
+            className="bg-gradient-to-r from-indigo-500 to-blue-600 hover:brightness-110 text-white px-6 py-2 rounded-md font-medium shadow-md hover:scale-105 transition-all duration-300 flex items-center gap-2"
           >
-            ➕ New Job
+            <Plus size={18} /> New Job
           </Button>
         </div>
 

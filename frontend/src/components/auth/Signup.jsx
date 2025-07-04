@@ -139,12 +139,30 @@ const Signup = () => {
               type="password"
               value={input.password}
               onChange={changeEventHandler}
-              minLength={6}
               placeholder="••••••••"
               required
               className="mt-1 bg-gray-50 border border-gray-300 text-gray-800 placeholder-gray-400"
               disabled={loading}
             />
+
+            {/* ✅ Password Strength Indicator */}
+            <div className="mt-2 space-y-1 text-sm">
+              <p className={`${input.password.length >= 8 ? 'text-green-600' : 'text-red-500'}`}>
+                {input.password.length >= 8 ? '✅' : '❌'} At least 8 characters
+              </p>
+              <p className={`${/[A-Z]/.test(input.password) ? 'text-green-600' : 'text-red-500'}`}>
+                {/[A-Z]/.test(input.password) ? '✅' : '❌'} One uppercase letter
+              </p>
+              <p className={`${/[a-z]/.test(input.password) ? 'text-green-600' : 'text-red-500'}`}>
+                {/[a-z]/.test(input.password) ? '✅' : '❌'} One lowercase letter
+              </p>
+              <p className={`${/\d/.test(input.password) ? 'text-green-600' : 'text-red-500'}`}>
+                {/\d/.test(input.password) ? '✅' : '❌'} One number
+              </p>
+              <p className={`${/[@$!%*?&#]/.test(input.password) ? 'text-green-600' : 'text-red-500'}`}>
+                {/[@$!%*?&#]/.test(input.password) ? '✅' : '❌'} One special character
+              </p>
+            </div>
           </div>
 
           {/* Role */}

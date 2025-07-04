@@ -4,16 +4,24 @@ import { Button } from './ui/button';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { APPLICATION_API_END_POINT, JOB_API_END_POINT } from '@/utils/constant';
-import { setSingleJob } from '@/redux/jobSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { setSingleJob } from '@/redux/jobSlice';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
-import { Briefcase, MapPin, CalendarDays, Users, Wallet } from 'lucide-react';
+import {
+  Briefcase,
+  MapPin,
+  CalendarDays,
+  Users,
+  Wallet,
+  ListChecks
+} from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 
 const JobDescription = () => {
   const { singleJob } = useSelector(store => store.job);
   const { user } = useSelector(store => store.auth);
-  const isInitiallyApplied = singleJob?.applications?.some(application => application.applicant === user?._id) || false;
+  const isInitiallyApplied = singleJob?.applications?.some(app => app.applicant === user?._id) || false;
   const [isApplied, setIsApplied] = useState(isInitiallyApplied);
 
   const { id: jobId } = useParams();
@@ -42,7 +50,7 @@ const JobDescription = () => {
         const res = await axios.get(`${JOB_API_END_POINT}/get/${jobId}`, { withCredentials: true });
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
-          setIsApplied(res.data.job.applications.some(application => application.applicant === user?._id));
+          setIsApplied(res.data.job.applications.some(app => app.applicant === user?._id));
         }
       } catch (error) {
         console.log(error);
@@ -59,31 +67,37 @@ const JobDescription = () => {
       transition={{ duration: 0.6 }}
     >
       <motion.div
-        className="bg-[#faf5ff] p-10 rounded-3xl shadow-xl border border-purple-100 max-w-6xl mx-auto grid md:grid-cols-3 gap-12"
+        className="bg-white p-10 rounded-3xl shadow-xl border border-indigo-100 max-w-6xl mx-auto grid md:grid-cols-3 gap-12"
         initial={{ scale: 0.95 }}
         animate={{ scale: 1 }}
         transition={{ delay: 0.2, duration: 0.4 }}
       >
         {/* Sidebar (Company + Apply) */}
         <div className="col-span-1 flex flex-col items-center gap-6">
-          <div className="w-24 h-24 rounded-full bg-violet-100 flex items-center justify-center text-3xl font-bold text-violet-700 shadow-sm">
-            {singleJob?.company?.name?.charAt(0) || 'C'}
-          </div>
+          <Avatar className="w-24 h-24 bg-indigo-100 border shadow">
+            <AvatarImage src={singleJob?.company?.logo} alt={singleJob?.company?.name} />
+            <AvatarFallback className="text-xl text-indigo-700 font-semibold bg-indigo-50">
+              {singleJob?.company?.name?.charAt(0) || 'C'}
+            </AvatarFallback>
+          </Avatar>
+
           <div className="text-center">
-            <h1 className="text-lg font-semibold text-violet-700">{singleJob?.company?.name}</h1>
+            <h1 className="text-lg font-semibold text-indigo-700">{singleJob?.company?.name}</h1>
             <p className="text-sm text-gray-500 mt-1">{singleJob?.location}</p>
           </div>
-          <div className="space-y-2">
+
+          <div className="space-y-2 text-sm">
             <Badge className="text-blue-600 font-semibold bg-blue-100 border border-blue-200">
-              {singleJob?.position} Positions
+              {singleJob?.position} Position{singleJob?.position > 1 ? 's' : ''}
             </Badge>
-            <Badge className="text-red-600 font-semibold bg-red-100 border border-red-200">
+            <Badge className="text-green-600 font-semibold bg-green-100 border border-green-200">
               {singleJob?.jobType}
             </Badge>
-            <Badge className="text-indigo-600 font-semibold bg-indigo-100 border border-indigo-200">
+            <Badge className="text-purple-600 font-semibold bg-purple-100 border border-purple-200">
               ₹ {singleJob?.salary} LPA
             </Badge>
           </div>
+
           <motion.div whileHover={{ scale: isApplied ? 1 : 1.05 }} whileTap={{ scale: 0.95 }} className="w-full">
             <Button
               onClick={isApplied ? null : applyJobHandler}
@@ -91,28 +105,49 @@ const JobDescription = () => {
               className={`w-full rounded-full px-6 py-2 font-medium text-white transition-all duration-300 ${
                 isApplied
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-violet-500 to-pink-500 hover:brightness-110'
+                  : 'bg-gradient-to-r from-indigo-500 to-blue-600 hover:brightness-110'
               }`}
             >
-              {isApplied ? 'Already Applied' : 'Apply Now'}
+              {isApplied ? '✅ Applied' : 'Apply Now'}
             </Button>
           </motion.div>
         </div>
 
-        {/* Main Section */}
+        {/* Main Job Content */}
         <div className="col-span-2">
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900">{singleJob?.title}</h1>
+
+            {/* ✅ Company name below title */}
+            <div className="text-sm text-indigo-700 font-medium mb-2">
+              Company: {singleJob?.company?.name}
+            </div>
+
             <p className="text-gray-700 mt-3 leading-relaxed">{singleJob?.description}</p>
           </div>
 
           <div className="space-y-6 text-sm text-gray-700">
-            <InfoRow icon={<Briefcase className="text-violet-600" size={20} />} title="Role" value={singleJob?.title} />
-            <InfoRow icon={<MapPin className="text-violet-600" size={20} />} title="Location" value={singleJob?.location} />
-            <InfoRow icon={<Wallet className="text-violet-600" size={20} />} title="Salary" value={`₹ ${singleJob?.salary} LPA`} />
-            <InfoRow icon={<Users className="text-violet-600" size={20} />} title="Total Applicants" value={singleJob?.applications?.length || 0} />
-            <InfoRow icon={<CalendarDays className="text-violet-600" size={20} />} title="Posted On" value={singleJob?.createdAt?.split("T")[0]} />
+            <InfoRow icon={<Briefcase className="text-indigo-600" size={20} />} title="Role" value={singleJob?.title} />
+            <InfoRow icon={<MapPin className="text-indigo-600" size={20} />} title="Location" value={singleJob?.location} />
+            <InfoRow icon={<Wallet className="text-indigo-600" size={20} />} title="Salary" value={`₹ ${singleJob?.salary} LPA`} />
+            <InfoRow icon={<Users className="text-indigo-600" size={20} />} title="Applicants" value={`${singleJob?.applications?.length || 0}`} />
+            <InfoRow icon={<CalendarDays className="text-indigo-600" size={20} />} title="Posted On" value={singleJob?.createdAt?.split('T')[0]} />
+            <InfoRow icon={<ListChecks className="text-indigo-600" size={20} />} title="Experience Required" value={`${singleJob?.experienceLevel} years`} />
           </div>
+
+          {/* ✅ Requirements List */}
+          {singleJob?.requirements?.length > 0 && (
+            <div className="mt-6">
+              <h2 className="text-md font-semibold mb-2 text-gray-800 flex items-center gap-2">
+                <ListChecks size={18} className="text-indigo-600" /> Requirements
+              </h2>
+              <ul className="list-disc list-inside space-y-1 text-gray-700">
+                {singleJob.requirements.map((req, index) => (
+                  <li key={index}>{req}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </motion.div>
     </motion.div>

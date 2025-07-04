@@ -14,19 +14,27 @@ import { useNavigate } from 'react-router-dom';
 
 const AdminJobsTable = () => {
   const { allAdminJobs, searchJobByText } = useSelector(store => store.job);
-  const [filterJobs, setFilterJobs] = useState(allAdminJobs);
+  const { user } = useSelector(store => store.auth);
+  const [filterJobs, setFilterJobs] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) return;
+
     const filteredJobs = allAdminJobs.filter(job => {
-      if (!searchJobByText) return true;
-      return (
+      const matchesSearch =
+        !searchJobByText ||
         job?.title?.toLowerCase().includes(searchJobByText.toLowerCase()) ||
-        job?.company?.name?.toLowerCase().includes(searchJobByText.toLowerCase())
-      );
+        job?.company?.name?.toLowerCase().includes(searchJobByText.toLowerCase());
+
+      const isCreatedByUser =
+        job?.created_by === user._id || job?.created_by?._id === user._id;
+
+      return matchesSearch && isCreatedByUser;
     });
+
     setFilterJobs(filteredJobs);
-  }, [allAdminJobs, searchJobByText]);
+  }, [allAdminJobs, searchJobByText, user]);
 
   return (
     <div className="overflow-x-auto rounded-lg border border-gray-200 shadow bg-gradient-to-br from-[#f8fbff] via-[#eef3fa] to-[#f5f9ff] text-[#1e293b] animate-fadeIn">

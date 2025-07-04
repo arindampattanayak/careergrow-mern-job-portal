@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -15,29 +16,38 @@ import { useNavigate } from 'react-router-dom';
 
 const CompaniesTable = () => {
   const { companies, searchCompanyByText } = useSelector(store => store.company);
-  const [filteredCompanies, setFilteredCompanies] = useState(companies);
+  const { user } = useSelector(store => store.auth); // ✅ Get user from Redux
+  const [filteredCompanies, setFilteredCompanies] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!user) return;
+
     const filtered = companies.filter(company => {
-      if (!searchCompanyByText) return true;
-      return company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
+      const matchesSearch =
+        !searchCompanyByText || company?.name?.toLowerCase().includes(searchCompanyByText.toLowerCase());
+
+      const isCreatedByUser =
+        company?.userId === user._id || company?.userId?._id === user._id;
+
+      return matchesSearch && isCreatedByUser;
     });
+
     setFilteredCompanies(filtered);
-  }, [companies, searchCompanyByText]);
+  }, [companies, searchCompanyByText, user]);
 
   return (
-    <div className="overflow-x-auto rounded-2xl border border-[#dbe2ee] bg-gradient-to-br from-[#f8fbff] via-[#eef3fa] to-[#f5f9ff] shadow-md animate-fadeIn">
+    <div className="overflow-x-auto rounded-2xl border border-[#d6d9e0] bg-[#f7f8fc] shadow-md animate-fadeIn">
       <Table className="min-w-full">
-        <TableHeader className="bg-gradient-to-r from-indigo-100 to-white border-b border-gray-300">
+        <TableHeader className="bg-[#e9efff] border-b border-[#d6d9e0]">
           <TableRow>
-            <TableHead className="text-indigo-800 font-semibold">Logo</TableHead>
-            <TableHead className="text-indigo-800 font-semibold">Name</TableHead>
-            <TableHead className="text-indigo-800 font-semibold">Description</TableHead>
-            <TableHead className="text-indigo-800 font-semibold">Website</TableHead>
-            <TableHead className="text-indigo-800 font-semibold">Location</TableHead>
-            <TableHead className="text-indigo-800 font-semibold">Date</TableHead>
-            <TableHead className="text-indigo-800 font-semibold text-right">Actions</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Logo</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Name</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Description</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Website</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Location</TableHead>
+            <TableHead className="text-[#444c66] font-semibold">Date</TableHead>
+            <TableHead className="text-[#444c66] font-semibold text-right">Actions</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -45,7 +55,7 @@ const CompaniesTable = () => {
           {filteredCompanies.map(company => (
             <TableRow
               key={company._id}
-              className="hover:bg-[#e8f0fe] transition-all duration-200"
+              className="hover:bg-[#eef3ff] transition-all duration-300"
             >
               <TableCell>
                 <Avatar className="bg-white border border-gray-200 shadow-sm">
@@ -53,8 +63,8 @@ const CompaniesTable = () => {
                 </Avatar>
               </TableCell>
 
-              <TableCell className="text-gray-900 font-medium">{company.name}</TableCell>
-              <TableCell className="text-gray-600 text-sm">{company.description || '—'}</TableCell>
+              <TableCell className="text-[#2e3252] font-medium">{company.name}</TableCell>
+              <TableCell className="text-[#667085] text-sm">{company.description || '—'}</TableCell>
 
               <TableCell>
                 {company.website ? (
@@ -62,7 +72,7 @@ const CompaniesTable = () => {
                     href={company.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-indigo-600 hover:underline"
+                    className="text-[#4f46e5] underline hover:text-[#4338ca]"
                     onClick={e => e.stopPropagation()}
                   >
                     Visit
@@ -72,8 +82,8 @@ const CompaniesTable = () => {
                 )}
               </TableCell>
 
-              <TableCell className="text-gray-700 text-sm">{company.location || '—'}</TableCell>
-              <TableCell className="text-gray-500 text-sm">
+              <TableCell className="text-[#5a6473] text-sm">{company.location || '—'}</TableCell>
+              <TableCell className="text-[#7c869b] text-sm">
                 {new Date(company.createdAt).toLocaleDateString()}
               </TableCell>
 
@@ -82,14 +92,14 @@ const CompaniesTable = () => {
                   <PopoverTrigger asChild>
                     <button
                       onClick={e => e.stopPropagation()}
-                      className="p-2 rounded-full hover:bg-indigo-100 transition"
+                      className="p-2 rounded-full hover:bg-[#dee6ff] transition"
                     >
-                      <MoreHorizontal size={20} className="text-indigo-700" />
+                      <MoreHorizontal size={20} className="text-[#4f46e5]" />
                     </button>
                   </PopoverTrigger>
 
                   <PopoverContent
-                    className="w-48 p-2 space-y-2 bg-white border border-gray-200 rounded-xl shadow-xl"
+                    className="w-52 p-3 bg-white border border-gray-200 rounded-xl shadow-xl space-y-2"
                     align="end"
                     onOpenAutoFocus={e => e.preventDefault()}
                   >
@@ -98,10 +108,10 @@ const CompaniesTable = () => {
                         e.stopPropagation();
                         navigate(`/admin/companies/${company._id}`);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-indigo-600 hover:bg-indigo-50 cursor-pointer"
+                      className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition font-medium cursor-pointer"
                     >
-                      <Edit2 size={16} />
-                      Edit Company
+                      <Edit2 size={18} className="text-indigo-600" />
+                      <span>Edit Company</span>
                     </div>
 
                     <div
@@ -109,10 +119,10 @@ const CompaniesTable = () => {
                         e.stopPropagation();
                         navigate(`/admin/companies/${company._id}/jobs`);
                       }}
-                      className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-green-600 hover:bg-green-50 cursor-pointer"
+                      className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-green-700 bg-green-50 hover:bg-green-100 transition font-medium cursor-pointer"
                     >
-                      <Briefcase size={16} />
-                      View Jobs
+                      <Briefcase size={18} className="text-green-600" />
+                      <span>View Jobs</span>
                     </div>
                   </PopoverContent>
                 </Popover>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Badge } from './ui/badge';
+import { Avatar, AvatarImage, AvatarFallback } from './ui/avatar';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -15,12 +16,20 @@ const LatestJobCards = ({ job }) => {
       transition={{ duration: 0.4 }}
       className="p-6 bg-[#f5f9ff] border border-blue-200 hover:border-blue-400 rounded-2xl shadow-md hover:shadow-lg cursor-pointer transition-all duration-300 group"
     >
-      {/* Company Info */}
-      <div className="mb-2">
-        <h2 className="text-blue-700 font-semibold text-md group-hover:underline">
-          {job?.company?.name || 'Unknown Company'}
-        </h2>
-        <p className="text-sm text-gray-500">📍 India</p>
+      {/* Company Info with Logo */}
+      <div className="flex items-center gap-4 mb-3">
+        <Avatar className="w-12 h-12 border border-gray-300">
+          <AvatarImage src={job?.company?.logo} alt="logo" />
+          <AvatarFallback className="bg-indigo-100 text-indigo-600 font-semibold">
+            {job?.company?.name?.charAt(0) || 'C'}
+          </AvatarFallback>
+        </Avatar>
+        <div>
+          <h2 className="text-blue-700 font-semibold text-md group-hover:underline">
+            {job?.company?.name || 'Unknown Company'}
+          </h2>
+          <p className="text-sm text-gray-500">📍 India</p>
+        </div>
       </div>
 
       {/* Job Title & Description */}
