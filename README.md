@@ -39,7 +39,7 @@ careergrow-mern-job-portal/
 ├── nlp-flask-api/        # Python-based skill extractor
 ├── .env                  # Environment variables (not pushed)
 └── README.md
-
+---
 ## ⚙️ Getting Started
 
 Follow these steps to set up the project locally:
