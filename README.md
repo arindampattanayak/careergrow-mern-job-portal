@@ -1,62 +1,56 @@
-# 💼 CareerGrow - MERN Job Portal Application
+# Job Portal App with MERN Stack
 
-![CareerGrow Banner](https://via.placeholder.com/1200x400?text=CareerGrow+MERN+Job+Portal)
+A comprehensive job portal application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack with AI-powered features for enhanced job matching.
 
-## ✨ Key Features
+![App Screenshot](https://via.placeholder.com/1200x600?text=Job+Portal+Dashboard)
+
+## ✨ Features
 
 ### For Job Seekers
 - 🔍 Advanced job search and filtering
 - 📄 Resume upload with AI-powered analysis
 - 📊 Application tracking dashboard
-- 💬 Real-time chat with recruiters
+- 💬 Real-time chat with employers
 
-### For Recruiters
+### For Employers
 - ➕ Job posting and management
 - 👥 Applicant tracking system
 - 🧠 AI-powered candidate matching
 - 📈 Analytics dashboard
 
----
+## 🛠️ Technologies Used
 
-## 🛠️ Technology Stack
+| Component       | Technologies                  |
+|----------------|-------------------------------|
+| **Frontend**   | React.js, Tailwind CSS, Redux |
+| **Backend**    | Node.js, Express.js, MongoDB  |
+| **AI Engine**  | Python, Flask, spaCy          |
+| **Real-Time**  | Socket.io                     |
+| **Storage**    | Cloudinary, MongoDB Atlas     |
+| **Auth**       | JWT, Bcrypt                   |
 
-| Component       | Technologies Used                  |
-|-----------------|------------------------------------|
-| **Frontend**    | React.js, Tailwind CSS, Redux      |
-| **Backend**     | Node.js, Express.js, MongoDB       |
-| **AI Engine**   | Python, Flask, spaCy               |
-| **Real-Time**   | Socket.io                          |
-| **Storage**     | Cloudinary, MongoDB Atlas          |
-| **Auth**        | JWT, Bcrypt                        |
+## 🚀 Getting Started
 
----
+### Prerequisites
 
-## ⚙️ Getting Started
-
-### ✅ Prerequisites
-
-- Node.js (v18 or above)
-- npm (v9+) or yarn (v1.22+)
+- Node.js (v18 or above recommended)
 - MongoDB Atlas account
-- Python 3.8+
+- Python 3.8+ (for AI features)
 - Cloudinary account
-- SMTP credentials (for email services)
 - Git (version control)
 
----
+### Installation
 
-### 🔧 Installation Guide
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
+   cd careergrow-mern-job-portal
 
-#### **Step 1: Clone the Repository**
-```bash
-git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
-cd careergrow-mern-job-portal
----
-### 
-#### **Step 2: Install Node Dependencies**
-```bash
+2. Install NPM packages:
+   # Backend dependencies
 cd backend
 npm install
 
+# Frontend dependencies
 cd ../frontend
 npm install
