@@ -1,74 +1,53 @@
-# 💼 CareerGrow - MERN Job Portal App
+# 💼 CareerGrow - MERN Job Portal Application
 
-**CareerGrow** is a comprehensive job portal built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It empowers both **job seekers** and **recruiters** with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based recommendations.
+![CareerGrow Banner](https://via.placeholder.com/1200x400?text=CareerGrow+MERN+Job+Portal)
 
----
+## ✨ Key Features
 
-## 🚀 Features
+### For Job Seekers
+- 🔍 Advanced job search and filtering
+- 📄 Resume upload with AI-powered analysis
+- 📊 Application tracking dashboard
+- 💬 Real-time chat with recruiters
 
-- 🔐 **Secure Authentication**: JWT-based login/signup for candidates and recruiters, with passwords hashed using Bcrypt.
-- 🔄 **Forgot Password**: Password reset functionality via email using **Nodemailer** and secure token generation using **Crypto**.
-- 📋 **Job Listings**: View a wide variety of jobs dynamically pulled from MongoDB.
-- 📤 **Job Posting**: Recruiters can register companies and post jobs with full control over listings.
-- 🗃️ **Application Management**: Candidates can apply for jobs and track application status. Recruiters can review applications received.
-- 🤝 **Real-time Messaging**: In-app messaging between candidates and recruiters using **Socket.io**.
-- 🧠 **Skill-Based Job Recommendations**: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP)**.
-- 🌈 **Modern UI**: Designed with **Tailwind CSS** and **shadcn/ui** components for a responsive and elegant interface.
-- ☁️ **Image Upload**: Upload and manage profile images via **Cloudinary**.
-
----
-
-## 🛠️ Tech Stack
-
-| Layer        | Technologies                                                                 |
-|--------------|------------------------------------------------------------------------------|
-| **Frontend** | React.js, React Router, Tailwind CSS, Shadcn UI                              |
-| **Backend**  | Node.js, Express.js, MongoDB Atlas, Socket.io, Nodemailer, Crypto            |
-| **AI Module**| Python, Flask, spaCy, PyMuPDF, MongoDB                                       |
-| **Auth**     | JWT, Bcrypt                                                                  |
-| **Cloud**    | Cloudinary (Image Storage)                                                   |
+### For Recruiters
+- ➕ Job posting and management
+- 👥 Applicant tracking system
+- 🧠 AI-powered candidate matching
+- 📈 Analytics dashboard
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Technology Stack
 
+| Component       | Technologies Used                  |
+|-----------------|------------------------------------|
+| **Frontend**    | React.js, Tailwind CSS, Redux      |
+| **Backend**     | Node.js, Express.js, MongoDB       |
+| **AI Engine**   | Python, Flask, spaCy               |
+| **Real-Time**   | Socket.io                          |
+| **Storage**     | Cloudinary, MongoDB Atlas          |
+| **Auth**        | JWT, Bcrypt                        |
 
-careergrow-mern-job-portal/
-├── backend/
-├── frontend/
-├── nlp-flask-api/        # Python-based skill extractor
-├── .env                  # Environment variables (not pushed)
-└── README.md
 ---
+
 ## ⚙️ Getting Started
-
-Follow these steps to set up the project locally:
-
----
 
 ### ✅ Prerequisites
 
-- Node.js (v18 or above recommended)
-- npm or yarn
-- MongoDB Atlas account (or local MongoDB)
+- Node.js (v18 or above)
+- npm (v9+) or yarn (v1.22+)
+- MongoDB Atlas account
 - Python 3.8+
 - Cloudinary account
-- SMTP credentials (for password reset email)
-- Postman (optional, for API testing)
+- SMTP credentials (for email services)
+- Git (version control)
 
 ---
 
-### 🔧 Installation
+### 🔧 Installation Guide
 
 #### **Step 1: Clone the Repository**
-
-
+```bash
 git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
 cd careergrow-mern-job-portal
-
-Step 2: Backend Setup
-bash
-cd backend
-npm install
-cp .env.example .env
-# Edit the .env file with your credentials
