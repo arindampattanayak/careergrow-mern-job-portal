@@ -46,12 +46,13 @@ careergrow-mern-job-portal/
 ### Prerequisites
 
 - Node.js (v18 or above recommended)
-- MongoDB Atlas account
-- Python 3.8+ (for AI features)
-- MongoDB account
-- Cloudinary account
-- Git (version control)
-
+- npm or Yarn (package managers)
+- MongoDB Atlas account (or local MongoDB setup)
+- Python 3.8+ (for AI-based resume skill extraction)
+- Cloudinary account (for image and resume storage)
+- Git (for version control)
+- Nodemon (for auto-restarting backend during development)
+- Postman (optional, for testing APIs)
 
 ### Installation
 
