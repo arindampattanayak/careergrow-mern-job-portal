@@ -35,6 +35,8 @@ Watch a short walkthrough of the project here:
 
 ---
 
+## 🚀 Getting Started
+
 ## 📁 Project Structure
 
 ```bash
@@ -45,7 +47,6 @@ careergrow-mern-job-portal/
 ├── frontend/               # React frontend with Tailwind CSS + shadcn/ui
 └── README.md
 ```
-## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -94,12 +95,12 @@ SMTP_PASS=your_smtp_password
 FRONTEND_URL=http://localhost:5173
 ```
 ### Step 4: Run the App :
-Run Backend
+Run Backend:
 ```sh
 cd backend
 nodemon index.js
 ```
-Run Frontend
+Run Frontend:
 ```sh
 cd frontend
 npm run dev
@@ -107,7 +108,7 @@ npm run dev
 ### Step 5: Set Up Python Logic (Flask) :
 a. Navigate to Python Logic
 ```sh
-cd backend/python-logic
+cd backend/python_logic
 ```
 b. Create a Virtual Environment
 ```sh
@@ -135,6 +136,15 @@ e. Run the Flask App
 ```sh
 python app.py
 ```
+## 🙏 Acknowledgments
+
+- [React](https://reactjs.org/), [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), and [Tailwind CSS](https://tailwindcss.com/) — powerful frameworks and libraries that enabled full-stack development.  
+- [spaCy](https://spacy.io/) and [MediaPipe](https://mediapipe.dev/) — for their exceptional NLP and hand tracking capabilities.  
+- [MongoDB Atlas](https://www.mongodb.com/atlas), [Cloudinary](https://cloudinary.com/), and [shadcn/ui](https://ui.shadcn.com/) — for providing reliable cloud services and modern UI components.  
+
+## 👤 Contributor
+
+- **Arindam Pattanayak** – [GitHub](https://github.com/arindampattanayak)
 
 
 
