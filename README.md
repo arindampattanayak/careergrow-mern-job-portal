@@ -41,25 +41,25 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 
 ### Installation
 
-1. Clone the repo:
+### Step 1: Clone the repo:
    ```sh
    git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
    cd careergrow-mern-job-portal
-
-2. Install Node Dependencies(Backend):
-### Backend dependencies**
+```
+### Step 2: Install Node Dependencies(Backend):
+Install Node Dependencies:
+ Backend dependencies
 ```sh
 cd backend
 npm install
 ```
-3. Install Node Dependencies(Frontend):
-###Frontend dependencies**
+Frontend dependencies
 ```sh
 cd ../frontend
 npm install
 ```
-4. Set Up Environment Variables :
-###Create a .env file inside the /backend folder and add the following**
+### Step 3: Set Up Environment Variables :
+Create a .env file inside the /backend folder and add the following
 ```sh
 MONGO_URI=your_mongodb_connection_string
 PORT=8000
@@ -74,13 +74,13 @@ SMTP_PASS=your_smtp_password
 
 FRONTEND_URL=http://localhost:5173
 ```
-5.Run the App :
-###Run Backend**
+### Step 4: Run the App :
+Run Backend
 ```sh
 cd backend
 nodemon index.js
 ```
-###Run Frontend**
+Run Frontend
 ```sh
 cd frontend
 npm run dev
