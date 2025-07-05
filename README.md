@@ -138,8 +138,8 @@ python app.py
 ```
 ## 🙏 Acknowledgments
 
-- [React](https://reactjs.org/), [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), and [Tailwind CSS](https://tailwindcss.com/) — powerful frameworks and libraries that enabled full-stack development.  
-- [spaCy](https://spacy.io/) and [MediaPipe](https://mediapipe.dev/) — for their exceptional NLP and hand tracking capabilities.  
+- [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), and [Tailwind CSS](https://tailwindcss.com/) — powerful frameworks and libraries that enabled full-stack development.  
+- [spaCy](https://spacy.io/) — for its efficient and production-ready NLP capabilities used in resume parsing.  
 - [MongoDB Atlas](https://www.mongodb.com/atlas), [Cloudinary](https://cloudinary.com/), and [shadcn/ui](https://ui.shadcn.com/) — for providing reliable cloud services and modern UI components.  
 
 ## 👤 Contributor
