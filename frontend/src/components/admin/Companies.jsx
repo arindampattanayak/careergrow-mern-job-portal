@@ -45,10 +45,7 @@ const Companies = () => {
           </Button>
         </div>
 
-        {/* Total Count */}
-        <p className="mb-4 text-sm text-gray-600">
-          Total Registered Companies: <span className="font-medium text-indigo-600">{companies.length}</span>
-        </p>
+       
 
         {/* Section Heading */}
         <h2 className="text-xl font-semibold text-indigo-700 mb-6 border-b border-indigo-300 pb-1">

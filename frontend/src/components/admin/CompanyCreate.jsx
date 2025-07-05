@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from '../shared/Navbar';
+import Footer from '../shared/Footer'; // ✅ Imported Footer
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -49,9 +50,9 @@ const CompanyCreate = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f2f5ff] via-[#edf1fa] to-[#e5e9f0] text-[#2e3252]">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#f2f5ff] via-[#edf1fa] to-[#e5e9f0] text-[#2e3252]">
       <Navbar />
-      <div className="max-w-3xl mx-auto px-6 py-14 animate-fadeIn">
+      <div className="flex-grow max-w-3xl mx-auto px-6 py-14 animate-fadeIn">
         <h1 className="text-3xl font-bold mb-2 tracking-tight text-[#1e2454]">Name Your Company</h1>
         <p className="text-[#5a6473] mb-8">
           What would you like to name your company? You can always change this later.
@@ -92,6 +93,8 @@ const CompanyCreate = () => {
           </Button>
         </div>
       </div>
+
+      <Footer /> {/* ✅ Footer placed here */}
 
       <style>
         {`
