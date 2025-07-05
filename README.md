@@ -79,7 +79,7 @@ Run Backend
 ```sh
 cd backend
 npm install
-npm run start
+npm start
 nodemon index.js
 ```
 Run Frontend
@@ -107,7 +107,7 @@ Linux/macOS:
 ```sh
 source venv/bin/activate
 ```
-d. Install Required Libraries
+d. Install Required Libraries to run the Python Logic
 ```sh
 pip install -r requirements.txt
 ```
