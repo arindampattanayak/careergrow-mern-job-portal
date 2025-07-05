@@ -1,6 +1,6 @@
 # 💼 CareerGrow - MERN Job Portal App
 
-**CareerGrow** is a comprehensive job portal built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It empowers both **job seekers** and **recruiters** with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based recommendations.
+**CareerGrow** is a comprehensive job portal built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It empowers both **job seekers** and **recruiters** with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based Job recommendations.
 
 ---
 
@@ -12,7 +12,7 @@
 - 📤 **Job Posting**: Recruiters can register companies and post jobs with full control over listings.
 - 🗃️ **Application Management**: Candidates can apply for jobs and track application status. Recruiters can review applications received.
 - 🤝 **Real-time Messaging**: In-app messaging between candidates and recruiters using **Socket.io**.
-- 🧠 **Skill-Based Job Recommendations**: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP)**.
+- 🧠 **Skill-Based Job Recommendations**: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP library)**.
 - 🌈 **Modern UI**: Designed with **Tailwind CSS** and **shadcn/ui** components for a responsive and elegant interface.
 - ☁️ **Image Upload**: Upload and manage profile images via **Cloudinary**.
 
@@ -20,13 +20,14 @@
 
 ## 🛠️ Tech Stack
 
-| Layer        | Technologies                                                                 |
-|--------------|------------------------------------------------------------------------------|
-| **Frontend** | React.js, React Router, Tailwind CSS, Shadcn UI                              |
-| **Backend**  | Node.js, Express.js, MongoDB Atlas, Socket.io, Nodemailer, Crypto            |
-| **AI Module**| Python, Flask, spaCy, PyMuPDF, MongoDB                                       |
-| **Auth**     | JWT, Bcrypt                                                                  |
-| **Cloud**    | Cloudinary (Image Storage)                                                   |
+| Layer         | Technologies                                                                           |
+|---------------|----------------------------------------------------------------------------------------|
+| **Frontend**  | React.js, React Router, Tailwind CSS, Shadcn UI                                       |
+| **Backend**   | Node.js, Express.js, Socket.io, Nodemailer                          |
+| **Database**  | MongoDB Atlas                                                                         |
+| **AI Module** | Python, Flask, spaCy, PyMuPDF                                                          |
+| **Auth**      | JWT, Bcrypt, Crypto                                                                    |
+| **Cloud**     | Cloudinary (Image & PDF Storage)                                                             |
 
 ---
 
