@@ -85,6 +85,40 @@ Run Frontend
 cd frontend
 npm run dev
 ```
+### Step 5: Set Up Python Logic (Flask) :
+a. Navigate to Python Logic
+```sh
+cd backend/python-logic
+```
+b. Create a Virtual Environment
+```sh
+python -m venv venv
+```
+c. Activate the Virtual Environment
+Windows:
+```sh
+venv\Scripts\activate
+```
+Linux/macOS:
+```sh
+source venv/bin/activate
+```
+d. Install Required Libraries
+```sh
+pip install -r requirements.txt
+```
+If requirements.txt is not present, install them manually:
+```sh
+pip install flask flask-cors pymupdf spacy pymongo python-dotenv
+python -m spacy download en_core_web_sm
+```
+e. Run the Flask App
+```sh
+python app.py
+```
+
+
+
 
 
 
