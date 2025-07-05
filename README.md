@@ -2,7 +2,7 @@
 
 A comprehensive job portal application built using the MERN (MongoDB, Express.js, React.js, Node.js) stack with AI-powered features for enhanced job matching.
 
-![App Screenshot](https://via.placeholder.com/1200x600?text=Job+Portal+Dashboard)
+
 
 ## ✨ Features
 
@@ -48,7 +48,7 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 ```
 ### Step 2: Install Node Dependencies(Backend):
 Install Node Dependencies:
- Backend dependencies
+Backend dependencies
 ```sh
 cd backend
 npm install
@@ -78,11 +78,15 @@ FRONTEND_URL=http://localhost:5173
 Run Backend
 ```sh
 cd backend
+npm install
+npm run start
 nodemon index.js
 ```
 Run Frontend
 ```sh
 cd frontend
+npm install
+npm start
 npm run dev
 ```
 ### Step 5: Set Up Python Logic (Flask) :
