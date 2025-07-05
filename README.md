@@ -136,11 +136,15 @@ e. Run the Flask App
 ```sh
 python app.py
 ```
-## Acknowledgments
+## 🙏 Acknowledgments
 
-- [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), and [Tailwind CSS](https://tailwindcss.com/) — powerful frameworks and libraries that enabled full-stack development.  
-- [spaCy](https://spacy.io/) — for its efficient and production-ready NLP capabilities used in resume parsing.  
-- [MongoDB Atlas](https://www.mongodb.com/atlas), [Cloudinary](https://cloudinary.com/), and [shadcn/ui](https://ui.shadcn.com/) — for providing reliable cloud services and modern UI components.  
+- [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), and [Express.js](https://expressjs.com/) — for powering the full-stack development with a seamless developer experience.  
+- [Tailwind CSS](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/) — for building a modern, responsive, and elegant user interface.  
+- [spaCy](https://spacy.io/) — for efficient NLP-based resume parsing.  
+- [Socket.io](https://socket.io/) — for enabling real-time recruiter-candidate chat functionality.  
+- [Nodemailer](https://nodemailer.com/) — for handling secure email-based password resets.  
+- [MongoDB Atlas](https://www.mongodb.com/atlas) and [Cloudinary](https://cloudinary.com/) — for reliable cloud storage and database solutions.  
+
 
 ## 👤 Contributor
 
