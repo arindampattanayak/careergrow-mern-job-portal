@@ -136,7 +136,7 @@ e. Run the Flask App
 ```sh
 python app.py
 ```
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), [Express.js](https://expressjs.com/), and [Tailwind CSS](https://tailwindcss.com/) — powerful frameworks and libraries that enabled full-stack development.  
 - [spaCy](https://spacy.io/) — for its efficient and production-ready NLP capabilities used in resume parsing.  
