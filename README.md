@@ -36,6 +36,7 @@ A comprehensive job portal application built using the MERN (MongoDB, Express.js
 - Node.js (v18 or above recommended)
 - MongoDB Atlas account
 - Python 3.8+ (for AI features)
+- MongoDB account
 - Cloudinary account
 - Git (version control)
 
