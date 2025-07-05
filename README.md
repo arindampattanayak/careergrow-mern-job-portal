@@ -3,6 +3,10 @@
 **CareerGrow** is a comprehensive job portal built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It empowers both **job seekers** and **recruiters** with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based Job recommendations.
 
 ---
+## 🎥 Demo Video
+
+Watch a short walkthrough of the project here:  
+🔗 [Click to Watch on Google Drive](https://drive.google.com/file/d/1HHEq618IXJjfib7XnkUA93Am0lz9RT5-/view?usp=drive_link)
 
 ## 🚀 Features
 
