@@ -97,15 +97,11 @@ FRONTEND_URL=http://localhost:5173
 Run Backend
 ```sh
 cd backend
-npm install
-npm start
 nodemon index.js
 ```
 Run Frontend
 ```sh
-cd ../frontend
-npm install
-npm start
+cd frontend
 npm run dev
 ```
 ### Step 5: Set Up Python Logic (Flask) :
