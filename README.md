@@ -17,7 +17,7 @@ Watch a short walkthrough of the project here:
 - 🗃️ **Application Management**: Candidates can apply for jobs and track application status. Recruiters can review applications received.
 - 🤝 **Real-time Messaging**: In-app messaging between candidates and recruiters using **Socket.io**.
 - 🧠 **Skill-Based Job Recommendations**: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP library)**.
-- 🌈 **Modern UI**: Designed with **Tailwind CSS** and **shadcn/ui** components for a responsive and elegant interface.
+- 🌈 **Modern UI**: Designed with **Tailwind CSS** and [**shadcn/ui**](https://ui.shadcn.com/docs/components) components for a clean and elegant interface.
 - ☁️ **Image Upload**: Upload and manage profile images via **Cloudinary**.
 
 ---
