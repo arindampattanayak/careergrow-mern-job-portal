@@ -136,7 +136,7 @@ e. Run the Flask App
 ```sh
 python app.py
 ```
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), and [Express.js](https://expressjs.com/) — for powering the full-stack development with a seamless developer experience.  
 - [Tailwind CSS](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/) — for building a modern, responsive, and elegant user interface.  
