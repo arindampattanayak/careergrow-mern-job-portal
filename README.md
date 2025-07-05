@@ -84,7 +84,7 @@ nodemon index.js
 ```
 Run Frontend
 ```sh
-cd frontend
+cd ../frontend
 npm install
 npm start
 npm run dev
