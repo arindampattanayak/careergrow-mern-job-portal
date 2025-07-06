@@ -1,10 +1,6 @@
 # 💼 CareerGrow - MERN Job Portal App
 
-<<<<<<< HEAD
-**CareerGrow** is a comprehensive job portal web application built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It allows **recruiters** to register companies and post jobs, and enables **candidates** to browse job listings, apply, manage applications, chat with recruiters, and receive **AI-powered job recommendations** by uploading their resume.
-=======
-**CareerGrow** is a comprehensive job portal built with the **MERN stack** (MongoDB, Express.js, React.js, Node.js). It empowers both **job seekers** and **recruiters** with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based Job recommendations.
->>>>>>> 1c00c5e855f4503791679b9170f6a13af3f34006
+*CareerGrow* is a comprehensive job portal built with the *MERN stack* (MongoDB, Express.js, React.js, Node.js). It empowers both *job seekers* and *recruiters* with an intuitive and robust platform to interact, apply, post jobs, and even receive AI-based Job recommendations.
 
 ---
 ## 🎥 Demo Video
@@ -14,64 +10,28 @@ Watch a short walkthrough of the project here:
 
 ## 🚀 Features
 
-<<<<<<< HEAD
-- 🔐 **User Authentication**  
-  Secure login/signup using **JWT** for candidates and recruiters, with passwords hashed using **Bcrypt**.
-
-- 🔑 **Forgot Password**  
-  Password reset functionality using **Nodemailer** and **Crypto** to send secure reset links via email.
-
-- 📋 **Job Listings**  
-  Browse through a variety of job opportunities fetched from MongoDB.
-
-- 🧾 **Application Management**  
-  Candidates can apply and manage applications; recruiters can view and track applications.
-
-- 🤝 **Real-Time Messaging**  
-  In-app chat between candidates and recruiters using **Socket.io**.
-
-- 🧠 **Skill-Based Recommendations**  
-  Candidates can upload resumes and get job suggestions based on extracted skill keywords using **spaCy** (Python NLP).
-
-- 🖼️ **Image Upload**  
-  Integrated **Cloudinary** for uploading and managing profile images.
-
-- 🎨 **Modern UI**  
-  Designed using **Tailwind CSS** and **shadcn/ui** for a sleek and responsive experience.
-=======
-- 🔐 **Secure Authentication**: JWT-based login/signup for candidates and recruiters, with passwords hashed using Bcrypt.
-- 🔄 **Forgot Password**: Password reset functionality via email using **Nodemailer** and secure token generation using **Crypto**.
-- 📋 **Job Listings**: View a wide variety of jobs dynamically pulled from MongoDB.
-- 📤 **Job Posting**: Recruiters can register companies and post jobs with full control over listings.
-- 🗃️ **Application Management**: Candidates can apply for jobs and track application status. Recruiters can review applications received.
-- 🤝 **Real-time Messaging**: In-app messaging between candidates and recruiters using **Socket.io**.
-- 🧠 **Skill-Based Job Recommendations**: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP library)**.
-- 🌈 **Modern UI**: Designed with **Tailwind CSS** and [**shadcn/ui**](https://ui.shadcn.com/docs/components) components for a clean and elegant interface.
-- ☁️ **Image Upload**: Upload and manage profile images via **Cloudinary**.
->>>>>>> 1c00c5e855f4503791679b9170f6a13af3f34006
+- 🔐 *Secure Authentication*: JWT-based login/signup for candidates and recruiters, with passwords hashed using Bcrypt.
+- 🔄 *Forgot Password: Password reset functionality via email using **Nodemailer* and secure token generation using *Crypto*.
+- 📋 *Job Listings*: View a wide variety of jobs dynamically pulled from MongoDB.
+- 📤 *Job Posting*: Recruiters can register companies and post jobs with full control over listings.
+- 🗃 *Application Management*: Candidates can apply for jobs and track application status. Recruiters can review applications received.
+- 🤝 *Real-time Messaging: In-app messaging between candidates and recruiters using **Socket.io*.
+- 🧠 *Skill-Based Job Recommendations: Upload resumes and receive personalized job recommendations using **spaCy (Python NLP library)*.
+- 🌈 *Modern UI: Designed with **Tailwind CSS* and [*shadcn/ui*](https://ui.shadcn.com/docs/components) components for a clean and elegant interface.
+- ☁ *Image Upload: Upload and manage profile images via **Cloudinary*.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠 Tech Stack
 
-<<<<<<< HEAD
-| Layer         | Technologies                                                                 |
-|---------------|-------------------------------------------------------------------------------|
-| **Frontend**  | React.js, React Router, Tailwind CSS, shadcn/ui                              |
-| **Backend**   | Node.js, Express.js, MongoDB Atlas, Socket.io, Nodemailer, Crypto            |
-| **AI Module** | Python, Flask, spaCy, PyMuPDF, dotenv, pymongo                               |
-| **Auth**      | JWT, Bcrypt                                                                  |
-| **Storage**   | Cloudinary                                                                   |
-=======
 | Layer         | Technologies                                                                           |
 |---------------|----------------------------------------------------------------------------------------|
-| **Frontend**  | React.js, React Router, Tailwind CSS, Shadcn UI                                       |
-| **Backend**   | Node.js, Express.js, Socket.io, Nodemailer                          |
-| **Database**  | MongoDB Atlas                                                                         |
-| **AI Module** | Python, Flask, spaCy, PyMuPDF                                                          |
-| **Auth**      | JWT, Bcrypt, Crypto                                                                    |
-| **Cloud**     | Cloudinary (Image & PDF Storage)                                                             |
->>>>>>> 1c00c5e855f4503791679b9170f6a13af3f34006
+| *Frontend*  | React.js, React Router, Tailwind CSS, Shadcn UI                                       |
+| *Backend*   | Node.js, Express.js, Socket.io, Nodemailer                          |
+| *Database*  | MongoDB Atlas                                                                         |
+| *AI Module* | Python, Flask, spaCy, PyMuPDF                                                          |
+| *Auth*      | JWT, Bcrypt, Crypto                                                                    |
+| *Cloud*     | Cloudinary (Image & PDF Storage)                                                             |
 
 ---
 
@@ -79,20 +39,14 @@ Watch a short walkthrough of the project here:
 
 ## 📁 Project Structure
 
-```bash
+bash
 careergrow-mern-job-portal/
-<<<<<<< HEAD
-├── backend/             # Node.js + Express server
-├── frontend/            # React.js frontend
-├── nlp-flask-api/       # Python resume skill extraction service
-└── README.md
-=======
 ├── backend/                # Node.js + Express backend APIs, MongoDB logic, and Python integration
 │   ├── python_logic/       # Python-based skill extractor using spaCy, invoked via backend
 │   └── .env                # Backend environment variables (not pushed to Git)
 ├── frontend/               # React frontend with Tailwind CSS + shadcn/ui
 └── README.md
-```
+
 
 ### Prerequisites
 
@@ -108,25 +62,25 @@ careergrow-mern-job-portal/
 ### Installation
 
 ### Step 1: Clone the repo:
-   ```sh
+   sh
    git clone https://github.com/arindampattanayak/careergrow-mern-job-portal.git
    cd careergrow-mern-job-portal
-```
+
 ### Step 2: Install Node Dependencies(Backend):
 Install Node Dependencies:
 Backend dependencies
-```sh
+sh
 cd backend
 npm install
-```
+
 Frontend dependencies
-```sh
+sh
 cd ../frontend
 npm install
-```
+
 ### Step 3: Set Up Environment Variables :
 Create a .env file inside the /backend folder and add the following
-```sh
+sh
 MONGO_URI=your_mongodb_connection_string
 PORT=8000
 SECRET_KEY=your_jwt_secret_key
@@ -139,49 +93,49 @@ SMTP_USER=your_smtp_email
 SMTP_PASS=your_smtp_password
 
 FRONTEND_URL=http://localhost:5173
-```
+
 ### Step 4: Run the App :
 Run Backend:
-```sh
+sh
 cd backend
 nodemon index.js
-```
+
 Run Frontend:
-```sh
+sh
 cd frontend
 npm run dev
-```
+
 ### Step 5: Set Up Python Logic (Flask) :
 a. Navigate to Python Logic
-```sh
+sh
 cd backend/python_logic
-```
+
 b. Create a Virtual Environment
-```sh
+sh
 python -m venv venv
-```
+
 c. Activate the Virtual Environment
 Windows:
-```sh
+sh
 venv\Scripts\activate
-```
+
 Linux/macOS:
-```sh
+sh
 source venv/bin/activate
-```
+
 d. Install Required Libraries to run the Python Logic
-```sh
+sh
 pip install -r requirements.txt
-```
+
 If requirements.txt is not present, install them manually:
-```sh
+sh
 pip install flask flask-cors pymupdf spacy pymongo python-dotenv
 python -m spacy download en_core_web_sm
-```
+
 e. Run the Flask App
-```sh
+sh
 python app.py
-```
+
 ## Acknowledgments
 
 - [React.js](https://reactjs.org/), [Node.js](https://nodejs.org/), and [Express.js](https://expressjs.com/) — for powering the full-stack development with a seamless developer experience.  
@@ -194,16 +148,4 @@ python app.py
 
 ## 👤 Contributor
 
-- **Arindam Pattanayak** – [GitHub](https://github.com/arindampattanayak)
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 1c00c5e855f4503791679b9170f6a13af3f34006
+- *Arindam Pattanayak* – [GitHub](https://github.com/arindampattanayak)
