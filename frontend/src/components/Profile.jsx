@@ -21,10 +21,10 @@ const Profile = () => {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Profile Card */}
+        
         <div className="max-w-4xl mx-auto mt-10 bg-white border border-gray-200 rounded-3xl shadow-lg p-8 sm:p-12 transition-transform duration-300 hover:shadow-xl">
           <div className="flex flex-col sm:flex-row justify-between sm:items-start">
-            {/* Avatar & Name */}
+            
             <div className="flex items-center gap-6 mb-8 sm:mb-0">
               <Avatar className="h-28 w-28 border-4 border-indigo-300 shadow-md">
                 <AvatarImage
@@ -43,7 +43,7 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Edit Button */}
+            
             <Button
               onClick={() => setOpen(true)}
               variant="outline"
@@ -54,7 +54,7 @@ const Profile = () => {
             </Button>
           </div>
 
-          {/* Contact Info */}
+          
           <div className="mt-8 space-y-4 text-gray-700 text-base">
             <h2 className="text-lg font-semibold text-indigo-600">• Contact Information</h2>
             <div className="flex items-center gap-4">
@@ -67,7 +67,7 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Skills */}
+          
           <div className="mt-10">
             <h2 className="text-xl font-semibold mb-3 text-indigo-600 border-b border-indigo-300 pb-1 w-fit">
               • Skills
@@ -88,7 +88,7 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Resume */}
+          
           <div className="mt-10">
             <Label className="text-lg font-semibold text-indigo-600">• Resume</Label>
             <div className="mt-2">
@@ -122,17 +122,17 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Applied Jobs Table */}
+        
         <div className="max-w-4xl mx-auto mt-10 bg-white rounded-3xl p-8 shadow-md border border-gray-200">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">Applied Jobs</h1>
           <AppliedJobTable />
         </div>
       </main>
 
-      {/* Update Dialog */}
+    
       <UpdateProfileDialog open={open} setOpen={setOpen} />
 
-      {/* Footer */}
+      
       <Footer />
     </div>
   );

@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CompaniesTable = () => {
   const { companies, searchCompanyByText } = useSelector(store => store.company);
-  const { user } = useSelector(store => store.auth); // ✅ Get user from Redux
+  const { user } = useSelector(store => store.auth); 
   const [filteredCompanies, setFilteredCompanies] = useState([]);
   const navigate = useNavigate();
 

@@ -35,12 +35,12 @@ const MatchedJobs = () => {
               key={index}
               className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-6"
             >
-              {/* Job Card */}
+              
               <Job job={job} />
 
-              {/* Match Insights */}
+              
               <div className="mt-6 text-sm text-gray-700">
-                {/* Match Score */}
+               
                 <div className="mb-4">
                   <p className="font-medium text-gray-600 mb-1">Match Score</p>
                   <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
@@ -52,7 +52,7 @@ const MatchedJobs = () => {
                   <p className="text-xs text-indigo-600 mt-1">{(score * 100).toFixed(1)}% match</p>
                 </div>
 
-                {/* Skill Gap */}
+               
                 <div>
                   <p className="font-medium text-gray-600 mb-2">Skill Gap</p>
                   {skillGap.length > 0 ? (
@@ -76,7 +76,7 @@ const MatchedJobs = () => {
         })}
       </div>
 
-      {/* Animation Keyframes */}
+     
       <style>{`
         @keyframes fadeIn {
           0% { opacity: 0; transform: translateY(15px); }

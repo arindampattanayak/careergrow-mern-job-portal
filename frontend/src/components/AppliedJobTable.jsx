@@ -85,7 +85,7 @@ const AppliedJobTable = () => {
         </TableBody>
       </Table>
 
-      {/* Optional Animation */}
+   
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }

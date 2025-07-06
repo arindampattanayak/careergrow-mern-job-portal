@@ -1,17 +1,17 @@
-// backend/middlewares/upload.js
+
 
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// Fix for __dirname in ES Modules
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Create multer storage engine
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, "../uploads")); // ensure this folder exists
+    cb(null, path.join(__dirname, "../uploads")); 
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);

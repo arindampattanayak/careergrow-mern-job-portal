@@ -5,8 +5,8 @@ import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 import dotenv from 'dotenv';
 import crypto from 'crypto';
-import { generateResetToken } from "../utils/resetToken.js"; // ✅ FIXED
-import sendEmail from "../utils/sendEmail.js";               // ✅ FIXED
+import { generateResetToken } from "../utils/resetToken.js"; 
+import sendEmail from "../utils/sendEmail.js";               
 
 dotenv.config();
 
@@ -173,7 +173,7 @@ export const updateProfile = async (req, res) => {
       skillsArray = skills.split(',').map(skill => skill.trim());
     }
 
-    const userId = req.id; // from middleware
+    const userId = req.id; 
     let user = await User.findById(userId);
 
     if (!user) {

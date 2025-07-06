@@ -131,7 +131,7 @@ const PostJob = () => {
             )}
           </div>
 
-          {/* Submit button */}
+         
           <div className="sm:col-span-2 mt-6">
             <Button
               type="submit"

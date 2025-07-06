@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-r from-[#fef6ff] via-[#fdeef5] to-[#fde2f3] text-gray-700 border-t border-pink-200 py-10 animate-fadeInUp">
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-          {/* Left side */}
+          
           <div className="mb-6 md:mb-0">
             <h2 className="text-2xl font-bold text-pink-600 tracking-wide">
               Career<span className="text-indigo-500">Grow</span>
@@ -15,7 +15,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Right side - Social Icons */}
+      
           <div className="flex space-x-6 justify-center">
             <a
               href="https://facebook.com"
@@ -54,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Animation Style */}
+      
       <style>{`
         @keyframes fadeInUp {
           0% { opacity: 0; transform: translateY(20px); }

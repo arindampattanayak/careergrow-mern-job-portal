@@ -87,7 +87,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={submitHandler} className="space-y-6 px-6 pb-6 pt-4">
-          {/* Name */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="fullname" className="text-right font-medium text-gray-700">
               Name
@@ -104,7 +104,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Email */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="email" className="text-right font-medium text-gray-700">
               Email
@@ -121,7 +121,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Phone */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="phoneNumber" className="text-right font-medium text-gray-700">
               Phone
@@ -138,7 +138,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Bio */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="bio" className="text-right font-medium text-gray-700">
               Bio
@@ -154,7 +154,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Skills */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="skills" className="text-right font-medium text-gray-700">
               Skills
@@ -170,7 +170,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Resume Upload */}
+          
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="file" className="text-right font-medium text-gray-700">
               Resume
@@ -186,7 +186,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             />
           </div>
 
-          {/* Submit */}
+          
           <DialogFooter>
             <Button
               type="submit"
@@ -206,7 +206,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
           </DialogFooter>
         </form>
 
-        {/* Animation */}
+        
         <style jsx>{`
           @keyframes fadeIn {
             0% {

@@ -21,28 +21,26 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#ebf5ff] via-[#f4f8ff] to-[#e0efff] text-gray-800 animate-fadeIn transition-all duration-500">
-      {/* Navbar */}
+    
       <Navbar />
 
-      {/* Hero Section */}
       <section className="px-4 sm:px-6 lg:px-16 pt-12 pb-20">
         <HeroSection />
       </section>
 
-      {/* Category Carousel */}
       <section className="px-4 sm:px-6 lg:px-16 py-12 bg-[#f6faff] border-y border-blue-100 shadow-sm rounded-xl mx-4 md:mx-10 my-4">
         <CategoryCarousel />
       </section>
 
-      {/* Latest Jobs */}
+      
       <section className="px-4 sm:px-6 lg:px-16 py-16 bg-gradient-to-br from-[#e0f2fe] to-[#e3ebff] rounded-t-3xl shadow-inner mt-10">
         <LatestJobs />
       </section>
 
-      {/* Footer */}
+      
       <Footer />
 
-      {/* Animation Style */}
+     
       <style>{`
         @keyframes fadeIn {
           0% {

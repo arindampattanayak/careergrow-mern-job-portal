@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   job: jobSlice,
   company: companySlice,
   application: applicationSlice,
-  resume: resumeSlice, // ✅ Add resume slice to the store
+  resume: resumeSlice, 
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

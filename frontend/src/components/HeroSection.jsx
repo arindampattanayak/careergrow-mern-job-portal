@@ -19,23 +19,22 @@ const HeroSection = () => {
   return (
     <section className="bg-gradient-to-br from-indigo-50 to-blue-100 py-20 text-gray-800 animate-fadeInUp border-b border-gray-300">
       <div className="max-w-5xl mx-auto px-6 text-center">
-        {/* Badge */}
+     
         <span className="inline-block px-5 py-1 mb-5 rounded-full bg-indigo-200 text-indigo-700 text-sm font-semibold tracking-wide shadow">
           🚀 CareerGrow – #1 Job Hunt Platform
         </span>
 
-        {/* Heading */}
+      
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 text-gray-900">
           Search, Apply & <br className="hidden sm:block" />
           Land Your <span className="text-indigo-600">Dream Job</span>
         </h1>
 
-        {/* Subtitle */}
+        
         <p className="max-w-2xl mx-auto text-base sm:text-lg text-gray-700 mb-10">
           Discover top job opportunities tailored for your skills and passion — all in one place.
         </p>
 
-        {/* Search Input */}
         <div className="flex flex-col sm:flex-row items-center gap-4 max-w-xl mx-auto">
           <input
             type="text"
@@ -53,7 +52,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Animation */}
+      
       <style>{`
         @keyframes fadeInUp {
           0% {

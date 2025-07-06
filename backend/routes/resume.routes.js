@@ -20,7 +20,7 @@ router.post("/upload-resume", upload.single("resume"), async (req, res) => {
         });
 
         const response = await axios.post(
-            "http://127.0.0.1:5002/upload-resume",   // ✅ Correct Flask endpoint
+            "http://127.0.0.1:5002/upload-resume", 
             formData,
             {
                 headers: {

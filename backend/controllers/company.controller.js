@@ -1,9 +1,9 @@
 import { Company } from "../models/company.model.js";
-//import { Job } from "../models/job.model.js"; // ✅ Added import
+
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
 
-// ✅ Register a new company
+
 export const registerCompany = async (req, res) => {
   try {
     const { companyName } = req.body;
@@ -38,7 +38,7 @@ export const registerCompany = async (req, res) => {
   }
 };
 
-// ✅ Get all companies created by the logged-in user
+
 export const getCompany = async (req, res) => {
   try {
     const userId = req.id;
@@ -61,7 +61,7 @@ export const getCompany = async (req, res) => {
   }
 };
 
-// ✅ Get single company by ID
+
 export const getCompanyById = async (req, res) => {
   try {
     const companyId = req.params.id;
@@ -84,7 +84,7 @@ export const getCompanyById = async (req, res) => {
   }
 };
 
-// ✅ Update company info (with optional logo upload)
+
 export const updateCompany = async (req, res) => {
   try {
     const { name, description, website, location } = req.body;

@@ -1,6 +1,6 @@
 import { Job } from "../models/job.model.js";
 
-// Admin can post a new job carefully
+
 export const postJob = async (req, res) => {
   try {
     const {
@@ -60,7 +60,7 @@ export const postJob = async (req, res) => {
   }
 };
 
-// Get all jobs (for students)
+
 export const getAllJobs = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
@@ -95,7 +95,7 @@ export const getAllJobs = async (req, res) => {
   }
 };
 
-// Get a job by ID (for show job / details)
+
 export const getJobById = async (req, res) => {
   try {
     const jobId = req.params.id;
@@ -123,7 +123,7 @@ export const getJobById = async (req, res) => {
   }
 };
 
-// Get jobs posted by a specific admin
+
 export const getAdminJobs = async (req, res) => {
   try {
     const adminId = req.id;
@@ -152,7 +152,7 @@ export const getAdminJobs = async (req, res) => {
   }
 };
 
-// Admin can update an existing job
+
 export const updateJob = async (req, res) => {
   try {
     const jobId = req.params.id;
@@ -203,7 +203,7 @@ export const updateJob = async (req, res) => {
     });
   }
 };
-// ✅ Get all jobs under a specific company
+
 export const getJobsByCompany = async (req, res) => {
   try {
     const { companyId } = req.params;

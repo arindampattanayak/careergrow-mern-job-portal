@@ -5,10 +5,10 @@ import { sendMessage, getMessages } from "../controllers/message.controller.js";
 
 const router = express.Router();
 
-// Setup multer
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Make sure this folder exists
+    cb(null, "uploads/"); 
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// Routes
+
 router.post("/sendMessage", upload.single("media"), sendMessage);
 router.get("/getMessages", getMessages);
 

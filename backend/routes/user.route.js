@@ -10,8 +10,8 @@ router.route("/register").post(singleUpload,register);
 router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route('/forgot-password').post(forgotPassword);
-router.route('/reset-password/:token').post(resetPassword); // keep :token in path
-router.route("/profile/update").post(isAuthenticated,singleUpload,updateProfile); // no method overide ?
+router.route('/reset-password/:token').post(resetPassword); 
+router.route("/profile/update").post(isAuthenticated,singleUpload,updateProfile); 
 router.route("/:id").get(getUserById);
 export default router;
 

@@ -8,7 +8,7 @@ const LatestJobs = () => {
 
   return (
     <section className="max-w-7xl mx-auto my-20 px-4 sm:px-6 lg:px-8">
-      {/* Heading */}
+      
       <div className="text-center mb-10">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 animate-fadeIn">
           <span className="text-indigo-600">Latest</span> & Top Job Openings
@@ -18,7 +18,7 @@ const LatestJobs = () => {
         </p>
       </div>
 
-      {/* Job Cards */}
+     
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 animate-fadeInUp">
         {allJobs.length <= 0 ? (
           <div className="text-gray-500 text-center col-span-full text-lg">
@@ -38,7 +38,7 @@ const LatestJobs = () => {
         )}
       </div>
 
-      {/* Animations */}
+      
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }

@@ -52,17 +52,17 @@ const Navbar = () => {
   return (
     <header className="bg-gradient-to-r from-[#fdfbff] via-[#fce4ec] to-[#fde2f3] text-gray-800 shadow-md sticky top-0 z-50 animate-fadeIn">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-        {/* Logo */}
+       
         <Link to="/" className="text-2xl font-extrabold text-pink-600 tracking-wide">
           Career<span className="text-indigo-500">Grow</span>
         </Link>
 
-        {/* Desktop Links */}
+        
         <nav className="hidden md:flex items-center space-x-6 font-medium">
           <NavLinks />
         </nav>
 
-        {/* Mobile Menu Icon */}
+ 
         <div
           className="md:hidden text-indigo-700 cursor-pointer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -70,7 +70,7 @@ const Navbar = () => {
           {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
         </div>
 
-        {/* Auth Buttons / Avatar */}
+     
         <div className="hidden md:flex items-center gap-3">
           {!user ? (
             <>
@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown */}
+     
       {mobileMenuOpen && (
         <div className="md:hidden px-4 pb-4 text-indigo-800 bg-white border-t border-gray-200 space-y-3 animate-slideDown">
           <NavLinks />
@@ -145,7 +145,7 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Animations */}
+    
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-10px); }

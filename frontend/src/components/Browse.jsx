@@ -19,10 +19,9 @@ const Browse = () => {
 
   return (
     <>
-      {/* Navbar */}
+      
       <Navbar />
 
-      {/* Main Content */}
       <div className="min-h-screen bg-gradient-to-br from-[#f1f5ff] via-[#e8f0fc] to-[#dce9fb] text-gray-800">
         <div className="max-w-7xl mx-auto px-4 py-12">
           <h1 className="font-bold text-3xl text-blue-800 mb-8 text-center">
@@ -43,7 +42,7 @@ const Browse = () => {
         </div>
       </div>
 
-      {/* Footer */}
+      
       <Footer />
 
       <style>{`

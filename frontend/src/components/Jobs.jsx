@@ -27,19 +27,19 @@ const Jobs = () => {
 
   return (
     <>
-      {/* Navbar */}
+    
       <Navbar />
 
-      {/* Main Page */}
+     
       <div className="min-h-screen bg-gradient-to-br from-[#f1f5ff] via-[#f8fbff] to-[#edf3ff] text-gray-800 animate-fadeIn">
         <div className="max-w-7xl mx-auto px-4 py-10">
           <div className="flex flex-col lg:flex-row gap-8">
-            {/* Sidebar Filters */}
+            
             <aside className="lg:w-1/4 w-full bg-white border border-blue-200 rounded-xl p-5 shadow-md animate-slideInLeft">
               <FilterCard />
             </aside>
 
-            {/* Job Listings */}
+            
             <main className="flex-1">
               {filterJobs.length === 0 ? (
                 <div className="text-center text-gray-500 text-xl mt-16 animate-fadeIn">
@@ -67,7 +67,7 @@ const Jobs = () => {
           </div>
         </div>
 
-        {/* Animations */}
+       
         <style jsx>{`
           @keyframes slideInLeft {
             0% {
@@ -99,7 +99,7 @@ const Jobs = () => {
         `}</style>
       </div>
 
-      {/* Footer */}
+   
       <Footer />
     </>
   );

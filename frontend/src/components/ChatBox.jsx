@@ -97,7 +97,7 @@ const ChatBox = () => {
       <Navbar />
 
       <div className="min-h-screen w-full bg-gradient-to-br from-[#e0f7f1] via-[#e6f3ff] to-[#f3f8fa] text-slate-800 px-4 sm:px-8 py-6 animate-fadeIn">
-        {/* Header */}
+        
         <div className="max-w-5xl mx-auto mb-6">
           <h2 className="text-2xl font-bold text-sky-600">
             Chat for:{" "}
@@ -118,7 +118,7 @@ const ChatBox = () => {
           )}
         </div>
 
-        {/* Chat Messages */}
+        
         <div className="max-w-5xl mx-auto h-[60vh] overflow-y-auto border border-slate-300 bg-white rounded-xl p-4 space-y-4 shadow">
           {messages.map((msg) => {
             const isSender = msg.senderId?.toString() === senderId;
@@ -153,7 +153,7 @@ const ChatBox = () => {
           <div ref={bottomRef}></div>
         </div>
 
-        {/* Input Section */}
+      
         <div className="max-w-5xl mx-auto mt-6 flex flex-col sm:flex-row gap-4 items-center">
           <input
             type="text"
@@ -163,7 +163,7 @@ const ChatBox = () => {
             className="flex-1 p-3 rounded-md bg-white text-slate-800 border border-slate-300 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
           />
 
-          {/* Attach File with file name display */}
+          
           <div className="flex flex-col w-full sm:w-64">
             <label className="relative cursor-pointer text-center">
               <span className="flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-600 text-white py-2 px-4 rounded-md transition">
@@ -192,7 +192,7 @@ const ChatBox = () => {
           </button>
         </div>
 
-        {/* Animations */}
+        
         <style>{`
           @keyframes fade-in {
             from { opacity: 0; transform: translateY(15px); }

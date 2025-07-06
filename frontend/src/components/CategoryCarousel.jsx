@@ -33,7 +33,7 @@ const CategoryCarousel = () => {
 
   return (
     <section className="py-16 bg-gradient-to-r from-[#edf3ff] via-[#f7faff] to-[#e3ebff] text-[#1e293b] animate-fadeInSlow border-y border-[#dce3f1]">
-      {/* Heading */}
+      
       <div className="text-center mb-10">
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1e293b] tracking-tight">
           🔍 Explore Popular Categories
@@ -43,7 +43,7 @@ const CategoryCarousel = () => {
         </p>
       </div>
 
-      {/* Carousel */}
+     
       <Carousel className="w-full max-w-6xl mx-auto px-4 sm:px-6">
         <CarouselContent className="flex gap-5">
           {categories.map((cat, index) => (
@@ -62,12 +62,12 @@ const CategoryCarousel = () => {
           ))}
         </CarouselContent>
 
-        {/* Navigation Arrows */}
+      
         <CarouselPrevious className="left-0 text-[#6366f1] hover:text-[#4338ca] transition" />
         <CarouselNext className="right-0 text-[#6366f1] hover:text-[#4338ca] transition" />
       </Carousel>
 
-      {/* Animation */}
+      
       <style>{`
         @keyframes fadeInSlow {
           0% {

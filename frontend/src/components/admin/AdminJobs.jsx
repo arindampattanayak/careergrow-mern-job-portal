@@ -8,7 +8,7 @@ import AdminJobsTable from './AdminJobsTable';
 import useGetAllAdminJobs from '@/hooks/useGetAllAdminJobs';
 import { setSearchJobByText } from '@/redux/jobSlice';
 import Footer from '../shared/Footer';
-import { Plus } from 'lucide-react'; // ✅ Icon import
+import { Plus } from 'lucide-react'; 
 
 const AdminJobs = () => {
   useGetAllAdminJobs();

@@ -9,13 +9,13 @@ import Footer from './shared/Footer';
 const UploadResume = () => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [analyzed, setAnalyzed] = useState(false); // ✅ New flag
+  const [analyzed, setAnalyzed] = useState(false); 
   const dispatch = useDispatch();
   const { extractedSkills, recommendedJobs } = useSelector(state => state.resume);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-    setAnalyzed(false); // Reset if new file selected
+    setAnalyzed(false); 
   };
 
   const handleUpload = async () => {
@@ -32,7 +32,7 @@ const UploadResume = () => {
       });
 
       dispatch(setResumeAnalysis(res.data));
-      setAnalyzed(true); // ✅ Set true only after analysis
+      setAnalyzed(true); 
     } catch (err) {
       console.error("Upload error", err);
       alert("Error analyzing resume.");
@@ -52,7 +52,7 @@ const UploadResume = () => {
             Upload a PDF resume to extract your skills and receive tailored job recommendations.
           </p>
 
-          {/* File Input */}
+          
           <input
             type="file"
             accept="application/pdf"
@@ -60,7 +60,7 @@ const UploadResume = () => {
             className="w-full mb-4 px-4 py-2 bg-gray-100 border border-gray-300 text-gray-700 rounded-md file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 transition"
           />
 
-          {/* Upload Button */}
+          
           <button
             onClick={handleUpload}
             className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-md transition disabled:bg-gray-400 disabled:cursor-not-allowed"
@@ -69,7 +69,7 @@ const UploadResume = () => {
             {loading ? "Analyzing..." : "Upload & Analyze"}
           </button>
 
-          {/* Extracted Skills */}
+         
           {analyzed && extractedSkills?.length > 0 && (
             <div className="mt-10">
               <h3 className="text-xl font-semibold text-indigo-700 mb-3">Extracted Skills</h3>
@@ -86,7 +86,7 @@ const UploadResume = () => {
             </div>
           )}
 
-          {/* Recommended Jobs */}
+          
           {analyzed && recommendedJobs?.length > 0 && (
             <div className="mt-12 bg-indigo-50 border border-indigo-200 rounded-2xl p-6 shadow-inner">
               <MatchedJobs />
@@ -94,7 +94,7 @@ const UploadResume = () => {
           )}
         </div>
 
-        {/* Animation */}
+        
         <style>{`
           @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }

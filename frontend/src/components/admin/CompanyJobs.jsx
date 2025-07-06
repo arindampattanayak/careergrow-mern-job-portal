@@ -39,10 +39,10 @@ const CompanyJobs = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#fdfefe] via-[#f2f7fb] to-[#e4ecf5] text-gray-800">
-      {/* Navbar */}
+      
       <Navbar />
 
-      {/* Main Content */}
+     
       <main className="flex-grow px-6 py-10 animate-fadeIn">
         <h2 className="text-4xl font-bold mb-8 text-blue-600 tracking-wide border-b border-gray-300 pb-3">
           🏢 Jobs Posted by Company
@@ -83,10 +83,10 @@ const CompanyJobs = () => {
         )}
       </main>
 
-      {/* Footer */}
+      
       <Footer />
 
-      {/* Animations */}
+      
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(10px); }

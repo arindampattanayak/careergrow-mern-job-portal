@@ -49,11 +49,11 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-[#f9f6ff] font-sans">
-      {/* Navbar */}
+      
       <Navbar />
 
       <div className="flex flex-col md:flex-row min-h-[85vh]">
-        {/* Left branding */}
+     
         <div className="md:w-1/2 bg-gradient-to-br from-[#fbeaff] via-[#ece9ff] to-[#dbe7ff] flex flex-col justify-center items-center px-10 py-12 text-center">
           <Link to="/" className="text-4xl font-extrabold text-pink-600 tracking-wide mb-4">
             Career<span className="text-indigo-500">Grow</span>
@@ -77,7 +77,6 @@ const Login = () => {
           />
         </div>
 
-        {/* Right login form */}
         <div className="md:w-1/2 flex justify-center items-center px-6 py-10">
           <form
             onSubmit={handleSubmit}
@@ -87,7 +86,7 @@ const Login = () => {
               Welcome Back 
             </h2>
 
-            {/* Email */}
+            
             <div className="mb-4">
               <Label htmlFor="email" className="text-gray-700 font-medium">Email</Label>
               <Input
@@ -103,7 +102,7 @@ const Login = () => {
               />
             </div>
 
-            {/* Password */}
+            
             <div className="mb-2">
               <Label htmlFor="password" className="text-gray-700 font-medium">Password</Label>
               <Input
@@ -119,7 +118,7 @@ const Login = () => {
               />
             </div>
 
-            {/* Forgot password */}
+           
             <div className="text-right mb-4">
               <Link
                 to="/forgot-password"
@@ -129,7 +128,7 @@ const Login = () => {
               </Link>
             </div>
 
-            {/* Role */}
+         
             <div className="mb-6 flex justify-center gap-6">
               {['student', 'recruiter'].map((role) => (
                 <div key={role} className="flex items-center space-x-2">
@@ -151,7 +150,7 @@ const Login = () => {
               ))}
             </div>
 
-            {/* Submit */}
+           
             <Button
               type="submit"
               className="w-full py-3 text-lg font-semibold bg-gradient-to-r from-fuchsia-500 to-indigo-500 hover:from-fuchsia-600 hover:to-indigo-600 text-white rounded-md shadow-md flex justify-center items-center gap-2"
@@ -161,7 +160,7 @@ const Login = () => {
               {loading ? 'Please wait...' : 'Login'}
             </Button>
 
-            {/* Redirect */}
+           
             <p className="mt-6 text-sm text-center text-gray-600">
               Don&apos;t have an account?{' '}
               <Link to="/signup" className="text-fuchsia-600 hover:underline font-medium">

@@ -72,7 +72,7 @@ const Signup = () => {
       <div className="flex items-center justify-center min-h-[85vh] px-4 py-10">
         <div className="flex w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-pink-200 animate-slideInFade">
           
-          {/* Left: Branding */}
+          
           <div className="w-1/2 bg-gradient-to-br from-fuchsia-100 to-indigo-100 p-8 hidden md:flex flex-col items-center justify-center">
             <Link to="/" className="text-4xl font-extrabold text-pink-600 tracking-wide mb-4">
               Career<span className="text-indigo-500">Grow</span>
@@ -91,7 +91,7 @@ const Signup = () => {
             </p>
           </div>
 
-          {/* Right: Signup Form */}
+          
           <form
             onSubmit={submitHandler}
             className="w-full md:w-1/2 p-8"
@@ -101,7 +101,7 @@ const Signup = () => {
               Create Your Account 
             </h1>
 
-            {/* Full Name */}
+            
             <div className="mb-4">
               <Label htmlFor="fullname">Full Name</Label>
               <Input
@@ -115,7 +115,7 @@ const Signup = () => {
               />
             </div>
 
-            {/* Email */}
+           
             <div className="mb-4">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -129,7 +129,7 @@ const Signup = () => {
               />
             </div>
 
-            {/* Phone */}
+       
             <div className="mb-4">
               <Label htmlFor="phoneNumber">Phone Number</Label>
               <Input
@@ -144,7 +144,7 @@ const Signup = () => {
               />
             </div>
 
-            {/* Password */}
+            
             <div className="mb-4">
               <Label htmlFor="password">Password</Label>
               <Input
@@ -175,7 +175,7 @@ const Signup = () => {
               </div>
             </div>
 
-            {/* Role */}
+           
             <div className="mb-4 flex justify-center gap-6">
               {['student', 'recruiter'].map(role => (
                 <div key={role} className="flex items-center space-x-2">
@@ -195,7 +195,7 @@ const Signup = () => {
               ))}
             </div>
 
-            {/* File Upload */}
+           
             <div className="mb-6">
               <Label htmlFor="file" className="block mb-2">Profile Picture</Label>
               <div className="flex items-center gap-4">
@@ -219,7 +219,7 @@ const Signup = () => {
               />
             </div>
 
-            {/* Submit */}
+          
             <Button
               type="submit"
               className="w-full py-3 text-lg font-semibold bg-gradient-to-r from-fuchsia-500 to-indigo-500 hover:from-fuchsia-600 hover:to-indigo-600 text-white rounded-md shadow-md flex justify-center items-center gap-2"
@@ -229,7 +229,7 @@ const Signup = () => {
               {loading ? 'Please wait...' : 'Signup'}
             </Button>
 
-            {/* Redirect */}
+          
             <p className="mt-6 text-sm text-center text-gray-600">
               Already have an account?{' '}
               <Link to="/login" className="text-fuchsia-600 hover:underline font-medium">

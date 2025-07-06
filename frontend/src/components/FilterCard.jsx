@@ -68,7 +68,7 @@ const FilterCard = () => {
         ))}
       </RadioGroup>
 
-      {/* Animation */}
+
       <style>{`
         @keyframes fade-in {
           0% { opacity: 0; transform: translateY(20px); }

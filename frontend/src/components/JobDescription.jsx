@@ -77,7 +77,7 @@ const JobDescription = () => {
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
         >
-          {/* Sidebar */}
+        
           <div className="col-span-1 flex flex-col items-center gap-6">
             <Avatar className="w-24 h-24 bg-indigo-100 border shadow">
               <AvatarImage src={singleJob?.company?.logo} alt={singleJob?.company?.name} />
@@ -118,7 +118,7 @@ const JobDescription = () => {
             </motion.div>
           </div>
 
-          {/* Main Content */}
+          
           <div className="col-span-2">
             <div className="mb-6">
               <h1 className="text-2xl font-bold text-gray-900">{singleJob?.title}</h1>
@@ -127,7 +127,7 @@ const JobDescription = () => {
                 Company: {singleJob?.company?.name}
               </div>
 
-              {/* ✅ Job Description Section */}
+             
               {singleJob?.description && (
                 <div className="mt-3">
                   <h2 className="font-semibold text-gray-800 mb-2">Description:</h2>
@@ -140,7 +140,7 @@ const JobDescription = () => {
               )}
             </div>
 
-            {/* Info Rows */}
+           
             <div className="space-y-6 text-sm text-gray-700">
               <InfoRow icon={<Briefcase className="text-indigo-600" size={20} />} title="Role" value={singleJob?.title} />
               <InfoRow icon={<MapPin className="text-indigo-600" size={20} />} title="Location" value={singleJob?.location} />
@@ -150,7 +150,7 @@ const JobDescription = () => {
               <InfoRow icon={<ListChecks className="text-indigo-600" size={20} />} title="Experience Required" value={`${singleJob?.experienceLevel} years`} />
             </div>
 
-            {/* Requirements */}
+       
             {singleJob?.requirements?.length > 0 && (
               <div className="mt-6">
                 <h2 className="text-md font-semibold mb-2 text-gray-800 flex items-center gap-2">

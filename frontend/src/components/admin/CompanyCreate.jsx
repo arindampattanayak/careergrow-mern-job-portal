@@ -94,7 +94,7 @@ const CompanyCreate = () => {
         </div>
       </div>
 
-      <Footer /> {/* ✅ Footer placed here */}
+      <Footer /> 
 
       <style>
         {`

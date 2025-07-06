@@ -17,10 +17,10 @@ const sendEmail = async ({ to, subject, text }) => {
       text,
     });
 
-    console.log(`✅ Email sent to ${to}`);
+    console.log(` Email sent to ${to}`);
   } catch (err) {
-    console.error("❌ Failed to send email:", err);
-    throw err; // Let the controller handle the error
+    console.error(" Failed to send email:", err);
+    throw err; 
   }
 };
 

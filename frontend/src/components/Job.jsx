@@ -17,7 +17,7 @@ const Job = ({ job }) => {
 
   return (
     <div className="p-6 rounded-2xl bg-[#f7faff] border border-blue-100 text-gray-800 shadow-md hover:shadow-lg transition-transform transform hover:scale-[1.02] duration-300 animate-fadeIn">
-      {/* Top Row */}
+     
       <div className="flex items-center justify-between text-sm text-gray-500">
         <p>
           {daysAgoFunction(job?.createdAt) === 0
@@ -33,7 +33,7 @@ const Job = ({ job }) => {
         </Button>
       </div>
 
-      {/* Company Info */}
+      
       <div className="flex items-center gap-4 mt-4 mb-5">
         <Avatar className="bg-gray-100 border border-gray-300">
           <AvatarImage src={job?.company?.logo} alt="logo" />
@@ -49,13 +49,13 @@ const Job = ({ job }) => {
         </div>
       </div>
 
-      {/* Job Title & Description */}
+    
       <div className="mb-3">
         <h1 className="text-lg font-bold text-gray-900">{job?.title}</h1>
         <p className="text-sm text-gray-600 mt-1 line-clamp-3">{job?.description}</p>
       </div>
 
-      {/* Job Highlights */}
+      
       <div className="flex flex-wrap gap-2 mt-3">
         <Badge className="text-blue-600 font-medium bg-blue-100 border border-blue-200">
           {job?.position} {job?.position > 1 ? 'Positions' : 'Position'}
@@ -68,7 +68,7 @@ const Job = ({ job }) => {
         </Badge>
       </div>
 
-      {/* Requirements */}
+      
       {job?.requirements?.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {job.requirements.map((req, index) => (
@@ -82,7 +82,7 @@ const Job = ({ job }) => {
         </div>
       )}
 
-      {/* Action Buttons */}
+      
       <div className="flex flex-col sm:flex-row gap-3 mt-6">
         <Button
           onClick={() => navigate(`/description/${job?._id}`)}
@@ -98,7 +98,7 @@ const Job = ({ job }) => {
         </Button>
       </div>
 
-      {/* Fade-in Animation */}
+      
       <style jsx>{`
         @keyframes fadeIn {
           from {

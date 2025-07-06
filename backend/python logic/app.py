@@ -1,16 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-import fitz  # PyMuPDF for PDF processing
-import spacy  # NLP library
+import fitz  
+import spacy  
 
-from pymongo import MongoClient  # MongoDB client
-from bson import ObjectId  # For working with MongoDB document IDs
+from pymongo import MongoClient 
+from bson import ObjectId 
 
-from dotenv import load_dotenv  # For loading environment variables
-import os  # To access environment variables
+from dotenv import load_dotenv  
+import os 
 
-import traceback  # For detailed error reporting this can be used separately
+import traceback  
 
 
 app = Flask(__name__)
@@ -18,14 +18,14 @@ CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
 
 print("📦 Loading spaCy model...")
 nlp = spacy.load("en_core_web_sm")
-print("✅ spaCy model loaded.")
+print(" spaCy model loaded.")
 mongo_uri = os.getenv("MONGO_URI")
 print("🔌 Connecting to MongoDB...")
-# Connect to MongoDB
+
 client = MongoClient(mongo_uri)
 db = client["test"]
 jobs_collection = db["jobs"]
-print("✅ Connected to MongoDB.")
+print(" Connected to MongoDB.")
 
 def extract_text_from_pdf(pdf_file):
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
@@ -47,7 +47,7 @@ def clean_document(doc):
         return doc
 
 def match_jobs(extracted_skills):
-    print("🎯 Matching jobs...")
+    print(" Matching jobs...")
     matched_jobs = []
     extracted_skills_set = set(extracted_skills)
 
@@ -67,32 +67,32 @@ def match_jobs(extracted_skills):
             matched_jobs.append(clean_document(job))
 
     matched_jobs.sort(key=lambda j: j["match_score"], reverse=True)
-    print(f"✅ Found {len(matched_jobs)} matched jobs.")
+    print(f" Found {len(matched_jobs)} matched jobs.")
     return matched_jobs[:5]
 
 @app.route("/upload-resume", methods=["POST"])
 def upload_resume():
-    print("📥 Received upload request")
+    print(" Received upload request")
     if "resume" not in request.files:
         return jsonify({"error": "No file part"}), 400
 
     file = request.files["resume"]
-    print(f"📄 File received: {file.filename}")
+    print(f" File received: {file.filename}")
     try:
-        print("📄 Extracting text from resume...")
+        print(" Extracting text from resume...")
         text = extract_text_from_pdf(file)
 
-        print("🔍 Extracting tokens from resume...")
+        print(" Extracting tokens from resume...")
         raw_tokens = extract_tokens(text)
 
-        print("📡 Fetching master skills from DB...")
+        print(" Fetching master skills from DB...")
         master_skills = set()
         for job in jobs_collection.find({}, {"requirements": 1}):
             for skill in job.get("requirements", []):
                 master_skills.add(skill.lower())
 
         filtered_skills = sorted(set(token for token in raw_tokens if token in master_skills))
-        print("✅ Extracted skills:", filtered_skills)
+        print(" Extracted skills:", filtered_skills)
 
         recommended_jobs = match_jobs(filtered_skills)
 
@@ -105,5 +105,5 @@ def upload_resume():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    print("🚀 Starting Flask server at http://127.0.0.1:5002")
+    print(" Starting Flask server at http://127.0.0.1:5002")
     app.run(host="127.0.0.1", port=5002, debug=True)
