@@ -39,14 +39,14 @@ Watch a short walkthrough of the project here:
 
 ## 📁 Project Structure
 
-bash
+```bash
 careergrow-mern-job-portal/
 ├── backend/                # Node.js + Express backend APIs, MongoDB logic, and Python integration
 │   ├── python_logic/       # Python-based skill extractor using spaCy, invoked via backend
 │   └── .env                # Backend environment variables (not pushed to Git)
 ├── frontend/               # React frontend with Tailwind CSS + shadcn/ui
 └── README.md
-
+```
 
 ### Prerequisites
 
