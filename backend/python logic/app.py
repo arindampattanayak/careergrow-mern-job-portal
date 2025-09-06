@@ -17,7 +17,8 @@ load_dotenv()
 app = Flask(__name__)
 
 # Use FRONTEND_URL from env or fallback to localhost
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+#FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+FRONTEND_URL = os.getenv("FRONTEND_URL")
 CORS(app, origins=[FRONTEND_URL], supports_credentials=True)
 
 # Load spaCy model
@@ -115,6 +116,7 @@ def upload_resume():
 
 # Run Flask server
 if __name__ == "__main__":
-    PORT = int(os.getenv("FLASK_PORT", 5002))  # separate port for Flask backend
+    #PORT = int(os.getenv("FLASK_PORT", 5002))  # separate port for Flask backend
+    PORT = int(os.getenv("FLASK_PORT"))
     print(f" Starting Flask server at http://0.0.0.0:{PORT}")
     app.run(host="0.0.0.0", port=PORT, debug=True)

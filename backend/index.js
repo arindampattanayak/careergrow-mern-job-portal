@@ -30,7 +30,8 @@ app.set("trust proxy", 1);
 // ✅ CORS setup (Vercel frontend + local dev)
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    //origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: process.env.FRONTEND_URL ,
     credentials: true,
   })
 );
@@ -52,7 +53,8 @@ app.use("/api/v1/messages", messageRoutes);
 // Setup Socket.IO with CORS
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    //origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   },
 });
@@ -75,7 +77,8 @@ io.on("connection", (socket) => {
 });
 
 // Dynamic PORT (Render will inject process.env.PORT)
-const PORT = process.env.PORT || 8000;
+//const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT ;
 
 // Start server only after DB connects
 const startServer = async () => {
