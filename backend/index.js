@@ -1,6 +1,6 @@
 import express from "express";
-import http from "http";  
-import { Server } from "socket.io"; 
+import http from "http";
+import { Server } from "socket.io";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -11,56 +11,79 @@ import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
 import resumeRoutes from "./routes/resume.routes.js";
-import messageRoutes from "./routes/message.route.js"; 
+import messageRoutes from "./routes/message.route.js";
 
+// Load environment variables
 dotenv.config();
 
 const app = express();
-const server = http.createServer(app); 
+const server = http.createServer(app);
+
+// Allowed origins (both local + prod frontend)
+const allowedOrigins = [
+  process.env.FRONTEND_URL,   // e.g. https://your-frontend.vercel.app
+  "http://localhost:5173",    // local dev
+];
+
+// Setup Socket.IO with CORS
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: allowedOrigins,
     credentials: true,
   },
 });
 
-
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
-
+// Routes
 app.use("/uploads", express.static("uploads"));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 app.use("/api/v1/", resumeRoutes);
-app.use("/api/v1/messages", messageRoutes); 
+app.use("/api/v1/messages", messageRoutes);
 
-
+// Socket.IO events
 io.on("connection", (socket) => {
-  console.log("New user connected:", socket.id);
+  console.log("🔌 New user connected:", socket.id);
 
   socket.on("sendMessage", (data) => {
-
     socket.to(data.receiverId).emit("receiveMessage", data);
   });
 
   socket.on("joinRoom", (userId) => {
-    socket.join(userId); 
+    socket.join(userId);
   });
 
   socket.on("disconnect", () => {
-    console.log("User disconnected:", socket.id);
+    console.log("❌ User disconnected:", socket.id);
   });
 });
 
-
+// Dynamic PORT (Render will inject process.env.PORT)
 const PORT = process.env.PORT || 8000;
 
-server.listen(PORT, () => {
-  connectDB();
-  console.log('Server running at port ${PORT}');
-});
+// Start server only after DB connects
+const startServer = async () => {
+  try {
+    await connectDB();
+    server.listen(PORT, () => {
+      console.log(`🚀 Server running at port ${PORT}`);
+    });
+  } catch (err) {
+    console.error("❌ Failed to connect to DB", err);
+    process.exit(1);
+  }
+};
+
+startServer();
