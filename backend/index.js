@@ -4,6 +4,8 @@ import { Server } from "socket.io";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import connectDB from "./utils/db.js";
 import userRoute from "./routes/user.route.js";
@@ -19,11 +21,48 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-// Allowed origins (both local + prod frontend)
+// Allowed origins for CORS
 const allowedOrigins = [
-  process.env.FRONTEND_URL,   // e.g. https://your-frontend.vercel.app
+  process.env.FRONTEND_URL,   // e.g. https://careergrow-mern-job-portal.vercel.app
   "http://localhost:5173",    // local dev
 ];
+
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
+
+// Serve uploads
+app.use("/uploads", express.static("uploads"));
+
+// API Routes
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/company", companyRoute);
+app.use("/api/v1/job", jobRoute);
+app.use("/api/v1/application", applicationRoute);
+app.use("/api/v1/", resumeRoutes);
+app.use("/api/v1/messages", messageRoutes);
+
+// Optional: serve frontend if you deploy frontend + backend together
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 // Setup Socket.IO with CORS
 const io = new Server(server, {
@@ -32,26 +71,6 @@ const io = new Server(server, {
     credentials: true,
   },
 });
-
-// Middlewares
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
-
-// Routes
-app.use("/uploads", express.static("uploads"));
-app.use("/api/v1/user", userRoute);
-app.use("/api/v1/company", companyRoute);
-app.use("/api/v1/job", jobRoute);
-app.use("/api/v1/application", applicationRoute);
-app.use("/api/v1/", resumeRoutes);
-app.use("/api/v1/messages", messageRoutes);
 
 // Socket.IO events
 io.on("connection", (socket) => {
