@@ -1,5 +1,5 @@
 import express from "express";
-import http from "http"; 
+import http from "http";  
 import { Server } from "socket.io"; 
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -58,8 +58,9 @@ io.on("connection", (socket) => {
 });
 
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
+
 server.listen(PORT, () => {
   connectDB();
-  console.log(`Server running at port ${PORT}`);
+  console.log('Server running at port ${PORT}');
 });
