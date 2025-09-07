@@ -207,7 +207,7 @@ export const updateJob = async (req, res) => {
 export const getJobsByCompany = async (req, res) => {
   try {
     const { companyId } = req.params;
-      console.log("Fetching jobs for company ID:", companyId); // ✅ Debug log
+      console.log("Fetching jobs for company ID:", companyId);
     const jobs = await Job.find({ company: companyId }).populate("company");
 
     if (!jobs || jobs.length === 0) {
