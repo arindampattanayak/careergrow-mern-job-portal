@@ -11,22 +11,22 @@ from dotenv import load_dotenv
 import os 
 import traceback  
 
-# Load environment variables
+
 load_dotenv()
 
 app = Flask(__name__)
 
-# Use FRONTEND_URL from env or fallback to localhost
+
 #FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
 FRONTEND_URL = os.getenv("FRONTEND_URL")
 CORS(app, origins=[FRONTEND_URL], supports_credentials=True)
 
-# Load spaCy model
+
 print("📦 Loading spaCy model...")
 nlp = spacy.load("en_core_web_sm")
 print(" spaCy model loaded.")
 
-# Connect to MongoDB
+
 mongo_uri = os.getenv("MONGO_URI")
 if not mongo_uri:
     raise Exception("MONGO_URI not set in environment variables")
@@ -36,7 +36,7 @@ db = client["test"]
 jobs_collection = db["jobs"]
 print(" Connected to MongoDB.")
 
-# Utilities
+
 def extract_text_from_pdf(pdf_file):
     doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
     return "".join(page.get_text() for page in doc)
@@ -79,7 +79,7 @@ def match_jobs(extracted_skills):
     print(f" Found {len(matched_jobs)} matched jobs.")
     return matched_jobs[:5]
 
-# Routes
+
 @app.route("/upload-resume", methods=["POST"])
 def upload_resume():
     print(" Received upload request")
@@ -114,9 +114,9 @@ def upload_resume():
         traceback.print_exc()
         return jsonify({"error": str(e)}), 500
 
-# Run Flask server
+
 if __name__ == "__main__":
-    #PORT = int(os.getenv("FLASK_PORT", 5002))  # separate port for Flask backend
+
     PORT = int(os.getenv("FLASK_PORT"))
     print(f" Starting Flask server at http://0.0.0.0:{PORT}")
     app.run(host="0.0.0.0", port=PORT, debug=True)
