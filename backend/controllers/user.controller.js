@@ -10,7 +10,7 @@ import sendEmail from "../utils/sendEmail.js";
 
 dotenv.config();
 
-// ======================= REGISTER =======================
+
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
@@ -73,7 +73,7 @@ export const register = async (req, res) => {
       profile: { profilePhoto: profilePhotoUrl },
     });
 
-    // Auto-login: set cookie
+
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
@@ -82,8 +82,8 @@ export const register = async (req, res) => {
       .status(201)
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // ✅ secure cookies in prod
-        sameSite: "None", // ✅ required for cross-site (Vercel + Render)
+        secure: process.env.NODE_ENV === "production", 
+        sameSite: "None", 
         maxAge: 24 * 60 * 60 * 1000,
       })
       .json({
@@ -107,7 +107,7 @@ export const register = async (req, res) => {
   }
 };
 
-// ======================= LOGIN =======================
+
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
@@ -166,7 +166,7 @@ export const login = async (req, res) => {
   }
 };
 
-// ======================= LOGOUT =======================
+
 export const logout = async (req, res) => {
   try {
     return res
@@ -184,7 +184,7 @@ export const logout = async (req, res) => {
   }
 };
 
-// ======================= FORGOT PASSWORD =======================
+
 export const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -223,7 +223,7 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-// ======================= RESET PASSWORD =======================
+
 export const resetPassword = async (req, res) => {
   try {
     const { token } = req.params;
@@ -276,7 +276,7 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-// ======================= GET USER BY ID =======================
+
 export const getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -287,7 +287,7 @@ export const getUserById = async (req, res) => {
   }
 };
 
-// ======================= UPDATE PROFILE =======================
+
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
