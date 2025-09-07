@@ -7,7 +7,8 @@
 
 Watch a short walkthrough of the project here:  
 🔗 [Click to Watch on Google Drive](https://drive.google.com/file/d/1HHEq618IXJjfib7XnkUA93Am0lz9RT5-/view?usp=drive_link)
-
+## 🎥 Live Link
+🔗(https://careergrow-mern-job-portal.vercel.app/)
 ## 🚀 Features
 
 - 🔐 *Secure Authentication*: JWT-based login/signup for candidates and recruiters, with passwords hashed using Bcrypt.
