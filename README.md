@@ -51,7 +51,7 @@ Watch a short walkthrough of the project here:
 #### 3. Applied Candidates
 ![Applied Candidates](images/p11.png)
 
-#### 4. Chat Box (Recruiter & Candidate)
+#### 4. Chat Box (Recruiter ↔ Candidate)
 ![Chat Box](images/p12.png)
 
 
