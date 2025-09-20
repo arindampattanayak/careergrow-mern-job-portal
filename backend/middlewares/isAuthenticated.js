@@ -3,7 +3,11 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (req, res, next) => {
   try {
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
     const token = req.cookies?.token;
 
     if (!token) {
@@ -13,7 +17,10 @@ const isAuthenticated = async (req, res, next) => {
       });
     }
 
+<<<<<<< HEAD
     
+=======
+>>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
     const decode = jwt.verify(token, process.env.SECRET_KEY);
 
     if (!decode) {
@@ -23,7 +30,11 @@ const isAuthenticated = async (req, res, next) => {
       });
     }
 
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
     req.id = decode.userId;
     next();
   } catch (error) {

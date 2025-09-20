@@ -73,10 +73,17 @@ io.on("connection", (socket) => {
   });
 });
 
+<<<<<<< HEAD
 
 const PORT = process.env.PORT || 8000;
 //const PORT = process.env.PORT ;
 
+=======
+
+//const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT ;
+
+>>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
 
 const startServer = async () => {
   try {
