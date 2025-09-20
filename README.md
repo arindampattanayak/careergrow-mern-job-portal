@@ -12,7 +12,7 @@ Watch a short walkthrough of the project here:
 
 ## 🧩 Sample Images
 ## 🧩 Student's Side :-
-![1](p1.png)
+![1](images/p1.png)
 
 
 
