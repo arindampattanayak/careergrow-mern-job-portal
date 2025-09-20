@@ -1,9 +1,9 @@
-// backend/middlewares/isAuthenticated.js
+
 import jwt from "jsonwebtoken";
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    // Get token from cookies
+  
     const token = req.cookies?.token;
 
     if (!token) {
@@ -13,7 +13,7 @@ const isAuthenticated = async (req, res, next) => {
       });
     }
 
-    // Verify token
+    
     const decode = jwt.verify(token, process.env.SECRET_KEY);
 
     if (!decode) {
@@ -23,7 +23,7 @@ const isAuthenticated = async (req, res, next) => {
       });
     }
 
-    // Attach user id to request
+   
     req.id = decode.userId;
     next();
   } catch (error) {
@@ -35,5 +35,5 @@ const isAuthenticated = async (req, res, next) => {
   }
 };
 
-// ✅ Always export as default (so import works everywhere)
+
 export default isAuthenticated;
