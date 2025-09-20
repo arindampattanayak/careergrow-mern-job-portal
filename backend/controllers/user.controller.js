@@ -10,10 +10,7 @@ import sendEmail from "../utils/sendEmail.js";
 
 dotenv.config();
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
@@ -73,12 +70,12 @@ export const register = async (req, res) => {
       },
     });
 
-<<<<<<< HEAD
+
     return res.status(201).json({
       message: "Account created successfully.",
       success: true,
     });
-=======
+
 
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
@@ -104,7 +101,7 @@ export const register = async (req, res) => {
           profile: newUser.profile,
         },
       });
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
+
   } catch (error) {
     console.log("Register Error:", error);
     return res.status(500).json({
@@ -114,10 +111,7 @@ export const register = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
@@ -181,10 +175,7 @@ export const login = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
 
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
 export const logout = async (req, res) => {
   try {
     return res.status(200).cookie("token", "", { maxAge: 0 }).json({
@@ -197,8 +188,7 @@ export const logout = async (req, res) => {
   }
 };
 
-<<<<<<< HEAD
-=======
+
 
 export const forgotPassword = async (req, res) => {
   try {
@@ -303,7 +293,7 @@ export const getUserById = async (req, res) => {
 };
 
 
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
+
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
