@@ -116,11 +116,9 @@ def upload_resume():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    #PORT = int(os.getenv("FLASK_PORT", 5002))  
-=======
 
->>>>>>> b099cc6c134b382c086cfb6eebf55361afbbdc3a
+    #PORT = int(os.getenv("FLASK_PORT", 5002))  
+
     PORT = int(os.getenv("FLASK_PORT"))
     print(f" Starting Flask server at http://0.0.0.0:{PORT}")
     app.run(host="0.0.0.0", port=PORT, debug=True)
