@@ -11,8 +11,48 @@ Watch a short walkthrough of the project here:
 🔗(https://careergrow-mern-job-portal.vercel.app/)
 
 ## 🧩 Sample Images
-## 🧩 Student's Side :-
-![1](images/p1.png)
+
+### 🧩 Student's Side
+
+#### 1. Login Page
+![Login Page](images/p1.png)
+
+#### 2. Home Page
+![Home Page](images/p2.png)
+
+#### 3. Student's Profile
+![Profile](images/p3.png)
+
+#### 4. Job Postings
+![Job Postings](images/p4.png)
+
+#### 5. Job Description
+![Job Description](images/p5.png)
+
+#### 6. Skills Extraction from Resume
+![Skills Extraction](images/p6.png)
+
+#### 7. Job Recommendation
+![Job Recommendation](images/p7.png)
+
+#### 8. Applied Jobs
+![Applied Jobs](images/p8.png)
+
+---
+
+### 🧩 Recruiter's Side
+
+#### 1. Registered Companies
+![Registered Companies](images/p9.png)
+
+#### 2. Posted Jobs
+![Posted Jobs](images/p10.png)
+
+#### 3. Applied Candidates
+![Applied Candidates](images/p11.png)
+
+#### 4. Chat Box (Recruiter & Candidate)
+![Chat Box](images/p12.png)
 
 
 
