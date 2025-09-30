@@ -4,7 +4,7 @@ import axios from "axios";
 import Navbar from './shared/Navbar';
 import Footer from './shared/Footer';
 
-const API_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 const JOB_API_ENDPOINT = `${API_URL}/api/v1/job`;
 const USER_API_ENDPOINT = `${API_URL}/api/v1/user`;
 const MESSAGE_API_ENDPOINT = `${API_URL}/api/v1/messages`;
