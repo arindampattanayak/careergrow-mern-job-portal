@@ -116,9 +116,8 @@ def upload_resume():
 
 
 if __name__ == "__main__":
-
-    #PORT = int(os.getenv("FLASK_PORT", 5002))  
-
-    PORT = int(os.getenv("FLASK_PORT"))
+    # Use Render's PORT if available, otherwise default to 5002 for local dev
+    PORT = int(os.getenv("PORT", 5002))
     print(f" Starting Flask server at http://0.0.0.0:{PORT}")
     app.run(host="0.0.0.0", port=PORT, debug=True)
+
