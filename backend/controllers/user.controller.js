@@ -3,14 +3,11 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import getDataUri from "../utils/datauri.js";
 import cloudinary from "../utils/cloudinary.js";
-import dotenv from 'dotenv';
-import crypto from 'crypto';
-import { generateResetToken } from "../utils/resetToken.js"; 
-import sendEmail from "../utils/sendEmail.js";               
+import dotenv from "dotenv";
 
 dotenv.config();
 
-
+// =================== REGISTER ===================
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
@@ -22,6 +19,7 @@ export const register = async (req, res) => {
       });
     }
 
+    // Validate email
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!isValidEmail) {
       return res.status(400).json({
@@ -30,6 +28,7 @@ export const register = async (req, res) => {
       });
     }
 
+    // Validate phone
     if (!/^\d{10}$/.test(phoneNumber)) {
       return res.status(400).json({
         message: "Phone number must be exactly 10 digits.",
@@ -37,14 +36,20 @@ export const register = async (req, res) => {
       });
     }
 
-    const isStrongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/.test(password);
+    // Validate strong password
+    const isStrongPassword =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/.test(
+        password
+      );
     if (!isStrongPassword) {
       return res.status(400).json({
-        message: "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
+        message:
+          "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
         success: false,
       });
     }
 
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -53,57 +58,48 @@ export const register = async (req, res) => {
       });
     }
 
-    const file = req.file;
-    const fileUri = getDataUri(file);
-    const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+    // Upload profile photo if provided
+    let profilePhotoUrl = "";
+    if (req.file) {
+      const fileUri = getDataUri(req.file);
+      const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
+      profilePhotoUrl = cloudResponse.secure_url;
+    }
 
+    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
+    // Create user
+    const newUser = await User.create({
       fullname,
       email,
       phoneNumber,
       password: hashedPassword,
       role,
-      profile: {
-        profilePhoto: cloudResponse.secure_url,
-      },
+      profile: { profilePhoto: profilePhotoUrl },
     });
 
-
-    return res.status(201).json({
-      message: "Account created successfully.",
-      success: true,
-    });
-
-
+    // Generate JWT token
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
 
-    return res
+    // Set cookie for cross-domain (Vercel frontend)
+    res
       .status(201)
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", 
-        sameSite: "None", 
-        maxAge: 24 * 60 * 60 * 1000,
+        secure: process.env.NODE_ENV === "production", // only on HTTPS
+        sameSite: "None", // allows cross-site cookies
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
       })
       .json({
         message: "Account created successfully.",
         success: true,
-        user: {
-          _id: newUser._id,
-          fullname: newUser.fullname,
-          email: newUser.email,
-          phoneNumber: newUser.phoneNumber,
-          role: newUser.role,
-          profile: newUser.profile,
-        },
+        user: newUser,
       });
-
   } catch (error) {
-    console.log("Register Error:", error);
+    console.error("Register Error:", error);
     return res.status(500).json({
       message: "Internal server error.",
       success: false,
@@ -111,19 +107,20 @@ export const register = async (req, res) => {
   }
 };
 
-
+// =================== LOGIN ===================
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
     if (!email || !password || !role) {
       return res.status(400).json({
-        message: "Something is missing",
+        message: "Email, password, and role are required",
         success: false,
       });
     }
 
-    let user = await User.findOne({ email });
+    // Find user
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
         message: "Incorrect email or password.",
@@ -131,6 +128,7 @@ export const login = async (req, res) => {
       });
     }
 
+    // Check password
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(400).json({
@@ -139,6 +137,7 @@ export const login = async (req, res) => {
       });
     }
 
+    // Check role
     if (role !== user.role) {
       return res.status(400).json({
         message: "Account doesn't exist with current role.",
@@ -146,48 +145,43 @@ export const login = async (req, res) => {
       });
     }
 
-    const tokenData = {
-      userId: user._id,
-    };
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
 
-    const token = jwt.sign(tokenData, process.env.SECRET_KEY, { expiresIn: "1d" });
-
-    user = {
-      _id: user._id,
-      fullname: user.fullname,
-      email: user.email,
-      phoneNumber: user.phoneNumber,
-      role: user.role,
-      profile: user.profile,
-    };
-
-    return res
+    // Send token as cookie for cross-site usage
+    res
       .status(200)
-      .cookie("token", token, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "strict" })
+      .cookie("token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
       .json({
         message: `Welcome back ${user.fullname}`,
-        user,
         success: true,
+        user,
       });
   } catch (error) {
-    console.log(error);
+    console.error("Login Error:", error);
     return res.status(500).json({ message: "Server Error", success: false });
   }
 };
 
-
+// =================== LOGOUT ===================
 export const logout = async (req, res) => {
   try {
-    return res.status(200).cookie("token", "", { maxAge: 0 }).json({
-      message: "Logged out successfully.",
-      success: true,
-    });
+    res
+      .status(200)
+      .cookie("token", "", { maxAge: 0, httpOnly: true, sameSite: "None", secure: process.env.NODE_ENV === "production" })
+      .json({ message: "Logged out successfully.", success: true });
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json({ message: "Server Error", success: false });
   }
 };
-
 
 
 export const forgotPassword = async (req, res) => {
