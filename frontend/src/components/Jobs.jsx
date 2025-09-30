@@ -43,7 +43,7 @@ const Jobs = () => {
             <main className="flex-1">
               {filterJobs.length === 0 ? (
                 <div className="text-center text-gray-500 text-xl mt-16 animate-fadeIn">
-                  🚫 No jobs found matching your criteria.
+                   No jobs found matching your criteria.
                 </div>
               ) : (
                 <motion.div

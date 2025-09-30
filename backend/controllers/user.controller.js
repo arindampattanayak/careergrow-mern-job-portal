@@ -10,7 +10,7 @@ import sendEmail from "../utils/sendEmail.js";
 
 dotenv.config();
 
-// =================== REGISTER ===================
+
 export const register = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
@@ -22,7 +22,7 @@ export const register = async (req, res) => {
       });
     }
 
-    // Validate email
+ 
     const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     if (!isValidEmail) {
       return res.status(400).json({
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
       });
     }
 
-    // Validate phone
+    
     if (!/^\d{10}$/.test(phoneNumber)) {
       return res.status(400).json({
         message: "Phone number must be exactly 10 digits.",
@@ -39,7 +39,7 @@ export const register = async (req, res) => {
       });
     }
 
-    // Validate strong password
+    
     const isStrongPassword =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&])[A-Za-z\d@$!%*?#&]{8,}$/.test(
         password
@@ -52,7 +52,7 @@ export const register = async (req, res) => {
       });
     }
 
-    // Check if user already exists
+   
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -61,7 +61,7 @@ export const register = async (req, res) => {
       });
     }
 
-    // Upload profile photo if provided
+    
     let profilePhotoUrl = "";
     if (req.file) {
       const fileUri = getDataUri(req.file);
@@ -69,10 +69,10 @@ export const register = async (req, res) => {
       profilePhotoUrl = cloudResponse.secure_url;
     }
 
-    // Hash password
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
+    
     const newUser = await User.create({
       fullname,
       email,
@@ -82,19 +82,19 @@ export const register = async (req, res) => {
       profile: { profilePhoto: profilePhotoUrl },
     });
 
-    // Generate JWT token
+    
     const token = jwt.sign({ userId: newUser._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
 
-    // Set cookie for cross-domain (Vercel frontend)
+    
     res
       .status(201)
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production", // only on HTTPS
-        sameSite: "None", // allows cross-site cookies
-        maxAge: 24 * 60 * 60 * 1000, // 1 day
+        secure: process.env.NODE_ENV === "production", 
+        sameSite: "None", 
+        maxAge: 24 * 60 * 60 * 1000, 
       })
       .json({
         message: "Account created successfully.",
@@ -110,7 +110,7 @@ export const register = async (req, res) => {
   }
 };
 
-// =================== LOGIN ===================
+
 export const login = async (req, res) => {
   try {
     const { email, password, role } = req.body;
@@ -122,7 +122,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // Find user
+    
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
@@ -131,7 +131,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // Check password
+   
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
       return res.status(400).json({
@@ -140,7 +140,7 @@ export const login = async (req, res) => {
       });
     }
 
-    // Check role
+    
     if (role !== user.role) {
       return res.status(400).json({
         message: "Account doesn't exist with current role.",
@@ -148,12 +148,12 @@ export const login = async (req, res) => {
       });
     }
 
-    // Generate JWT token
+    
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
       expiresIn: "1d",
     });
 
-    // Send token as cookie for cross-site usage
+    
     res
       .status(200)
       .cookie("token", token, {
@@ -173,7 +173,7 @@ export const login = async (req, res) => {
   }
 };
 
-// =================== LOGOUT ===================
+
 export const logout = async (req, res) => {
   try {
     res
@@ -289,8 +289,6 @@ export const getUserById = async (req, res) => {
   }
 };
 
-
-
 export const updateProfile = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
@@ -340,4 +338,3 @@ export const updateProfile = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error", success: false });
   }
 };
-

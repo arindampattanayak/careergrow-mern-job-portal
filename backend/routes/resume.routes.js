@@ -7,9 +7,9 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Use environment variable for Flask backend URL
-const FLASK_URL = process.env.FLASK_URL || "http://127.0.0.1:5002";
 
+const FLASK_URL = process.env.FLASK_URL || "http://127.0.0.1:5002";
+//const FLASK_URL = "http://127.0.0.1:5002";
 router.post("/upload-resume", upload.single("resume"), async (req, res) => {
     try {
         if (!req.file) {
@@ -22,7 +22,7 @@ router.post("/upload-resume", upload.single("resume"), async (req, res) => {
             contentType: req.file.mimetype,
         });
 
-        // Forward request to Flask service
+        
         const response = await axios.post(
             `${FLASK_URL}/upload-resume`,
             formData,
